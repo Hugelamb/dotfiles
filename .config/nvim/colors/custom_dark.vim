@@ -1,11 +1,11 @@
 " Name:		custom_dark
 " Description:	This color scheme uses a dark palette for use in low light
 " environments to avoid flashbanging the user when opening files :).
-" Maintainer: Me! (probably change this if you ever intend to upload it
+" Maintainer: Hugelamb (probably change this if you ever intend to upload it
 " anywhere though)
 " Website: None
 " License: MIT
-" Last Change: 01/11/2024
+" Last Change: 13/12/2024
 
 " This needs to be here until i get around to giving equivalent colors for 
 " less than 256 colors
