@@ -134,4 +134,6 @@ export PATH="$HOME/.mupdf/bin:$PATH"
 
 # spice up your terminal with lolcat and neofetch
 neofetch | lolcat
-alias dotfiles='/usr/bin/git --git-dir=/home/hug/.dotfiles/ --work-tree=/home/hug'
+
+# dotfiles git bare repo alias creation
+alias dotfiles='/usr/bin/git --git-dir=/home/"$USER"/.dotfiles/ --work-tree=/home/"$USER"'
