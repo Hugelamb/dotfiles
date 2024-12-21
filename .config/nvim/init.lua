@@ -331,7 +331,7 @@ vim.opt.autoindent = false
 vim.opt.termguicolors = true
 -- source custom colortheme 
 vim.cmd.source("$HOME/.config/nvim/colors/custom_dark.vim")
-vim.cmd.source("$HOME/.config/nvim/colors/solarized.vim")
+-- vim.cmd.source("$HOME/.config/nvim/colors/solarized.vim")
 local subneon = require "subneon"
 vim.cmd("colorscheme kanagawa")
 
