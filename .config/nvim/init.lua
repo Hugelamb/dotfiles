@@ -87,7 +87,7 @@ require("lazy").setup({ -- colorscheme plugin here
     build = ":TSUpdate",
     config = function()
         require('nvim-treesitter.configs').setup({
-            ensure_installed = {'vim', 'lua', 'python','c','cpp','yaml', 'vimdoc', 'bash', 'fish', 'json', 'markdown', 'markdown_inline','comment'},
+            ensure_installed = {'vim', 'lua', 'python','c','cpp','yaml', 'vimdoc', 'bash', 'devicetree', 'json', 'markdown', 'markdown_inline','comment'},
             indent = {
                 enable = true
             },

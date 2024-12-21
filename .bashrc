@@ -119,12 +119,17 @@ fi
 ## The below concerns user included code.
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+# eval "$(pyenv init -)"
 
 # add BOOST root directory to path
 export PATH="/usr/include/boost_1_82_0:$PATH"
 
+# if neovim installed from github release, use that version
+if [[ -d /opt/nvim-linux64/bin ]]; then
+    export PATH="$PATH:/opt/nvim-linux64/bin"
+fi
 # add neovim config to path
+
 export PATH="$HOME/.config/nvim:$PATH"
 # add colorschemes to lua path
 export LUA_PATH=";;$HOME/.config/nvim/colors/?.lua"
@@ -133,7 +138,7 @@ export LUA_PATH=";;$HOME/.config/nvim/colors/?.lua"
 export PATH="$HOME/.mupdf/bin:$PATH"
 
 # spice up your terminal with lolcat and neofetch
-neofetch | lolcat
-
+# neofetch | lolcat
+curl wttr.in/Sydney?0
 # dotfiles git bare repo alias creation
 alias dotfiles='/usr/bin/git --git-dir=/home/"$USER"/.dotfiles/ --work-tree=/home/"$USER"'
