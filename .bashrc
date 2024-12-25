@@ -119,7 +119,8 @@ fi
 ## The below concerns user included code.
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+# eval "$(pyenv init -)"
+# eval "$(python -m venv init -)"
 
 # add BOOST root directory to path
 export PATH="/usr/include/boost_1_82_0:$PATH"
@@ -133,7 +134,7 @@ export LUA_PATH=";;$HOME/.config/nvim/colors/?.lua"
 export PATH="$HOME/.mupdf/bin:$PATH"
 
 # spice up your terminal with lolcat and neofetch
-neofetch | lolcat
+neofetch 
 
 # dotfiles git bare repo alias creation
 alias dotfiles='/usr/bin/git --git-dir=/home/"$USER"/.dotfiles/ --work-tree=/home/"$USER"'
