@@ -144,8 +144,8 @@ export INFOPATH="$HOME/.local/texlive/texmf-dist/doc/info:$INFOPATH"
 ### Commands ###
 ################
 
-# spice up your terminal with lolcat and neofetch
-neofetch 
+# spice up your terminal with macchina
+macchina 
 
 # dotfiles git bare repo alias creation
 alias dotfiles='/usr/bin/git --git-dir=/home/"$USER"/.dotfiles/ --work-tree=/home/"$USER"'
