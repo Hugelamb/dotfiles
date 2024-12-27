@@ -115,6 +115,9 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+#######################
+###  PATH ADDITIONS ###
+#######################
 
 ## The below concerns user included code.
 export PYENV_ROOT="$HOME/.pyenv"
@@ -132,6 +135,14 @@ export LUA_PATH=";;$HOME/.config/nvim/colors/?.lua"
 
 # add mupdf fileviewer binary to path
 export PATH="$HOME/.mupdf/bin:$PATH"
+
+# LaTeX Path
+export PATH="$HOME/.local/texlive/bin/x86_64-linux:$PATH"
+export MANPATH="$HOME/.local/texlive/texmf-dist/doc/man:$MANPATH"
+export INFOPATH="$HOME/.local/texlive/texmf-dist/doc/info:$INFOPATH"
+################
+### Commands ###
+################
 
 # spice up your terminal with lolcat and neofetch
 neofetch 

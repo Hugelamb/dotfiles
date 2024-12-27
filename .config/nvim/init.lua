@@ -23,9 +23,9 @@ require("lazy").setup({ -- colorscheme plugin here
     "rebelot/kanagawa.nvim",
 },
 
-{
-    "rktjmp/lush.nvim",
-},
+-- {
+--     "rktjmp/lush.nvim",
+-- },
 -- lsp-config
 {
     "neovim/nvim-lspconfig",
@@ -225,9 +225,12 @@ require("lazy").setup({ -- colorscheme plugin here
                 ['<C-p>'] = cmp.mapping.select_prev_item(),
                 ['<C-d>'] = cmp.mapping.scroll_docs(-4),
                 ['<C-f>'] = cmp.mapping.scroll_docs(4),
-                ['<CR>'] = cmp.mapping.confirm {
-                    select = true
+                ['<C-y>'] = cmp.mapping.confirm { -- press <Ctrl+y> to confirm autocomplete option
+                    select = true       
                 },
+                -- ['<CR>'] = cmp.mapping.confirm { -- Enter key mapping
+                --     select = false
+                -- },
                 ['<Tab>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_next_item()
