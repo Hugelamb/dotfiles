@@ -54,4 +54,4 @@ disks = ["/", "/home/hug"]
 #   - DiskSpace
 # Example:
 #   show = ["Battery", "Memory", ...]
-show = ["Host","Machine","Distribution","Kernel","WindowManager","Packages","Shell","Terminal","Uptime","Battery","ProcessorLoad","GPU","DiskSpace"]
+show = ["Host","Machine","Distribution","Kernel","WindowManager","Packages","Shell","Terminal","Uptime","Battery","DiskSpace"]

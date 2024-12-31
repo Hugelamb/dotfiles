@@ -26,6 +26,11 @@ require("lazy").setup({ -- colorscheme plugin here
 -- {
 --     "rktjmp/lush.nvim",
 -- },
+-- markdown preview
+-- {  
+--     "iamcco/markdown-preview.nvim",
+-- },
+
 -- lsp-config
 {
     "neovim/nvim-lspconfig",

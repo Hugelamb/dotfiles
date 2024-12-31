@@ -58,7 +58,7 @@ M.light = {
     base4       = M.dark.base2,
     base5       = M.dark.base1,
     --- highlight colours 
-     blossom     = 0xddb1c7,
+    blossom     = 0xddb1c7,
     green       = 0xb2dcc7,
     ylwdull     = 0xdbdcb2,
     blulite     = 0xb2c7dc,
