@@ -105,8 +105,9 @@ HISTFILESIZE=2000
 case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
 esac
+
 # customize bash prompt (style and colors)
-PS1='\[[38;5;220m[\]\u[38;5;20m@[38;5;220m\h [38;5;13m\W[38;5;220m]\$ [0m'
+PS1='[38;5;220m[\]\u[38;5;20m@[38;5;220m\h [38;5;13m\w[38;5;220m]\$ [0m'
 
 
 ################

@@ -337,15 +337,6 @@ vim.opt.autoindent = false
 
 -- use 24-bit colours instead of 256
 vim.opt.termguicolors = true
--- source custom colortheme 
-vim.cmd.source("$HOME/.config/nvim/colors/custom_dark.vim")
--- vim.cmd.source("$HOME/.config/nvim/colors/solarized.vim")
-local subneon = require "subneon"
-vim.cmd("colorscheme kanagawa")
-
--- activate custom colortheme
-vim.cmd.colorscheme("custom_dark")
-
 vim.opt.number = true 		-- Show line numbers
 vim.opt.showmatch = true 	-- Highlight matching parenthesis
 
@@ -353,6 +344,31 @@ vim.opt.clipboard = "unnamedplus" 	-- Copy/paste to system clipboard
 vim.opt.swapfile = false 		-- Don't use swapfiles
 vim.opt.ignorecase = true 		-- Search case insensitive ...
 vim.opt.smartcase = true 		-- ... unless it begins with upper case
+
+
+--------------------
+--- AUTOCOMMANDS ---
+--------------------
+-- create mapping to simplify repeated calles of vim.api.nvim_create_autocmd
+local acmd = vim.api.nvim_create_autocmd
+-- command to automatically reset colortheme based on background setting changes
+-- acmd({"OptionSet"},
+--     pattern = "background",
+--     callback = function ()
+--     vim.cmd.colorscheme()
+-- )
+------------------------------
+--- CUSTOMIZED COLORTHEMES ---
+------------------------------
+-- source custom colortheme 
+vim.cmd.source("$HOME/.config/nvim/colors/custom_dark.vim")
+-- vim.cmd.source("$HOME/.config/nvim/colors/solarized.vim")
+vim.cmd("colorscheme kanagawa")
+vim.cmd.colorscheme("synthwave")
+vim.cmd.colorscheme("paperback")
+-- activate custom colortheme
+-- vim.cmd.colorscheme("custom_dark")
+
 
 -------------------
 --- Keymappings ---
