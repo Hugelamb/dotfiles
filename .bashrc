@@ -8,61 +8,113 @@ case $- in
       *) return;;
 esac
 
+#-----------------------------------
+# Source global definitions (if any)
+#-----------------------------------
+
+
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc 
+fi
+#-----------------------------------
+# Source global definitions (if any)
+#-----------------------------------
+
+set -o ignoreeof
+
+#-----------------------------------
+# Greeting, motd, colors, etc.
+#-----------------------------------
+
+# Color definitions
+
+
+# Normal colors
+black='[0;30m'
+red='[0;31m'
+green='[0;32m'
+yellow='[0;33m'
+blue='[0;34m'
+purple='[0;35m'
+cyan='[0;36m'
+white='[0;37m'
+
+# Bold colors
+
+bblack='[1;30m'
+bred='[1;31m'
+bgreen='[1;32m'
+byellow='[1;33m'
+bblue='[1;34m'
+bpurple='[1;35m'
+bcyan='[1;36m'
+bwhite='[1;37m'
+
+# Background colours
+
+on_black='[40m'
+on_red='[41m'
+on_green='[42m'
+on_yellow='[43m'
+on_blue='[44m'
+on_purple='[45m'
+on_cyan='[46m'
+on_white='[47m'
+
+NC="[m"
+
+
+ALERT=${bwhite}${on_red}    # Bold white on red background (hi-contrast)
+
+#------------------------------------------------
+# Shell Prompt Customization
+#------------------------------------------------
+
+# Test connection type:
+if [ -n "${SSH_CONNECTION}" ]; then
+    CNX=${Green}        # Connected on remote machine, via ssh (good).
+elif [[ "${DISPLAY%%:0*}" != "" ]]; then
+    CNX=${ALERT}        # Connected on remote machine, not via ssh (bad).
+else
+    CNX=${BCyan}        # Connected on local machine.
+fi
+
+# Test User Type
+if [[ ${USER} == "root" ]]; then
+    SU=${brown}
+fi
+# source user dotfiles if available
+for dotfile in ~/.{bash_aliases,path,exports,functions} ;
+    do [[ -f $dotfile ]] && . $dotfile || echo $dotfile not found. ;
+done
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
 shopt -s histappend
-
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
-# If set, the pattern "**" used in a pathname expansion context will
-# match all files and zero or more directories and subdirectories.
-#shopt -s globstar
-
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
 esac
 
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+# customize bash prompt (style and colors)
+PS1='[38;5;220m[\]\u[38;5;20m@[38;5;220m\h [38;5;13m\w[38;5;220m]\$ [0m'
 
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
 
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
+################
+### Commands ###
+################
 
+<<<<<<< HEAD
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
@@ -140,5 +192,12 @@ export PATH="$HOME/.mupdf/bin:$PATH"
 # spice up your terminal with lolcat and neofetch
 # neofetch | lolcat
 curl wttr.in/Sydney?0
+=======
+# spice up your terminal with macchina
+# not in login shell 
+shopt -q login_shell && macchina --config $HOME/.config/macchina/macchina-login.toml --theme minimal || macchina --theme Mikasa
+
+>>>>>>> e93e0555ce700deb29f564179cc1fc461ae4feed
 # dotfiles git bare repo alias creation
-alias dotfiles='/usr/bin/git --git-dir=/home/"$USER"/.dotfiles/ --work-tree=/home/"$USER"'
+# alias dotfiles='/usr/bin/git --git-dir=/home/"$USER"/.dotfiles/ --work-tree=/home/"$USER"'
+
