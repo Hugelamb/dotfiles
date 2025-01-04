@@ -114,7 +114,6 @@ PS1='[38;5;220m[\]\u[38;5;20m@[38;5;220m\h [38;5;13m\w[38;5;220m]\$ [0m'
 ### Commands ###
 ################
 
-<<<<<<< HEAD
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
@@ -191,13 +190,11 @@ export PATH="$HOME/.mupdf/bin:$PATH"
 
 # spice up your terminal with lolcat and neofetch
 # neofetch | lolcat
-curl wttr.in/Sydney?0
-=======
+# curl wttr.in/Sydney?0
 # spice up your terminal with macchina
 # not in login shell 
 shopt -q login_shell && macchina --config $HOME/.config/macchina/macchina-login.toml --theme minimal || macchina --theme Mikasa
 
->>>>>>> e93e0555ce700deb29f564179cc1fc461ae4feed
 # dotfiles git bare repo alias creation
-# alias dotfiles='/usr/bin/git --git-dir=/home/"$USER"/.dotfiles/ --work-tree=/home/"$USER"'
+alias dotfiles='/usr/bin/git --git-dir=/home/"$USER"/.dotfiles/ --work-tree=/home/"$USER"'
 
