@@ -23,11 +23,15 @@ fi
 set -o ignoreeof
 
 #-----------------------------------
-# Greeting, motd, colors, etc.
+# Greeting, motd, colors, etc
 #-----------------------------------
 
 # Color definitions
-
+# Custom Colors
+cyellow='[38;5;220m'
+cblue='[38;5;20m'
+cpink='[38;5;13m'
+colive='[38;2;137;129;83m'
 
 # Normal colors
 black='[0;30m'
@@ -107,14 +111,14 @@ case "$TERM" in
 esac
 
 # customize bash prompt (style and colors)
-PS1='[38;5;220m[\]\u[38;5;20m@[38;5;220m\h [38;5;13m\w[38;5;220m]\$ [0m'
-
+# PS1='\[[38;5;220m[\]\u[38;5;20m@[38;5;220m\h\] [38;5;13m\w[38;5;220m \$ [0m'
+# [\]\u@\h\] \w\$  
+PS1="\[${colive}\][\[${cyellow}\]\u\[${cblue}\]@\[${cyellow}\]\h\[${colive}\]] \[${cpink}\]\w \[${cyellow}\]$\[${NC}\]"
 
 ################
 ### Commands ###
 ################
 
-<<<<<<< HEAD
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
@@ -189,15 +193,10 @@ export LUA_PATH=";;$HOME/.config/nvim/colors/?.lua"
 # add mupdf fileviewer binary to path
 export PATH="$HOME/.mupdf/bin:$PATH"
 
-# spice up your terminal with lolcat and neofetch
-# neofetch | lolcat
-curl wttr.in/Sydney?0
-=======
 # spice up your terminal with macchina
 # not in login shell 
 shopt -q login_shell && macchina --config $HOME/.config/macchina/macchina-login.toml --theme minimal || macchina --theme Mikasa
 
->>>>>>> e93e0555ce700deb29f564179cc1fc461ae4feed
 # dotfiles git bare repo alias creation
 # alias dotfiles='/usr/bin/git --git-dir=/home/"$USER"/.dotfiles/ --work-tree=/home/"$USER"'
 
