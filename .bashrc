@@ -115,9 +115,12 @@ esac
 # [\]\u@\h\] \w\$  
 PS1="\[${colive}\][\[${cyellow}\]\u\[${cblue}\]@\[${cyellow}\]\h\[${colive}\]] \[${cpink}\]\w \[${cyellow}\]$\[${NC}\]"
 
-################
-### Commands ###
-################
+
+# print customized shell using macchina 
+shopt -q login_shell && macchina --config $HOME/.config/macchina/macchina-login.toml --theme minimal || macchina --theme Mikasa
+#------------------------------------------------
+# Commands
+#------------------------------------------------
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -128,6 +131,9 @@ xterm*|rxvt*)
     ;;
 esac
 
+#------------------------------------------------
+# Aliases
+#------------------------------------------------
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -152,7 +158,9 @@ alias l='ls -CF'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# Alias definitions.
+# bare dotfiles repo command 
+alias dotfiles='/usr/bin/git --git-dir=/home/"$USER"/.dotfiles/ --work-tree=/home/"$USER"'
+
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
@@ -172,7 +180,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
-## The below concerns user included code.
+
+#------------------------------------------------
+# Paths
+#------------------------------------------------
+
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 # eval "$(pyenv init -)"
@@ -193,10 +205,11 @@ export LUA_PATH=";;$HOME/.config/nvim/colors/?.lua"
 # add mupdf fileviewer binary to path
 export PATH="$HOME/.mupdf/bin:$PATH"
 
-# spice up your terminal with macchina
-# not in login shell 
+# add cargo to path (for macchina)
+export PATH="$HOME/.cargo/bin:$PATH"
+
+#------------------------------------------------
+# Custom Commands
+#------------------------------------------------
+# print customized shell using macchina 
 shopt -q login_shell && macchina --config $HOME/.config/macchina/macchina-login.toml --theme minimal || macchina --theme Mikasa
-
-# dotfiles git bare repo alias creation
-alias dotfiles='/usr/bin/git --git-dir=/home/"$USER"/.dotfiles/ --work-tree=/home/"$USER"'
-
