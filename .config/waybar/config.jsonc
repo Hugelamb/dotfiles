@@ -1,0 +1,119 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 35,
+    "spacing": 5,
+    "margin-top": 3,
+    "margin-left": 3,
+    "margin-right": 3,
+    "output": "DP-1",
+    "modules-left": ["hyprland/workspaces","hyprland/window","hyprland/submap"],
+    "modules-center": ["custom/player"],
+    "modules-right": ["network","pulseaudio","cpu","temperature","keyboard-state","clock","tray","custom/power"],
+
+    //Modules Configuration
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "active-only": false,
+        "warp-on-scroll": false,
+        "format": " {icon}",
+        "format-icons": {
+                "1": "<span color='#ff4ad6' ></span>",
+                "2": "<span color='#ffb300' ></span>",
+                "3": "<span color='#009eb3' ></span>",
+                "4": "<span color='#baffb3' ></span>",
+                "5": "<span color='#824DFF' ></span>"
+        },
+        "persistent-workspaces": {
+            "*": 5
+        }
+    },
+    "hyprland/submap": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "hyprland/window":  {
+        "format": "{class}",
+        "max-length": 50,
+        "rewrite": {
+            "": "<span foreground= '#458588'></span> hyprland",
+            "~": "terminal"
+        },
+        "all-outputs": true
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+    "keyboard-state": {
+        "format": {
+            "numlock": "N {icon}",
+            "capslock": "C {icon}",
+            "scrolllock": "S {icon}"
+        },
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
+    },
+     "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "custom/power": {
+        "format" : "⏻ ",
+		"tooltip": false,
+		"menu": "on-click",
+		"menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
+		"menu-actions": {
+			"shutdown": "shutdown",
+			"reboot": "reboot",
+			"suspend": "systemctl suspend",
+			"hibernate": "systemctl hibernate"
+		}
+
+    },
+    "custom/player": {
+        "format": "{}",
+        "exec": "~/.config/waybar/scripts/player.sh",
+        "interval": 1,
+        "max-length": 35,
+        "tooltip": false,
+        "on-click-right": "playerctl next",
+        "on-click-left": "playerctl previous",
+        "on-click": "playerctl play-pause"
+    }
+}

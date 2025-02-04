@@ -364,8 +364,8 @@ local acmd = vim.api.nvim_create_autocmd
 vim.cmd.source("$HOME/.config/nvim/colors/custom_dark.vim")
 -- vim.cmd.source("$HOME/.config/nvim/colors/solarized.vim")
 vim.cmd("colorscheme kanagawa")
-vim.cmd.colorscheme("synthwave")
-vim.cmd.colorscheme("paperback")
+-- vim.cmd.colorscheme("synthwave")
+-- vim.cmd.colorscheme("paperback")
 -- activate custom colortheme
 -- vim.cmd.colorscheme("custom_dark")
 
@@ -404,9 +404,10 @@ vim.keymap.set('n','<Leader>v','<C-v><CR>')
 -- Code folding options
 -- shortcuts: zR = open all folds,zM = close all, za=toggle at cursor
 vim.opt.foldmethod = 'indent'     -- using expr() fold type https://neovim.io/doc/user/fold.html#_expr for details
--- vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"    -- use treesitter for fold truth sourcing
+-- vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"    -- use treesitter for fold truth sourcin
 -- vim.opt.foldcolumn = "0"     -- when set to 0, will not display a column with fold information
 vim.opt.foldtext = ""           -- First line of fold will be syntax highlighted
+vim.opt.foldminlines = 1        -- Can close folds of 1 line if set to 0 (seems a bit pointless though)
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 1      -- Only top level folds are open when file is initially loaded
 vim.opt.foldnestmax = 4         -- Maximum number of nested folds that can be created

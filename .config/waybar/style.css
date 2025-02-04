@@ -1,0 +1,61 @@
+/* ==================== */
+/*      Common CSS      */
+/* ==================== */
+
+*   {
+    /*  `otf-font-awesome` must be installed for icons */
+    padding: 0;
+    border-radius: 0;
+    min-height: 0;
+    margin: 0;
+    border: none;
+    text-shadow: none;
+    transition: none;
+    box-shadow: none;
+    font-size: 14px; 
+}
+
+/* for whole status bar */
+window#waybar {
+    background: rgba(0,7,26,0.75); /* = #00071a */
+    color: #fff8e5;
+    border-radius: 18px;
+    margin: 0;
+    padding-left: 5px;
+    padding-right: 9px;
+}
+window#waybar.hidden {
+    opacity: 1;
+}
+.modules-left {
+    padding-left: 8px;    
+}
+.modules-right {
+    padding-left: 8px;    
+}
+
+#workspaces button,
+#workspaces button:hover,
+#workspaces button.visible,
+#workspaces button.visible:hover,
+#workspaces button.active,
+#workspaces button.active:hover,
+#workspaces button.urgent,
+#window,
+#tray,
+#cpu,
+#clock,
+#temperature,
+#temperature-critical,
+#backlight,
+#pulseaudio,
+#pulseaudio-muted,
+#battery,
+#battery-critical,
+#battery-warning,
+#clock {
+    font-family: MesloLGM Nerd Font Mono;
+    font-size: 14px;
+    font-weight: 400;
+    color: #ffffff;
+}
