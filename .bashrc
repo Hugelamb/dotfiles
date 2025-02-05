@@ -87,10 +87,6 @@ fi
 if [[ ${USER} == "root" ]]; then
     SU=${brown}
 fi
-# source user dotfiles if available
-for dotfile in ~/.{bash_aliases,path,exports,functions} ;
-    do [[ -f $dotfile ]] && . $dotfile || echo $dotfile not found. ;
-done
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -128,6 +124,12 @@ xterm*|rxvt*)
     ;;
 esac
 
+# Check if given path exists, if it does, add to $PATH
+prepend_path () {
+    if [[ -d $1 ]]; then
+        export PATH="$1:$PATH"
+    fi
+} 
 #------------------------------------------------
 # Aliases
 #------------------------------------------------
@@ -186,17 +188,24 @@ if [[ -d /opt/nvim-linux64/bin ]]; then
     export PATH="$PATH:/opt/nvim-linux64/bin"
 fi
 # add neovim config to path
-
+export EDITOR="nvim"
 export PATH="$HOME/.config/nvim:$PATH"
 # add colorschemes to lua path
 export LUA_PATH=";;$HOME/.config/nvim/colors/?.lua"
 
+# add tex environment variables
+export MANPATH="/media/tex/texmf-dist/doc/man:$MANPATH"
+export INFOPATH="/media/tex/texmf-dist/doc/info:$INFOPATH"
+
+prepend_path "/media/tex/bin/x86_64-linux"
+
+prepend_path "/home/hug/.local/bin"
+
 # add mupdf fileviewer binary to path
-export PATH="$HOME/.mupdf/bin:$PATH"
+prepend_path "$HOME/.mupdf/bin"
 
 # add cargo to path (for macchina)
-export PATH="$HOME/.cargo/bin:$PATH"
-
+prepend_path "$HOME/.cargo/bin"
 #------------------------------------------------
 # Custom Commands
 #------------------------------------------------

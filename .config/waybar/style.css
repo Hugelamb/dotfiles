@@ -4,6 +4,7 @@
 
 *   {
     /*  `otf-font-awesome` must be installed for icons */
+    font-family: Noto Sans CJK, Symbols Nerd Font, MesloLGM Nerd Font Propo;
     padding: 0;
     border-radius: 0;
     min-height: 0;
@@ -12,14 +13,12 @@
     text-shadow: none;
     transition: none;
     box-shadow: none;
-    font-size: 14px; 
 }
-
 /* for whole status bar */
 window#waybar {
     background: rgba(0,7,26,0.75); /* = #00071a */
     color: #fff8e5;
-    border-radius: 18px;
+    border-radius: 19px;
     margin: 0;
     padding-left: 5px;
     padding-right: 9px;
@@ -28,12 +27,11 @@ window#waybar.hidden {
     opacity: 1;
 }
 .modules-left {
-    padding-left: 8px;    
+    padding-left: 5px;    
 }
 .modules-right {
-    padding-left: 8px;    
+    padding-left: 5px;    
 }
-
 #workspaces button,
 #workspaces button:hover,
 #workspaces button.visible,
@@ -53,9 +51,71 @@ window#waybar.hidden {
 #battery,
 #battery-critical,
 #battery-warning,
+#timer,
+#custom-fuzzel,
+#custom-padding,
+#custom-notification,
+#custom-timer,
+#custom-power,
+#custom-player,
+
+
+
+
 #clock {
     font-family: MesloLGM Nerd Font Mono;
     font-size: 14px;
     font-weight: 400;
     color: #ffffff;
+}
+
+/* ================================ */
+/*            WORKSPACES            */
+/* ================================ */
+
+#workspaces {
+    /*font-size: ;*/ 
+    margin: 0px;
+}
+
+#workspaces button {
+    color:#000000; 
+    background: rgba(0,7,26,0);
+    min-width: 25px;
+    padding: 0 8px 0 0; /* added to balance offset of font in boxes */
+    margin: 5px 3px;
+}
+
+#workspaces button.visible {
+    border: 2px solid #a100e6;
+    border-radius: 12px;
+}
+/* ================================ */
+/*          CUSTOM MODULES          */
+/* ================================ */
+
+
+#custom-fuzzel {
+    padding: 0 6px;
+    margin: 5px 0px;
+    font-size: 20px;
+}
+#custom-notification {
+    color: #fff8e6;
+    background: rgba(0,7,26,0);
+    font-size: 14px;
+    padding: 2px 2px;
+}
+#custom-notification button.visible {
+    border: 2px solid #a100e6;
+    border-radius: 12px;
+}
+#custom-player {
+    color: #202735;
+    background: #dfd9ca;
+    border: 2px solid #202735;
+    border-radius: 21px;
+    background: #fff8e6;
+    padding-left: 9px;
+    padding-right: 9px;
 }
