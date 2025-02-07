@@ -10,7 +10,7 @@ separator_color = "#e24091"
 
 [custom_ascii]
 # path="jp2a --width=auto ~/wallpapers/vball.png --color-depth=24"
-path= "~/.config/macchina/macchina-ascii-art.txt"
+path= "~/.config/macchina/artwork/macchina-ascii-art.txt"
 # path= "~/Downloads/ubuntu-ascii.txt"
 # ascii 256-color mode codes
 # replace ESC with ESC character

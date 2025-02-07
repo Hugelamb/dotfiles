@@ -195,7 +195,7 @@
     },
     "custom/weather": {
         "format": "{}",
-        "exec": "$HOME/.config/waybar/scripts/weather.sh Woollahra+Australia",
+        "exec": "$HOME/.config/waybar/scripts/weather.sh Sydney,Australia",
         "return-type": "json",
         "tooltip": true,
         "interval": 3600

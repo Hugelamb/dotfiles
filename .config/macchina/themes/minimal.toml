@@ -1,0 +1,20 @@
+# Minimal theme for login shell
+# Image
+[custom_ascii]
+path= ".config/macchina/artwork/arch.txt"
+[palette]
+type                = "Dark"
+visible             = true
+glyph               = "●"
+spacing             = 3
+
+[bar]
+visible             = false
+
+[box]
+visible             = false
+
+[randomize]
+key_color           = false
+separator_color     =false
+

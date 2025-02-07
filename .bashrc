@@ -160,6 +160,11 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # bare dotfiles repo command 
 alias dotfiles='/usr/bin/git --git-dir=/home/"$USER"/.dotfiles/ --work-tree=/home/"$USER"'
 
+# grim screenshot aliases
+# take screenshot using output of slurp and save to $HOME/Pictures/Screenshots
+# Filename will be in format of {YYYYMMDD}_{HH}h{MM}m{SS}s.png, 
+# I.e. 20250101_12h12m12s.png would be from 1/1/2025, at 12 seconds past 12:12
+alias screenshot='slurp | grim -g - ${HOME}/Pictures/Screenshots/$(date "+%Y%m%d_%Hh%Mm%Ss.png")'
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
