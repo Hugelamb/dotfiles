@@ -1,7 +1,17 @@
 /* ==================== */
 /*      Common CSS      */
 /* ==================== */
-
+/* Standard colour set  */
+/* Light Text:          #fff8e5
+ * Dark Text:           #00071a
+ * Left Background:     #8c57ff
+ * Right Background:    #36f9f6
+ * Workspace Icons (L->R):
+ * #f821b2, #ff5761, #e99727, #acc642, #64e699  
+ * Border:              # 202735
+ * Player Background:   # dfd92a
+ *
+ */
 *   {
     /*  `otf-font-awesome` must be installed for icons */
     font-family: Noto Sans CJK, Symbols Nerd Font, MesloLGM Nerd Font Propo;
@@ -16,21 +26,26 @@
 }
 /* for whole status bar */
 window#waybar {
-    background: rgba(0,7,26,0.75); /* = #00071a */
+    background: rgba(172,172,172,255); /* = #00071a */
+    background: linear-gradient(45deg, #8c57ff 0%, #36f9f6 100%);
     color: #fff8e5;
     border-radius: 19px;
+    border: 2px solid #202735;
     margin: 0;
     padding-left: 5px;
     padding-right: 9px;
+    
 }
 window#waybar.hidden {
     opacity: 1;
 }
 .modules-left {
     padding-left: 5px;    
+    color: #fff8e5;
 }
 .modules-right {
     padding-left: 5px;    
+    color: #00071a;
 }
 #workspaces button,
 #workspaces button:hover,
@@ -64,9 +79,8 @@ window#waybar.hidden {
 
 #clock {
     font-family: MesloLGM Nerd Font Mono;
-    font-size: 14px;
     font-weight: 400;
-    color: #ffffff;
+    color: #00071a;
 }
 
 /* ================================ */
@@ -87,7 +101,7 @@ window#waybar.hidden {
 }
 
 #workspaces button.visible {
-    border: 2px solid #a100e6;
+    border: 2px solid #00071a;
     border-radius: 12px;
 }
 /* ================================ */
@@ -107,7 +121,7 @@ window#waybar.hidden {
     padding: 2px 2px;
 }
 #custom-notification button.visible {
-    border: 2px solid #a100e6;
+    border: 2px solid #00071a;
     border-radius: 12px;
 }
 #custom-player {
@@ -115,7 +129,11 @@ window#waybar.hidden {
     background: #dfd9ca;
     border: 2px solid #202735;
     border-radius: 21px;
-    background: #fff8e6;
     padding-left: 9px;
     padding-right: 9px;
+}
+#custom-timer {
+    color: #00071a;
+    background: rgba(0,7,26,0);
+    
 }
