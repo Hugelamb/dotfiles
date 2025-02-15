@@ -22,15 +22,6 @@ require("lazy").setup({ -- colorscheme plugin here
 {
     "rebelot/kanagawa.nvim",
 },
-
--- {
---     "rktjmp/lush.nvim",
--- },
--- markdown preview
--- {  
---     "iamcco/markdown-preview.nvim",
--- },
-
 -- lsp-config
 {
     "neovim/nvim-lspconfig",
@@ -84,7 +75,6 @@ require("lazy").setup({ -- colorscheme plugin here
         })
     end
 },
-
 -- Highlight, edit, and navigate code
 {
     'nvim-treesitter/nvim-treesitter',
@@ -171,7 +161,6 @@ require("lazy").setup({ -- colorscheme plugin here
         })
     end
 },
-
 {
     "windwp/nvim-autopairs",
     config = function()
@@ -180,7 +169,6 @@ require("lazy").setup({ -- colorscheme plugin here
         }
     end
 },
-
 -- Lua Snippets
 {
     "L3MON4D3/LuaSnip",
@@ -300,7 +288,40 @@ require("lazy").setup({ -- colorscheme plugin here
 		vim.g.vimtex_quickfix_method = vim.fn.executable("pplatex") == 1 and "pplatex" or "latexlog"
 	end,
 },
-
+{
+    "nvim-tree/nvim-web-devicons",
+    opts = {}
+},
+{
+  "MeanderingProgrammer/render-markdown.nvim"      
+  },
+---{
+---  "MeanderingProgrammer/render-markdown.nvim",
+---  dependencies = { 'nvim-treesitter/nvim-treesitter'},
+---  ---@module 'render-markdown'
+---  ---@type render.md.UserConfig
+---  config = function()
+---    require('render-markdown').setup({
+---      render_modes = {'n','c','t'},
+---      checkbox = { 
+---	enabled = true,
+---	render_modes = false,
+---	position = 'inline',
+---
+---      },
+---    })
+---  opts = {
+---      code = {
+---        sign = false,
+---        width = "block",
+---        right_pad = 1,
+---      },
+---      heading = {
+---        sign = true,
+---        --icons = {},
+---      },
+---  }
+---}
 })
 
 ----------------
@@ -326,24 +347,23 @@ end
 vim.opt.visualbell = true
 
 -- set default tabwidth at 4 spaces
-vim.opt.shiftwidth = 4
-vim.opt.smarttab = true
+vim.opt.shiftwidth = 2
+-- vim.opt.smarttab = true
 vim.opt.expandtab = true
-vim.opt.tabstop = 4 
-vim.opt.softtabstop = 0
+vim.opt.tabstop = 8
+vim.opt.softtabstop = 2
 
 -- indent new line at same level as previous
-vim.opt.autoindent = false 
-
+vim.opt.autoindent = false
 -- use 24-bit colours instead of 256
 vim.opt.termguicolors = true
-vim.opt.number = true 		-- Show line numbers
-vim.opt.showmatch = true 	-- Highlight matching parenthesis
+vim.opt.number = true		-- Show line numbers
+vim.opt.showmatch = true	-- Highlight matching parenthesis
 
-vim.opt.clipboard = "unnamedplus" 	-- Copy/paste to system clipboard
-vim.opt.swapfile = false 		-- Don't use swapfiles
-vim.opt.ignorecase = true 		-- Search case insensitive ...
-vim.opt.smartcase = true 		-- ... unless it begins with upper case
+vim.opt.clipboard = "unnamedplus"	-- Copy/paste to system clipboard
+vim.opt.swapfile = false		-- Don't use swapfiles
+vim.opt.ignorecase = true		-- Search case insensitive ...
+vim.opt.smartcase = true		-- ... unless it begins with upper case
 
 
 --------------------
