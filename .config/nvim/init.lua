@@ -285,7 +285,7 @@ require("lazy").setup({ -- colorscheme plugin here
                 vim.g.vimtex_view_method = 'mupdf'
                 vim.g.vimtex_view_mupdf_exe = 'mupdf-gl.exe'
                 vim.g.vimtex_view_general_viewer = 'mupdf-gl.exe'
-		vim.g.conceallevel = 1
+		vim.opt.conceallevel = 1
 		vim.g.tex_conceal = 'abdmg'
             end
 	end,
@@ -407,7 +407,7 @@ vim.opt.foldnestmax = 4         -- Maximum number of nested folds that can be cr
            ---------------------
 vim.opt.splitright = true       -- enforce that windows split right by default
 --- Opening/Splitting Macros
-vim.keymap.set('n','<Localleader>b',':browse vsplit  . <CR>')     -- vert split and open current directory tree
+vim.keymap.set('n','<Localleader>bv',':browse vsplit  . <CR>')     -- vert split and open current directory tree
 vim.keymap.set('n','<Localleader>vs',':vs<CR>',{ silent = true})     -- vertical split command
 vim.keymap.set('n','<Localleader>hs',':sp<CR>',{silent = true})      -- horizontal split command
 --- Closing and Hiding Macros
