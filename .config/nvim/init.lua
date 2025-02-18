@@ -173,10 +173,13 @@ require("lazy").setup({ -- colorscheme plugin here
 {
     "L3MON4D3/LuaSnip",
     dependencies = {"rafamadriz/friendly-snippets"},
+    build = "make install_jsregexp",
     config = function()
         require("luasnip.loaders.from_vscode").lazy_load()
+	require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/LuaSnip/snippets.lua"})
     end
-}, -- autocompletion
+},
+-- autocompletion
 {
     "hrsh7th/nvim-cmp",
     dependencies = {"hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-buffer", "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip",
@@ -282,11 +285,17 @@ require("lazy").setup({ -- colorscheme plugin here
                 vim.g.vimtex_view_method = 'mupdf'
                 vim.g.vimtex_view_mupdf_exe = 'mupdf-gl.exe'
                 vim.g.vimtex_view_general_viewer = 'mupdf-gl.exe'
+		vim.g.conceallevel = 1
+		vim.g.tex_conceal = 'abdmg'
             end
 	end,
 	config = function()
 		vim.g.vimtex_quickfix_method = vim.fn.executable("pplatex") == 1 and "pplatex" or "latexlog"
 	end,
+        -- opts = {
+        --   conceallevel = 1,
+        --   vim.g.tex_conceal = 'abdmg'
+    	-- },
 },
 {
     "nvim-tree/nvim-web-devicons",
@@ -294,34 +303,7 @@ require("lazy").setup({ -- colorscheme plugin here
 },
 {
   "MeanderingProgrammer/render-markdown.nvim"      
-  },
----{
----  "MeanderingProgrammer/render-markdown.nvim",
----  dependencies = { 'nvim-treesitter/nvim-treesitter'},
----  ---@module 'render-markdown'
----  ---@type render.md.UserConfig
----  config = function()
----    require('render-markdown').setup({
----      render_modes = {'n','c','t'},
----      checkbox = { 
----	enabled = true,
----	render_modes = false,
----	position = 'inline',
----
----      },
----    })
----  opts = {
----      code = {
----        sign = false,
----        width = "block",
----        right_pad = 1,
----      },
----      heading = {
----        sign = true,
----        --icons = {},
----      },
----  }
----}
+},
 })
 
 ----------------
@@ -331,18 +313,8 @@ require("lazy").setup({ -- colorscheme plugin here
 
 -- disable netrw at the very start of our init.lua, because nvim-tree is being used?
 -- clipboard settings
--- vim.g.clipboard = "unnamedplus"
+vim.g.clipboard = "unnamedplus"   -- copy to system clipboard
 
-in_wsl = os.getenv('WSL_DISTRO_NAME') ~= nil
-
-if in_wsl then
-    vim.g.clipboard = {
-        name = 'wsl clipboard',
-        copy =  { ["+"] = { "clip.exe" },   ["*"] = { "clip.exe" } },
-        paste = { ["+"] = { "nvim_paste" }, ["*"] = { "nvim_paste" } },
-        cache_enabled = true
-    }
-end
 -- errors flash screen rather than emitting beep
 vim.opt.visualbell = true
 
@@ -360,7 +332,6 @@ vim.opt.termguicolors = true
 vim.opt.number = true		-- Show line numbers
 vim.opt.showmatch = true	-- Highlight matching parenthesis
 
-vim.opt.clipboard = "unnamedplus"	-- Copy/paste to system clipboard
 vim.opt.swapfile = false		-- Don't use swapfiles
 vim.opt.ignorecase = true		-- Search case insensitive ...
 vim.opt.smartcase = true		-- ... unless it begins with upper case
@@ -437,8 +408,8 @@ vim.opt.foldnestmax = 4         -- Maximum number of nested folds that can be cr
 vim.opt.splitright = true       -- enforce that windows split right by default
 --- Opening/Splitting Macros
 vim.keymap.set('n','<Localleader>b',':browse vsplit  . <CR>')     -- vert split and open current directory tree
-vim.keymap.set('n','<Localleader>vv',':vs<CR>',{ silent = true})     -- vertical split command
-vim.keymap.set('n','<Localleader>hv',':sp<CR>',{silent = true})      -- horizontal split command
+vim.keymap.set('n','<Localleader>vs',':vs<CR>',{ silent = true})     -- vertical split command
+vim.keymap.set('n','<Localleader>hs',':sp<CR>',{silent = true})      -- horizontal split command
 --- Closing and Hiding Macros
 vim.keymap.set('n','<Localleader>q','<C-w><C-q>')           -- close current window, as long as there are no unsaved buffer changes/is not last window for buffer
 vim.keymap.set('n','<Localleader>h','<:hide<CR>',{ silent = true})  -- hide current window
@@ -456,4 +427,16 @@ vim.keymap.set('n','<Localleader><A-l>','<C-w>l')               -- move to windo
            ----------
 -- Compile Continously (mapping to call :VimtexCompile)
 vim.keymap.set('n','<LocalLeader>vc',':VimtexCompile')
-
+vim.keymap.set('n','<Localleader>vv',':VimtexView')
+----------------------
+--- Snippet Macros ---
+----------------------
+local ls = require("luasnip")
+vim.keymap.set('i','<C-K>', function() ls.expand() end, { silent = true })
+vim.keymap.set({"i","s"},'<C-L>', function() ls.jump( 1) end, { silent = true })
+vim.keymap.set({"i","s"},'<C-J>', function() ls.jump(-1) end, { silent = true })
+vim.keymap.set({"i","s"},'<C-E>', function()
+  if ls.choice_active() then
+    ls.chang_choice(1)
+  end
+end, {silent = true})

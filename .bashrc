@@ -199,11 +199,15 @@ export PATH="$HOME/.config/nvim:$PATH"
 export LUA_PATH=";;$HOME/.config/nvim/colors/?.lua"
 
 # add tex environment variables
-export MANPATH="/media/tex/texmf-dist/doc/man:$MANPATH"
-export INFOPATH="/media/tex/texmf-dist/doc/info:$INFOPATH"
-
-prepend_path "/media/tex/bin/x86_64-linux"
-
+if [[ -d /media ]]; then
+  export MANPATH="/media/tex/texmf-dist/doc/man:$MANPATH"
+  export INFOPATH="/media/tex/texmf-dist/doc/info:$INFOPATH"
+  prepend_path "/media/tex/bin/x86_64-linux"
+else
+  export MANPATH="/usr/local/texlive/2024/texmf-dist/doc/man:$MANPATH"
+  export INFOPATH="/usr/local/texlive/2024/texmf-dist/doc/info:$INFOPATH"
+  prepend_path "/usr/local/texlive/2024/bin/x86_64-linux"
+fi
 prepend_path "/home/hug/.local/bin"
 
 # add mupdf fileviewer binary to path

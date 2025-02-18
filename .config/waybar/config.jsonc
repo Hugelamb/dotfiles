@@ -31,6 +31,8 @@
         "custom/padding",
         "custom/timer",
         "custom/padding",
+        "battery",
+        "custom/padding",
         "custom/power",
         "custom/padding"
     ],
@@ -65,14 +67,25 @@
             "firefox": "browser",
             "chrome": "browser",
             "chromium": "browser",
-            "dolphin": "file manager"
+            "dolphin": "file manager",
+            "spotify": "player",
+            "nvim": "editor",
+            "xournal++": "notes"
         },
         "all-outputs": true
     },
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10,
-        "icon-size": 15
+    "battery": {
+        //"bat": "BAT0",
+        "interval": 60,
+        "states": {
+          "charged":90,
+          "warning": 30,
+          "critical": 15
+        },
+        "format": "{icon}",
+        "format-alt": "{capacity}%",
+        "format-icons": ["  ","  ","  ","  ","  "],
+        "max-length": 5 
     },
     "clock": {
         // "timezone": "America/New_York",
@@ -122,6 +135,11 @@
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol"
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10,
+        "icon-size": 15
     },
 
     /* CUSTOM MODULES */
