@@ -176,7 +176,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-
+# alias todo app 
 #------------------------------------------------
 # Paths
 #------------------------------------------------
@@ -196,7 +196,9 @@ fi
 export EDITOR="nvim"
 export PATH="$HOME/.config/nvim:$PATH"
 # add colorschemes to lua path
-export LUA_PATH=";;$HOME/.config/nvim/colors/?.lua"
+export LUA_PATH=";;$HOME/.config/nvim/colors/?.lua;$LUA_PATH"
+export LUA_PATH="$HOME/.config/nvim/?.lua;$LUA_PATH"
+export LUA_PATH="$HOME/.config/nvim/LuaSnip/?.lua;$LUA_PATH"
 
 # add tex environment variables
 if [[ -d /media ]]; then

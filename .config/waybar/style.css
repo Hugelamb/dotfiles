@@ -73,7 +73,7 @@ window#waybar.hidden {
 #custom-timer,
 #custom-power,
 #custom-player,
-
+#custom-tasks,
 
 
 
@@ -135,5 +135,4 @@ window#waybar.hidden {
 #custom-timer {
     color: #00071a;
     background: rgba(0,7,26,0);
-    
 }
