@@ -114,7 +114,7 @@ set_ps1() {
   echo -e "${colive}[${cyellow}\u${cblue}@${cyellow}\h${colive}] ${cpink}\w ${cyellow}\$${NC}"
 }
 PS1="\[${colive}\][\[${cyellow}\]\u\[${cblue}\]@\[${cyellow}\]\h\[${colive}\]] \[${cpink}\]\w \[${cyellow}\]$\[${NC}\]"
-PS1='${colive}[${cyellow}\u${cblue}@${cyellow}\h${colive}] ${cpink}\w ${cyellow}\$${NC}'
+PS1='\[${colive}\][\[${cyellow}\]\u\[${cblue}\]@\[${cyellow}\]\h\[${colive}\]] \[${cpink}\]\w \[${cyellow}\]\$\[${NC}\]'
 #------------------------------------------------
 # Commands
 #------------------------------------------------
@@ -184,21 +184,6 @@ fi
 alias in='task add +in'
 # add to bash prompt
 # change color based on number of pending tasks
-inbox_prompt() {
-  inbox_count=$(task +in +PENDING count)
-  if [ $inbox_count -gt 0 ]; then
-    count_color=$ccrimson
-  else
-    count_color=$cgreen
-  fi
-  echo -e "${count_color}$inbox_count"
-}
-
-# set PS1
-if [[ ! $(command -v task 2>&1 >/dev/null) ]]     # command -v prints the location of input command if present in $PATH, otherwise returns failure status (1).
-then
-  export PS1='$(inbox_prompt) '$PS1               # prepend number of unprocessed inbox decisions to prompt
-fi
 #------------------------------------------------
 # Paths
 #------------------------------------------------
@@ -244,3 +229,20 @@ prepend_path "$HOME/.cargo/bin"
 #------------------------------------------------
 # print customized shell using macchina 
 shopt -q login_shell && macchina --config $HOME/.config/macchina/macchina-login.toml --theme minimal || macchina --theme Mikasa
+# add task inbox to prompt
+inbox_prompt() {
+  inbox_count=$(task +in +PENDING count)
+  if [ $inbox_count -gt 0 ]; then
+    count_color=$ccrimson
+  else
+    count_color=$cgreen
+  fi
+  echo -e "${count_color}"
+}
+
+# set PS1
+if [[ ! $(command -v task 2>&1 >/dev/null) ]]     # command -v prints the location of input command if present in $PATH, otherwise returns failure status (1).
+then
+  export PS1='\[$(inbox_prompt)\]$(task +in +PENDING count) '$PS1               # prepend number of unprocessed inbox decisions to prompt, separate task call for prompt length calculations
+fi
+
