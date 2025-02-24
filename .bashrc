@@ -32,7 +32,8 @@ cyellow='[38;5;220m'
 cblue='[38;5;20m'
 cpink='[38;5;13m'
 colive='[38;2;137;129;83m'
-
+cgreen='[38;2;70;179;19m'
+ccrimson='[38;2;242;42;90m'
 # Normal colors
 black='[0;30m'
 red='[0;31m'
@@ -109,8 +110,11 @@ esac
 # customize bash prompt (style and colors)
 # PS1='\[[38;5;220m[\]\u[38;5;20m@[38;5;220m\h\] [38;5;13m\w[38;5;220m \$ [0m'
 # [\]\u@\h\] \w\$  
+set_ps1() {
+  echo -e "${colive}[${cyellow}\u${cblue}@${cyellow}\h${colive}] ${cpink}\w ${cyellow}\$${NC}"
+}
 PS1="\[${colive}\][\[${cyellow}\]\u\[${cblue}\]@\[${cyellow}\]\h\[${colive}\]] \[${cpink}\]\w \[${cyellow}\]$\[${NC}\]"
-
+PS1='\[${colive}\][\[${cyellow}\]\u\[${cblue}\]@\[${cyellow}\]\h\[${colive}\]] \[${cpink}\]\w \[${cyellow}\]\$\[${NC}\]'
 #------------------------------------------------
 # Commands
 #------------------------------------------------
@@ -158,7 +162,7 @@ alias l='ls -CF'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # bare dotfiles repo command 
-alias dotfiles='/usr/bin/git --git-dir=/home/"$USER"/.dotfiles/ --work-tree=/home/"$USER"'
+alias dots='/usr/bin/git --git-dir=/home/"$USER"/.dotfiles/ --work-tree=/home/"$USER"'
 
 # grim screenshot aliases
 # take screenshot using output of slurp and save to $HOME/Pictures/Screenshots
@@ -177,6 +181,9 @@ if ! shopt -oq posix; then
 fi
 
 # alias todo app 
+alias in='task add +in'
+# add to bash prompt
+# change color based on number of pending tasks
 #------------------------------------------------
 # Paths
 #------------------------------------------------
@@ -222,3 +229,20 @@ prepend_path "$HOME/.cargo/bin"
 #------------------------------------------------
 # print customized shell using macchina 
 shopt -q login_shell && macchina --config $HOME/.config/macchina/macchina-login.toml --theme minimal || macchina --theme Mikasa
+# add task inbox to prompt
+inbox_prompt() {
+  inbox_count=$(task +in +PENDING count)
+  if [ $inbox_count -gt 0 ]; then
+    count_color=$ccrimson
+  else
+    count_color=$cgreen
+  fi
+  echo -e "${count_color}"
+}
+
+# set PS1
+if [[ ! $(command -v task 2>&1 >/dev/null) ]]     # command -v prints the location of input command if present in $PATH, otherwise returns failure status (1).
+then
+  export PS1='\[$(inbox_prompt)\]$(task +in +PENDING count) '$PS1               # prepend number of unprocessed inbox decisions to prompt, separate task call for prompt length calculations
+fi
+
