@@ -110,10 +110,6 @@ esac
 # customize bash prompt (style and colors)
 # PS1='\[[38;5;220m[\]\u[38;5;20m@[38;5;220m\h\] [38;5;13m\w[38;5;220m \$ [0m'
 # [\]\u@\h\] \w\$  
-set_ps1() {
-  echo -e "${colive}[${cyellow}\u${cblue}@${cyellow}\h${colive}] ${cpink}\w ${cyellow}\$${NC}"
-}
-PS1="\[${colive}\][\[${cyellow}\]\u\[${cblue}\]@\[${cyellow}\]\h\[${colive}\]] \[${cpink}\]\w \[${cyellow}\]$\[${NC}\]"
 PS1='\[${colive}\][\[${cyellow}\]\u\[${cblue}\]@\[${cyellow}\]\h\[${colive}\]] \[${cpink}\]\w \[${cyellow}\]\$\[${NC}\]'
 #------------------------------------------------
 # Commands
@@ -182,6 +178,7 @@ fi
 
 # alias todo app 
 alias in='task add +in'
+alias tt='task +DUE list'
 # add to bash prompt
 # change color based on number of pending tasks
 #------------------------------------------------

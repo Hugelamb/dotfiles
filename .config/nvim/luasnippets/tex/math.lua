@@ -1,5 +1,7 @@
 -- LaTeX math environment snippets (
+
 require('luasnippets.utils')
+
 return {
   s({trig="cf", dscr="calligraphic typeface", snippetType="autosnippet"},
     fmta(
