@@ -201,8 +201,9 @@ export EDITOR="nvim"
 export PATH="$HOME/.config/nvim:$PATH"
 # add colorschemes to lua path
 export LUA_PATH=";;$HOME/.config/nvim/colors/?.lua;$LUA_PATH"
+# add lua snippets to path
 export LUA_PATH="$HOME/.config/nvim/?.lua;$LUA_PATH"
-export LUA_PATH="$HOME/.config/nvim/LuaSnip/?.lua;$LUA_PATH"
+export LUA_PATH="$HOME/.config/nvim/luasnippets/?.lua;$LUA_PATH"
 
 # add tex environment variables
 if [[ -d /media ]]; then
@@ -214,7 +215,7 @@ else
   export INFOPATH="/usr/local/texlive/2024/texmf-dist/doc/info:$INFOPATH"
   prepend_path "/usr/local/texlive/2024/bin/x86_64-linux"
 fi
-prepend_path "/home/hug/.local/bin"
+prepend_path "$HOME/.local/bin"
 
 # add mupdf fileviewer binary to path
 prepend_path "$HOME/.mupdf/bin"

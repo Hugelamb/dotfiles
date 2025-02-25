@@ -1,6 +1,6 @@
 -- LaTeX math environment snippets (
 
-require('luasnippets.utils')
+local utils = require('tex.utils')
 
 return {
   s({trig="cf", dscr="calligraphic typeface", snippetType="autosnippet"},
@@ -19,7 +19,7 @@ return {
       ]],
     { i(1), i(0) }
   ),
-  { condition = in_mathzone }
+  { condition = utils.in_mathzone }
 ),
 s({ trig = "bf", dscr = "blackboard typeface", snippetType="autosnippet"},
   fmt(
@@ -40,4 +40,12 @@ s({ trig = "frac", dscr = "trigger fraction environment"},
     ),
     { condition = in_mathzone }
   ),
+s({ trig = "boo", dscr = "test function", snippetType="autosnippet" },
+  fmta([[
+    The result of utils.in_mathzone is : <> 
+    The result of utils.in_text is : <>
+  ]],
+      { f(utils.in_mathzone, {}), f(utils.in_text, {}) }
+    )
+),
 }

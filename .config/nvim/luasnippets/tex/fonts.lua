@@ -1,5 +1,5 @@
 -- LaTeX font snippets 
-require('luasnippets/utils')
+require('tex/utils')
 return {
   s({ trig = ";bf", dscr = "bold typeface", snippetType="autosnippet" },
     fmta(

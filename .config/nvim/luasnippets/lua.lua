@@ -1,5 +1,5 @@
 -- LuaScript snippets
-require('luasnippets/utils')
+utils=require('luasnippets.tex.utils')
 return {
   s({trig="cs", dscr="conditional snippet"},    -- conditional snippet
    fmta(

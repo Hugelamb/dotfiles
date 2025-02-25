@@ -175,8 +175,8 @@ require("lazy").setup({ -- colorscheme plugin here
     dependencies = {"rafamadriz/friendly-snippets"},
     version = "v2.#",
     config = function()
-      require("luasnip.loaders.from_vscode").lazy_load()
-      require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/luasnippets" })
+      -- require("luasnip.loaders.from_vscode").lazy_load()
+      require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/luasnippets" })
       local ls = require("luasnip")
       ls.config.setup {
         enable_autosnippets = true,
@@ -198,7 +198,7 @@ require("lazy").setup({ -- colorscheme plugin here
 
       cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
-      luasnip.config.setup {}
+      --luasnip.config.setup {}
 
       local has_words_before = function()
         unpack = unpack or table.unpack
@@ -440,10 +440,6 @@ vim.keymap.set('n','<Localleader>vv',':VimtexView')
 ----------------------
 --- Snippet Macros ---
 ----------------------
-local ls = require("luasnip")
-ls.config.set_config {
-  enable_autosnippets = true
-}
 vim.keymap.set('i','<C-K>', function() ls.expand() end, { silent = true })
 vim.keymap.set({"i","s"},'<C-L>', function() ls.jump( 1) end, { silent = true })
 vim.keymap.set({"i","s"},'<C-J>', function() ls.jump(-1) end, { silent = true })
@@ -452,4 +448,3 @@ vim.keymap.set({"i","s"},'<C-E>', function()
     ls.chang_choice(1)
   end
 end, {silent = true})
-

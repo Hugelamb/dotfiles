@@ -1,5 +1,5 @@
 -- LaTeX environment snippets
-require('luasnippets.utils')
+require('tex.utils')
 
 return {
   s({ trig = "mi", dscr = "Enter inline math mode",  name = "mi" },
@@ -9,7 +9,7 @@ return {
         i(0)
       }
     ),
-    { condition = in_text }
+    { condition = in_text}
   ),
   s({ trig = "dm", dscr = "Enter display math mode" },
     fmta(
@@ -32,16 +32,22 @@ return {
     { condition = in_text }
   ),
 
-  s({ trig = "document", dscr = "begin/end document" },
+  s({ trig = "document", dscr = "begin/end document", snippetType="autosnippet" },
     fmta(
       [[
+      
+      \documentclass[<>]{<>}
+      % place packages here
+      \usepackage{<>}
+
       \begin{document}
         <>
       \end{document}
       ]],
-      { i(0) }
+      { i(2), i(1), i(3), i(0) }
     ),
-    { condition = line_begin } 
+    { condition = in_text }
+
   ),   
   s({ trig = "env", dscr = "Generic new environment" },
     fmta(
