@@ -130,6 +130,12 @@ prepend_path () {
         export PATH="$1:$PATH"
     fi
 } 
+check_list() {
+  LIST=$1
+  DELIMITER=$2
+  VALUE=$3
+  [[ "$LIST" =~ ($DELIMITER|^)$VALUE($DELIMITER|$) ]]
+}
 #------------------------------------------------
 # Aliases
 #------------------------------------------------
@@ -176,9 +182,31 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# alias todo app 
+### TASKWARRIOR COMMANDS AND FUNCTIONS
 alias in='task add +in'
+alias inbox='task +in list'
+
 alias tt='task +DUE list'
+
+# function to add new task to provided project 
+# $1 should be project, all following are passed into task as a string
+add_projecttask() {
+#  task $1 "'$*'" 
+  if check_list $(task _projects) " " $1; then
+    task add project:$1 ${*:2}
+  else 
+    echo "*** WARNING *** This task has no assigned project."
+    read -p 'Do you still wish to add the task? (Y/N) ' boolvar
+    if [ "$boolvar" == "Y" ] || [ "$boolvar" == "y" ] ; then
+      task add +in ${*}
+      return
+    else 
+      return 1
+    fi
+  fi
+}
+alias ta='$(add_projecttask)'
+
 # add to bash prompt
 # change color based on number of pending tasks
 #------------------------------------------------

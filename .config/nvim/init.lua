@@ -1,6 +1,11 @@
 -- Neovim config (single file)
 -- Author: HugeLamb
 -- Last change: 29/10/2024
+-- Set global <Leader> and <Localleader> commands
+-- Set mapleader to allow for extra mappings and combinations
+vim.g.mapleader = ';'
+-- Set localleader to decrease risk of clashing keybinds
+vim.g.maplocalleader = ' '
 -- install lazy plugin manager 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -178,6 +183,23 @@ require("lazy").setup({ -- colorscheme plugin here
       -- require("luasnip.loaders.from_vscode").lazy_load()
       require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/luasnippets" })
       local ls = require("luasnip")
+      -- map reload snippets for ease of modification and testing
+      vim.keymap.set('n', '<LocalLeader>ls', '<Cmd>lua require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/luasnippets/"})<CR>')
+      -- map node navigation binds for luasnip
+      vim.keymap.set('i','<C-K>', function() ls.expand() end, { silent = true })
+      vim.keymap.set({"i","s"},'<C-L>', function() ls.jump( 1) end, { silent = true })
+      vim.keymap.set({"i","s"},'<C-J>', function() ls.jump(-1) end, { silent = true })
+      -- Set change choice for choice nodes to <Alt-J> and <Alt-L> for backwards and forwards
+      vim.keymap.set({"i","s"},'<M-L>', function()
+        if ls.choice_active() then
+          ls.change_choice(1)
+        end
+      end, {silent = true})
+      vim.keymap.set({"i","s"},'<M-J>', function()
+        if ls.choice_active() then
+          ls.change_choice(-1)
+        end
+      end, {silent = true})
       ls.config.setup {
         enable_autosnippets = true,
         -- update_events = { "TextChanged" , "TextChangedI" },
@@ -229,13 +251,13 @@ require("lazy").setup({ -- colorscheme plugin here
           ['<C-p>'] = cmp.mapping.select_prev_item(),
           ['<C-d>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-y>'] = cmp.mapping.confirm { -- press <Ctrl+y> to confirm autocomplete option
+          ['<C-K>'] = cmp.mapping.confirm { -- press <ctrl+enter> to confirm autocomplete option
             select = true       
           },
           -- ['<CR>'] = cmp.mapping.confirm { -- Enter key mapping
           --     select = false
           -- },
-          ['<Tab>'] = cmp.mapping(function(fallback)
+          ['<C-L>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
             elseif luasnip.expand_or_locally_jumpable() then
@@ -246,7 +268,7 @@ require("lazy").setup({ -- colorscheme plugin here
               fallback()
             end
           end, {'i', 's'}),
-          ['<S-Tab>'] = cmp.mapping(function(fallback)
+          ['<C-J>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
             elseif luasnip.jumpable(-1) then
@@ -322,8 +344,7 @@ require("lazy").setup({ -- colorscheme plugin here
 
 -- disable netrw at the very start of our init.lua, because nvim-tree is being used?
 -- clipboard settings
-vim.g.clipboard = "unnamedplus"   -- copy to system clipboard
-
+vim.opt.clipboard = "unnamedplus"
 -- errors flash screen rather than emitting beep
 vim.opt.visualbell = true
 
@@ -378,7 +399,7 @@ vim.cmd("colorscheme kanagawa")
 vim.g.mapleader = ';'
 -- Set localleader to decrease risk of clashing keybinds
 vim.g.maplocalleader = ' '
-
+vim.keymap.set('n','<Leader>ls', ':source ~/.config/nvim/init.lua <CR>', {silent = true})
 -- Fast saving
 vim.keymap.set('n','<Leader>w', ':write!<CR>')
 vim.keymap.set('n','<Leader>q',':wq<CR>',{ silent = true})
@@ -416,9 +437,9 @@ vim.opt.foldnestmax = 4         -- Maximum number of nested folds that can be cr
 ---------------------
 vim.opt.splitright = true       -- enforce that windows split right by default
 --- Opening/Splitting Macros
-vim.keymap.set('n','<Localleader>bv',':browse vsplit  . <CR>')     -- vert split and open current directory tree
-vim.keymap.set('n','<Localleader>vs',':vs<CR>',{ silent = true})     -- vertical split command
-vim.keymap.set('n','<Localleader>hs',':sp<CR>',{silent = true})      -- horizontal split command
+vim.keymap.set('n','<Localleader>nv',':browse vsplit  . <CR>')     -- vert split and open current directory tree
+vim.keymap.set('n','<Localleader>sv',':vs<CR>',{ silent = true})     -- vertical split command
+vim.keymap.set('n','<Localleader>sh',':sp<CR>',{silent = true})      -- horizontal split command
 --- Closing and Hiding Macros
 vim.keymap.set('n','<Localleader>q','<C-w><C-q>')           -- close current window, as long as there are no unsaved buffer changes/is not last window for buffer
 vim.keymap.set('n','<Localleader>h','<:hide<CR>',{ silent = true})  -- hide current window
@@ -435,16 +456,18 @@ vim.keymap.set('n','<Localleader><A-l>','<C-w>l')               -- move to windo
 --- VimTeX Macros ---
 ----------
 -- Compile Continously (mapping to call :VimtexCompile)
-vim.keymap.set('n','<LocalLeader>vc',':VimtexCompile')
-vim.keymap.set('n','<Localleader>vv',':VimtexView')
+vim.keymap.set('n','<LocalLeader>vc',':VimtexCompile <CR>')
+vim.keymap.set('n','<Localleader>vv',':VimtexView <CR>')
 ----------------------
 --- Snippet Macros ---
 ----------------------
-vim.keymap.set('i','<C-K>', function() ls.expand() end, { silent = true })
-vim.keymap.set({"i","s"},'<C-L>', function() ls.jump( 1) end, { silent = true })
-vim.keymap.set({"i","s"},'<C-J>', function() ls.jump(-1) end, { silent = true })
-vim.keymap.set({"i","s"},'<C-E>', function()
-  if ls.choice_active() then
-    ls.chang_choice(1)
-  end
-end, {silent = true})
+local ls = require("luasnip")
+-- load LuaSnip utilities
+local utils = require("utils")
+
+-- set dynamicNode commands defined in luasnippets/utils.lua
+vim.api.nvim_set_keymap('i', "<C-t>", '<cmd>lua utils.dynamic_node_external_update(1)<Cr>', {noremap = true})
+vim.api.nvim_set_keymap('s', "<C-t>", '<cmd>lua utils.dynamic_node_external_update(1)<Cr>', {noremap = true})
+
+vim.api.nvim_set_keymap('i', "<C-g>", '<cmd>lua utils.dynamic_node_external_update(2)<Cr>', {noremap = true})
+vim.api.nvim_set_keymap('s', "<C-g>", '<cmd>lua utils.dynamic_node_external_update(2)<Cr>', {noremap = true})

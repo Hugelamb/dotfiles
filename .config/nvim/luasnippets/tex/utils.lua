@@ -6,7 +6,8 @@ local P = {}
 utils = P
 
 P.in_mathzone = function()  -- math context detection
-  return vim.api.nvim_eval['vimtex#syntax#in_mathzone']() 
+  return vim.api.nvim_eval('vimtex#syntax#in_mathzone()') == 1
+  --return vim.fn['vimtex#syntax#in_mathzone']()
 end
 P.in_text = function()
   return not P.in_mathzone()
