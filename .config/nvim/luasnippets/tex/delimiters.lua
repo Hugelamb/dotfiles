@@ -1,2 +1,2 @@
 -- LaTeX delimiter snippets
-require("tex.utils")
+local tex_utils = require("tex.utils")
