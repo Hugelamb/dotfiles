@@ -1,6 +1,7 @@
 -- LaTeX environment snippets
 local tex_utils = require('tex.utils')
 local utils = require('utils')
+local conds = require("luasnip.extras.expand_conditions")
 return {
   s({ trig = ";mi", dscr = "Enter inline math mode",  name = "inline math environment", snippetType="autosnippet" },
     fmta(
@@ -65,6 +66,61 @@ return {
           }
         })})
   ),  
+-- Lists and bullet points
+  s({ trig = "enn", dscr = "enumerate", snippetType="autosnippet" },
+    fmta(
+    [[
+    \begin{enumerate}
+      
+      \item <>
+    \end{enumerate}
+    ]],
+      { 
+        i(0) 
+      }
+    ),
+    { condition = tex_utils.in_text }
+  ),  
+  s({ trig = "itt", dscr = "itemize", snippetType="autosnippet" },
+    fmta(
+    [[
+    \begin{itemize}
+      
+      \item[<>] <>
+    
+    \end{itemize}
+    ]], 
+      {
+        i(1),
+        i(0),
+      }
+    ),
+    { condition = tex_utils.in_text }
+  ),
+  s({ trig = "it", dscr = "enum item", snippetType="autosnippet" },
+    fmta(
+    [[
+    \item <>
+    ]],
+      {
+        i(0)
+      }
+    ),
+    { condition = tex_utils.in_enumerate * conds.line_begin }
+  ),
+  s({ trig = "it", dscr = "itemize item", snippetType="autosnippet" },
+    fmta(
+    [[
+    \item[<>] <>
+    ]],
+      {
+        i(1),
+        i(0),
+      }
+    ),
+    { condition = tex_utils.in_itemize * conds.line_begin }
+  ),  
+-- Sectioning environments
   s({ trig = "pq", dscr = "Question", snippetType="autosnippet" },
     fmta(
     [[
@@ -76,6 +132,77 @@ return {
     ), 
     { condition = tex_utils.in_text }
   ),  
-  
+  s({ trig = "sec+", dscr = "Section", priority = 1000, snippetType="autosnippet", hidden = false, name = "section"  },
+    fmta(
+    [[
+    \section{<>}
+    ]],
+      {i(1)}
+    ),
+    { condition = conds.line_begin - tex_utils.in_mathzone }
+  ), 
+  s({ trig = "sec*", dscr = "Unmarked Section", snippetType="autosnippet" },
+    fmta(
+    [[
+    \section*{<>}
+    ]],
+      {i(1)}
+    ),
+    { condition = conds.line_begin - tex_utils.in_mathzone }
+  ),
+  s({ trig = "sub+", dscr = "New Subsection", snippetType="autosnippet" , priority=1000},
+    fmta(
+    [[
+    \subsection{<>}
+    ]],
+      {i(1)}
+    ),
+    { condition = conds.line_begin - tex_utils.in_mathzone }
+  ),
+  s({ trig = "sub*", dscr = "Unmarked Subsection", snippetType="autosnippet" },
+    fmta(
+    [[
+    \subsection*{<>}
+    ]],
+      {i(1)}
+    ),
+    { condition = conds.line_begin - tex_utils.in_mathzone }
+  ),
+  s({ trig = "subs", dscr = "New Subsubsection", snippetType="autosnippet", priority = 1000 },
+    fmta(
+    [[
+    \subsubsection{<>}
+    ]],
+      {i(1)}
+    ),
+    { condition = conds.line_begin - tex_utils.in_mathzone }
+  ),
+  s({ trig = "subs*", dscr = "Unmarked Subsubsection", snippetType="autosnippet" },
+    fmta(
+    [[
+    \subsubsection*{<>}
+    ]],
+      {i(1)}
+    ),
+    { condition = conds.line_begin - tex_utils.in_mathzone }
+  ),
+  s({ trig = "par", dscr = "New Paragraph", snippetType="autosnippet" },
+    fmta(
+    [[
+    \paragraph{<>}
+    ]],
+      {i(1)}
+    ),
+    { condition = conds.line_begin - tex_utils.in_mathzone }
+  ),
+  s({ trig = "par*", dscr = "Unmarked paragraph", snippetType="autosnippet" },
+    fmta(
+    [[
+    \paragraph*{<>}
+    ]],
+      {i(1)}
+    ),
+    { condition = conds.line_begin - tex_utils.in_mathzone }
+  ),   
 }
 

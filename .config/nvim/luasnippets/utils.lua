@@ -34,6 +34,26 @@ local node_util = require("luasnip.nodes.util")
 local P = { }
 utils = P
 
+P.get_custom_date_fmt = function(args, snip, old_state, fmt)
+  local fmt = fmt or "%Y-%m-%d"
+  return sn(nil, i(1, os.date(fmt)))
+end
+
+P.get_ISO_8601_date = function()
+  return os.date("%Y-%m-%d")
+end
+
+P.get_visual = function(_, parent)
+  return sn(nil, i(1, parent.snippet.env.SELECT_RAW))
+end
+P.get_capture = function(_, snip, user_arg1, user_arg2, user_arg3)
+  -- define args
+  idx = user_arg1 or 1
+  pre = user_arg2 or ""
+  post = user_arg3 or ""
+  return snip.captures[idx]
+end
+
 P.return_filename = function()     -- print current working file name (excluding suffix filetype)
   return vim.fn.fnamemodify(vim.fn.expand('%'),':t')
 end

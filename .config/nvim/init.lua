@@ -239,8 +239,8 @@ require("lazy").setup({ -- colorscheme plugin here
             with_text = true,
             menu = {
 
-              buffer = "[Buffer]",
               luasnip = "[LuaSnip]", 
+              buffer = "[Buffer]",
               nvim_lsp = "[LSP]",
               nvim_lua = "[Lua]"
             }
@@ -251,13 +251,13 @@ require("lazy").setup({ -- colorscheme plugin here
           ['<C-p>'] = cmp.mapping.select_prev_item(),
           ['<C-d>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-K>'] = cmp.mapping.confirm { -- press <ctrl+enter> to confirm autocomplete option
+          ['<C-y>'] = cmp.mapping.confirm { -- press <ctrl+enter> to confirm autocomplete option
             select = true       
           },
           -- ['<CR>'] = cmp.mapping.confirm { -- Enter key mapping
           --     select = false
           -- },
-          ['<C-L>'] = cmp.mapping(function(fallback)
+          ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
             elseif luasnip.expand_or_locally_jumpable() then
@@ -268,7 +268,7 @@ require("lazy").setup({ -- colorscheme plugin here
               fallback()
             end
           end, {'i', 's'}),
-          ['<C-J>'] = cmp.mapping(function(fallback)
+          ['<S-Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
             elseif luasnip.jumpable(-1) then
@@ -465,6 +465,8 @@ local ls = require("luasnip")
 -- load LuaSnip utilities
 local utils = require("utils")
 
+-- Set up command for editing Snippets inside current nvim buffer
+vim.api.nvim_create_user_command('LuaSnipEdit', 'lua require("luasnip.loaders").edit_snippet_files()', {})
 -- set dynamicNode commands defined in luasnippets/utils.lua
 vim.api.nvim_set_keymap('i', "<C-t>", '<cmd>lua utils.dynamic_node_external_update(1)<Cr>', {noremap = true})
 vim.api.nvim_set_keymap('s', "<C-t>", '<cmd>lua utils.dynamic_node_external_update(1)<Cr>', {noremap = true})
