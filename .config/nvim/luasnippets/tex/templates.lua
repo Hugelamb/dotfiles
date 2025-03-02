@@ -16,7 +16,7 @@ return {
       \usepackage[english]{babel}
       \usepackage{amsmath,amssymb}
       \usepackage{xcolor}
-      
+
       % figure support
       \usepackage{import}
       \usepackage{xifthen}
@@ -70,6 +70,7 @@ return {
       {
         i(2),i(1),i(0)
       }
-      )
-    ),  
-  }
+    )
+  ),  
+}
+
