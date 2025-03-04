@@ -81,17 +81,16 @@ return {
     ),
     { condition = tex_utils.in_text }
   ),  
-  s({ trig = "itt", dscr = "itemize", snippetType="autosnippet" },
+  s({ trig = "inn", dscr = "itemize", snippetType="autosnippet" },
     fmta(
     [[
     \begin{itemize}
       
-      \item[<>] <>
+      \item <>
     
     \end{itemize}
     ]], 
       {
-        i(1),
         i(0),
       }
     ),
@@ -111,10 +110,9 @@ return {
   s({ trig = "it", dscr = "itemize item", snippetType="autosnippet" },
     fmta(
     [[
-    \item[<>] <>
+    \item <>
     ]],
       {
-        i(1),
         i(0),
       }
     ),
