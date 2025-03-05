@@ -53,6 +53,14 @@ return {
             \coordinate (origin) at (0,0);
             \coordinate (leftant) at (-4.5\m,0\m);
             \coordinate(rightant) at (4.5\m,0\m);
+            \coordinate(l3m) at (-4.5\m,-3\m);
+            \coordinate(m3m) at (0,-3\m);
+            \coordinate(r3m) at (4.5\m,-3\m);
+            \coordinate(lbase) at (-4.5\m,-9\m);
+            \coordinate(mbase) at (0,-9\m);
+            \coordinate(rbase) at (4.5\m,-9\m);
+
+
             \coordinate (attacklinecenter) at (0,-3\m);
             \draw[fill=brown,draw=black] ([xshift=-.1\m,yshift=-.05\m]leftant) rectangle ++ (0.1\m,0.1\m);
             \draw[fill=brown,draw=black] ([xshift=.1\m,yshift=-.05\m]rightant) rectangle ++ (-0.1\m,0.1\m);
@@ -62,6 +70,14 @@ return {
             \draw[courtlines] (rightant) rectangle ++ (-\courtlinewidth,-\sidelength);
             \draw[courtlines] ([yshift=-\sidelength]leftant) rectangle ++ (\baselength,\courtlinewidth);
             \draw[courtlines] ([yshift=-\sidelength/3]leftant) rectangle ++ (\baselength,\courtlinewidth);
+            % Player Locations
+            \node[player] (lf) at ([xshift=\m,yshift=-\m]leftant) {LF};
+            \node[player] (mf) at ([yshift=-.5\m]origin) {MF};
+            \node[player] (rf) at ([xshift=-\m,yshift=-\m]rightant) {RF};
+            \node[player] (lb) at ([xshift=1.5\m,yshift=-4\m]leftant) {LB}; 
+            \node[player] (mb) at ([yshift=-\sidelength+1\m]origin) {MB};
+            \node[player] (rb) at ([xshift=-1.5\m,yshift=-4\m]rightant) {RB};
+
             <>
           \end{scope}
         \end{tikzpicture}

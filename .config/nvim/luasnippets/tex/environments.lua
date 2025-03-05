@@ -86,12 +86,11 @@ return {
     [[
     \begin{itemize}
       
-      \item[<>] <>
+      \item <>
     
     \end{itemize}
     ]], 
       {
-        i(1),
         i(0),
       }
     ),
@@ -111,17 +110,27 @@ return {
   s({ trig = "it", dscr = "itemize item", snippetType="autosnippet" },
     fmta(
     [[
-    \item[<>] <>
+    \item <>
     ]],
       {
-        i(1),
         i(0),
       }
     ),
     { condition = tex_utils.in_itemize * conds.line_begin }
   ),  
 -- Sectioning environments
-  s({ trig = "pq", dscr = "Question", snippetType="autosnippet" },
+  s({ trig = "qa", dscr = "Answer", snippetType="autosnippet" },
+    fmta(
+    [[
+    \paragraph*{Answer } <>
+    ]],
+      { 
+        i(0)
+      }
+    ), 
+    { condition = tex_utils.in_text }
+  ),
+  s({ trig = "qq", dscr = "Question", snippetType="autosnippet" },
     fmta(
     [[
     \paragraph{Question <>} <>
@@ -132,6 +141,24 @@ return {
     ), 
     { condition = tex_utils.in_text }
   ),  
+  s({ trig = "chp+", dscr = "Chapter", priority = 1000, snippetType="autosnippet", hidden = false, name = "chapter"  },
+    fmta(
+    [[
+    \chapter{<>}
+    ]],
+      {i(1)}
+    ),
+    { condition = conds.line_begin - tex_utils.in_mathzone }
+  ),
+  s({ trig = "chp*", dscr = "Unmarked Chapter", priority = 1000, snippetType="autosnippet", hidden = false, name = "unmarked chapter"  },
+    fmta(
+    [[
+    \chapter*{<>}
+    ]],
+      {i(1)}
+    ),
+    { condition = conds.line_begin - tex_utils.in_mathzone }
+  ),
   s({ trig = "sec+", dscr = "Section", priority = 1000, snippetType="autosnippet", hidden = false, name = "section"  },
     fmta(
     [[
@@ -186,7 +213,7 @@ return {
     ),
     { condition = conds.line_begin - tex_utils.in_mathzone }
   ),
-  s({ trig = "par", dscr = "New Paragraph", snippetType="autosnippet" },
+  s({ trig = "par+", dscr = "New Paragraph", snippetType="autosnippet" },
     fmta(
     [[
     \paragraph{<>}
@@ -204,5 +231,36 @@ return {
     ),
     { condition = conds.line_begin - tex_utils.in_mathzone }
   ),   
+  -- Custom environments requiring specific preamble definitions
+  s({ trig = "lecn", dscr = "lecture",snippetType="autosnippet" },
+    fmta(
+    [[
+    \lecture{<>}{<>}{<>}
+    <>
+    ]],
+      {
+        i(1),
+        d(2, utils.get_custom_date_fmt, {}, { user_args = { "%a %d %b %Y %H:%M" }}),
+        i(3),
+        i(0)
+      }
+    ),
+    { condition = tex_utils.in_text + conds.line_begin }
+  ),
+  s({ trig = "defn", dscr = "definition", snippetType="autosnippet" },
+    fmta(
+      [[
+      \definition[<>]{
+        <>
+      }
+      ]],
+      {
+        i(1),
+        i(0)
+      }
+    ),
+    { condition = tex_utils.in_text + conds.line_begin }
+  ),
+  
 }
 
