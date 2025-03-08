@@ -66,6 +66,36 @@ return {
           }
         })})
   ),  
+  s({ trig = ";fig", dscr = "new figure environment" },
+    fmta(
+    [[
+    \begin{figure}[<>]
+    <>
+    \end{figure}
+    ]],
+      {
+        i(1, "htb!"), i(0) 
+      }
+    )
+  ),
+  s({ trig = ";img", dscr = "insert image in figure environment", snippetType="autosnippet" },
+    fmta(
+    [[
+    \begin{figure}[<>]
+    \centering
+    \includegraphics[width=<>\textwidth]{<>}\caption{<>}
+    \end{figure}
+    <>
+    ]],
+      { 
+        i(1,"htb!"),
+        i(2,"0.5"),
+        i(3),
+        i(4),
+        i(0)
+      }
+    )
+  ),    
 -- Lists and bullet points
   s({ trig = "enn", dscr = "enumerate", snippetType="autosnippet" },
     fmta(
@@ -260,6 +290,20 @@ return {
       }
     ),
     { condition = tex_utils.in_text + conds.line_begin }
+  ),
+  s({ trig = "exn", dscr = "exercise", snippetType="autosnippet" },
+    fmta(
+      [[
+      \exercise{<>}{<>}
+      <>
+      ]],
+      {
+        i(1,"1"),
+        i(2,"Title"),
+        i(0)
+      }
+    ),
+    { condition = tex_utils.in_text + conds+line_begin }
   ),
   
 }
