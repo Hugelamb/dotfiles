@@ -34,6 +34,7 @@ local node_util = require("luasnip.nodes.util")
 local P = { }
 utils = P
 
+
 P.get_custom_date_fmt = function(args, snip, old_state, fmt)
   local fmt = fmt or "%Y-%m-%d"
   return sn(nil, i(1, os.date(fmt)))

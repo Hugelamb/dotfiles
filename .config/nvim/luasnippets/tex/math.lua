@@ -12,18 +12,6 @@ return {
     ),  
     { condition = tex_utils.in_mathzone }
   ),
-  s({ trig = "rm", dscr = "non-math text", snippetType="autosnippet" },
-    fmta(
-    [[
-    \textrm{<>} <>
-    ]],
-      {
-        i(1),
-        i(0)
-      }
-    ),
-    { condition = tex_utils.in_mathzone }
-  ),
   s({trig="frak", dscr="fraktur typeface", snippetType="autosnippet"},
     fmta(
       [[

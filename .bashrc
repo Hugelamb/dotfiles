@@ -207,6 +207,13 @@ add_projecttask() {
 }
 alias ta='$(add_projecttask)'
 
+# pyenv activation
+alias pya='source .venv/bin/activate'
+alias pyd='deactivate'
+
+# zathura shortcut
+alias zth='zathura' 
+
 # add to bash prompt
 # change color based on number of pending tasks
 #------------------------------------------------
