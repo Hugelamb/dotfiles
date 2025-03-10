@@ -3,7 +3,7 @@ local tex_utils = require('tex.utils')
 local utils = require('utils')
 local conds = require("luasnip.extras.expand_conditions")
 return {
-  s({ trig = ";mi", dscr = "Enter inline math mode",  name = "inline math environment", snippetType="autosnippet" },
+  s({ trig = "mk", dscr = "Enter inline math mode",  name = "inline math environment", snippetType="autosnippet" },
     fmta(
       "$ <> $",
       {
@@ -12,7 +12,7 @@ return {
     ),
     { condition = tex_utils.in_text}
   ),
-  s({ trig = ";dm", dscr = "display math environment", snippetType="autosnippet" },
+  s({ trig = "dm", dscr = "display math environment", snippetType="autosnippet" },
     fmta(
       [[
       $$ <> $$
@@ -23,7 +23,7 @@ return {
     ),
     { condition = tex_utils.in_text }
   ),
-  s({ trig = ";beq", dscr = "Equation environment" },
+  s({ trig = "beq", dscr = "Equation environment" },
     fmta(
       [[
       \begin{equation*}
@@ -32,7 +32,7 @@ return {
       ]],
       { i(1, "equation" ) }
     ),
-    { condition = tex_utils.in_text }
+    { condition = tex_utils.in_text + conds.line_begin }
   ),
   s({ trig = "env", dscr = "Generic new environment" },
     fmta(
@@ -47,7 +47,7 @@ return {
         rep(1),
       }
     ),
-    { condition = line_begin }
+    { condition = conds.line_begin }
   ),
   s({ trig = "tab", dscr = "Table environment" },
     fmta(
@@ -126,7 +126,7 @@ return {
     ),
     { condition = tex_utils.in_text }
   ),
-  s({ trig = "it", dscr = "enum item", snippetType="autosnippet" },
+  s({ trig = "en", dscr = "enum item", snippetType="autosnippet" },
     fmta(
     [[
     \item <>
