@@ -1,5 +1,3 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
 # If not running interactively, don't do anything
@@ -187,7 +185,7 @@ alias in='task add +in'
 alias inbox='task +in list'
 
 alias tt='task +DUE list'
-
+alias habit="task rc.data.location=~/.tasks/habit" # alternate db for personal habits etc
 # function to add new task to provided project 
 # $1 should be project, all following are passed into task as a string
 add_projecttask() {
