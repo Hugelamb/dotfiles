@@ -31,6 +31,7 @@ local ms = ls.multi_snippet
 local k = require("luasnip.nodes.key_indexer").new_key
 local util = require("luasnip.util.util")
 local node_util = require("luasnip.nodes.util")
+local as = ls.extend_decorator.apply(s, { snippetType = "autosnippet" })
 local P = { }
 utils = P
 
@@ -45,7 +46,11 @@ P.get_ISO_8601_date = function()
 end
 
 P.get_visual = function(_, parent)
-  return sn(nil, i(1, parent.snippet.env.SELECT_RAW))
+  if #parent.snippet.env.SELECT_RAW > 0 then
+    return sn(nil, i(1, parent.snippet.env.SELECT_RAW))
+  else -- If SELECT_RAW is empty, return a blank insert node
+    return sn(nil, i(1))
+  end
 end
 P.get_capture = function(_, snip, user_arg1, user_arg2, user_arg3)
   -- define args
@@ -181,6 +186,7 @@ P.tab = function(args, snip)
   nodes[#nodes] = t""
   return sn(nil, nodes)
 end
+
 -- End Function List --
 
 return P

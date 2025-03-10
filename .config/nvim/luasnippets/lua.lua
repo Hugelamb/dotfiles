@@ -25,5 +25,17 @@ return {
       { i(1, "trigger" ), i( 2, "description" ), i( 3, "snippet" )}
     )
   ),
-
+  s({trig="asnpt", dscr="snippet",snippetType="autosnippet"},     -- normal snippet
+    fmta(
+      [[
+      s({ trig = "<>", dscr = "<>", snippetType="autosnippet" },
+        fmta(
+        <>
+        ),
+      { <> }
+      ),  
+      ]],
+      { i(1, "trigger" ), i( 2, "description" ), i( 3, "snippet" ), i( 4, "condition" )}
+    )
+  ),
 }

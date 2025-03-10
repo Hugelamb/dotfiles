@@ -180,7 +180,7 @@ require("lazy").setup({ -- colorscheme plugin here
     dependencies = {"rafamadriz/friendly-snippets"},
     version = "v2.#",
     config = function()
-      -- require("luasnip.loaders.from_vscode").lazy_load()
+      require("luasnip.loaders.from_vscode").lazy_load()
       require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/luasnippets" })
       local ls = require("luasnip")
       -- map reload snippets for ease of modification and testing
@@ -322,6 +322,7 @@ require("lazy").setup({ -- colorscheme plugin here
     end,
     config = function()
       vim.g.vimtex_quickfix_method = vim.fn.executable("pplatex") == 1 and "pplatex" or "latexlog"
+      vim.g.vimtex_quickfix_open_on_warning = 0
       vim.g.vimtex_syntax_enabled = 1
     end,
     -- opts = {
