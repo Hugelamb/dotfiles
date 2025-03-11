@@ -186,6 +186,8 @@ alias inbox='task +in list'
 
 alias tt='task +DUE list'
 alias habit="task rc.data.location=~/.tasks/habit" # alternate db for personal habits etc
+alias schedule="task rc.data.location=~/.tasks/schedule" # alternate db for scheduled events
+alias sched="task rc.data.location=~/.tasks/schedule"
 # function to add new task to provided project 
 # $1 should be project, all following are passed into task as a string
 add_projecttask() {
