@@ -19,7 +19,7 @@
   ],
   "modules-center": ["custom/player"],
   "modules-right": [
-    "custom/tasks",
+    "custom/calendar",
     "custom/padding",
     "pulseaudio",
     "custom/padding",
@@ -145,6 +145,11 @@
     },
 
     /* CUSTOM MODULES */
+    "custom/calendar": {
+      "exec": " source ~/projects/university-setup-fuzzel/scripts/.venv/bin/activate && TZ='Australia/NSW' python3 -u ~/projects/university-setup-fuzzel/scripts/countdown.py ",
+      "on-click": "firefox 'https://calendar.google.com/calendar/' -- &"
+    },
+
     "custom/fuzzel": {
       "tooltip": false,
       "format": "<span color='#fff8e5'></span>",
