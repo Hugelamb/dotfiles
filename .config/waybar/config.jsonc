@@ -21,6 +21,8 @@
   ],
   "modules-center": ["custom/player"],
   "modules-right": [
+    "custom/calendar",
+    "custom/padding",
     "pulseaudio",
     "custom/padding",
     "custom/notification",
@@ -200,18 +202,6 @@
     "custom/prefix": {
       "format": "<span color='#a89884'> >></span>",
       "tooltip": false
-    },
-    "custom/tasks": {
-      // exec: ,
-      "tooltip": true,
-      "exec-on-event": false,
-      "format": "TASKS",
-      "return-type": "json",
-      "on-click-right": "task report",
-      "on-click": "$HOME/.config/waybar/scripts/taskw.sh report",
-      "double-click": "$HOME/.config/waybar/scripts/taskw.sh add",
-      "on-click-middle": "$HOME/.config/waybar/scripts/taskw.sh fuzzel_explorer"
-      
     },
     "custom/timer": {
         // requires waybar-timer; find details at https://github.com/jbirnick/waybar-timer
