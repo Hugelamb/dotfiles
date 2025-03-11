@@ -255,6 +255,9 @@ prepend_path "$HOME/.mupdf/bin"
 
 # add cargo to path (for macchina)
 prepend_path "$HOME/.cargo/bin"
+
+## UNI setup path for scripts ## 
+prepend_path "$HOME/projects/university-setup-fuzzel/scripts"
 #------------------------------------------------
 # Custom Commands
 #------------------------------------------------

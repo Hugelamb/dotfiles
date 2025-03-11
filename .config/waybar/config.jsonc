@@ -19,8 +19,6 @@
   ],
   "modules-center": ["custom/player"],
   "modules-right": [
-    "custom/tasks",
-    "custom/padding",
     "pulseaudio",
     "custom/padding",
     "custom/notification",
