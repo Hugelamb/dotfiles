@@ -217,6 +217,7 @@ alias zth='zathura'
 #------------------------------------------------
 # Paths
 #------------------------------------------------
+prepend_path "$HOME/.local/lib/python3.11.1/bin"
 
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
