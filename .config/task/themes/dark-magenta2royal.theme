@@ -1,0 +1,66 @@
+# dark-magenta2royal.theme
+
+rule.precedence.color=deleted,completed,active,keyword.,tag.,project.,overdue,scheduled,due.today,due,blocked,blocking,recurring,tagged,uda.
+
+color=on
+
+# General colors
+
+color.deleted=
+color.completed=
+color.active=bold rgb505
+color.recurring=bright rgb225
+color.scheduled=
+color.until=
+color.blocked=
+color.blocking=on rgb201
+
+# Project
+color.project.none=gray23
+
+# Priority
+color.uda.priority.H=
+color.uda.priority.L=
+
+# Tags 
+color.tag.next=rgb525
+color.tag.none=
+color.tagged=
+
+# Due
+color.due=
+color.due.today=rgb125
+color.overdue=bold inverse
+
+# Report: burndown
+color.burndown.pending=on rgb103
+color.burndown.started=on rgb214
+color.burndown.done=on gray4
+
+# Report: history
+color.history.add=color0 on rgb105
+color.history.done=color0 on rgb205
+color.history.delete=color0 on rgb305
+
+# Report: summary
+color.summary.bar=white on rgb104
+color.summary.background=white on rgb001
+
+# Command: calendar
+color.calendar.due=color0 on rgb325
+color.calendar.due.today=color0 on rgb404
+color.calendar.holiday=color15 on rgb102
+color.calendar.overdue=color0 on color5
+color.calendar.scheduled=
+color.calendar.today=color15 on rgb103
+color.calendar.weekend=gray12 on gray3
+color.calendar.weeknumber=rgb104
+
+# Command: sync
+color.sync.added=gray4
+color.sync.changed=rgb214
+color.sync.rejected=rgb103
+
+# Command: undo
+color.undo.before=rgb103
+color.undo.after=rgb305
