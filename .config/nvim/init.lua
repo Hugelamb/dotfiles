@@ -421,6 +421,28 @@ end
 -- Map background inversion 
 vim.keymap.set('n','<Leader>b',bg_switch)
 
+-- Set Spellchecking 
+-- vim.opt_local.spell = on
+-- vim.opt.spelllang=en_AU,cjk
+vim.api.nvim_create_augroup('spell_grp',{clear = true})
+-- yaml_check = require('functions.yaml_check')
+-- acmd('DirChanged', {
+--   group = spell_grp,
+--   callback = yaml_check.is_JA,
+-- })
+-- acmd('FileType', {
+--   pattern = {'tex', 'markdown'},
+--   group = spell_grp,
+--   desc = 'Activate spellchecking for latex, markdown and text files',
+--   command = 'setlocal spell spelllang=en_au,en_gb,cjk',
+-- })
+acmd('FileType', {
+  pattern = {'tex','markdown'},
+  group = spell_grp,
+  callback = function ()
+    vim.api.nvim_set_keymap('i', "<M-,>", '<C-g>u<Esc>[s1z=`]a<C-g>u', {noremap = true})
+  end,    
+})
 -- Create secondary mapping for accessing VISUAL-BLOCK mode, as ctrl+v 
 -- is system paste from clipboard on windows.
 vim.keymap.set('n','<Leader>v','<C-v><CR>')
@@ -475,3 +497,5 @@ vim.api.nvim_set_keymap('s', "<C-t>", '<cmd>lua utils.dynamic_node_external_upda
 
 vim.api.nvim_set_keymap('i', "<C-g>", '<cmd>lua utils.dynamic_node_external_update(2)<Cr>', {noremap = true})
 vim.api.nvim_set_keymap('s', "<C-g>", '<cmd>lua utils.dynamic_node_external_update(2)<Cr>', {noremap = true})
+
+
