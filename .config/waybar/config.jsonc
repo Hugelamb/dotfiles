@@ -15,12 +15,12 @@
     "hyprland/window",
     "custom/padding",
     "hyprland/submap",
-    "tray"
+    "tray",
+    "custom/padding",
+    "custom/calendar"
   ],
   "modules-center": ["custom/player"],
   "modules-right": [
-    "custom/calendar",
-    "custom/padding",
     "pulseaudio",
     "custom/padding",
     "custom/notification",
