@@ -436,6 +436,7 @@ vim.api.nvim_create_augroup('spell_grp',{clear = true})
 --   desc = 'Activate spellchecking for latex, markdown and text files',
 --   command = 'setlocal spell spelllang=en_au,en_gb,cjk',
 -- })
+vim.keymap.set({'n','i','s'},'M-C-s',':setlocal spell spelllang=en_au,en_gb,cjk')
 acmd('FileType', {
   pattern = {'tex','markdown'},
   group = spell_grp,
