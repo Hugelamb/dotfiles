@@ -21,8 +21,6 @@
   ],
   "modules-center": ["custom/player"],
   "modules-right": [
-    "custom/calendar",
-    "custom/padding",
     "pulseaudio",
     "custom/padding",
     "custom/notification",

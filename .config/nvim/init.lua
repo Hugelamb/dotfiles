@@ -324,6 +324,9 @@ require("lazy").setup({ -- colorscheme plugin here
       vim.g.vimtex_quickfix_method = vim.fn.executable("pplatex") == 1 and "pplatex" or "latexlog"
       vim.g.vimtex_quickfix_open_on_warning = 0
       vim.g.vimtex_syntax_enabled = 1
+      -- prevent vimtex from indenting \item's in list environments
+      vim.g.vimtex_indent_lists = '[]'
+
     end,
     -- opts = {
     --   conceallevel = 1,
@@ -368,7 +371,8 @@ vim.opt.swapfile = false		-- Don't use swapfiles
 vim.opt.ignorecase = true		-- Search case insensitive ...
 vim.opt.smartcase = true		-- ... unless it begins with upper case
 
-
+-- further vimtex settings
+-- vim.g.vimtex_indent_lists = []        -- Don't indent \item's in list environments
 --------------------
 --- AUTOCOMMANDS ---
 --------------------

@@ -294,12 +294,15 @@ return {
   s({ trig = "exn", dscr = "exercise", snippetType="autosnippet" },
     fmta(
       [[
-      \exercise{<>}{<>}
+      \exercise{<>}
+      \textbf{Question: }<> \\
+      \paragraph*{Solution: }<>
       <>
       ]],
       {
-        i(1,"1"),
-        i(2,"Title"),
+        i(1,"Title"),
+        i(2,"Question"),
+        i(3,"Solution"),
         i(0)
       }
     ),
