@@ -33,8 +33,6 @@
     "custom/padding",
     "custom/timer",
     "custom/padding",
-    "battery",
-    "custom/padding",
     "custom/power",
     "custom/padding"
   ],
@@ -148,6 +146,7 @@
     "custom/calendar": {
       "exec": " source ~/projects/university-setup-fuzzel/scripts/.venv/bin/activate && TZ='Australia/NSW' python3 -u ~/projects/university-setup-fuzzel/scripts/countdown.py ",
       "on-click": "firefox 'https://calendar.google.com/calendar/' -- &"
+      // "format": "{}<span>&#ff01<\span>"
     },
 
     "custom/fuzzel": {
@@ -200,18 +199,6 @@
     "custom/prefix": {
       "format": "<span color='#a89884'> >></span>",
       "tooltip": false
-    },
-    "custom/tasks": {
-      // exec: ,
-      "tooltip": true,
-      "exec-on-event": false,
-      "format": "TASKS",
-      "return-type": "json",
-      "on-click-right": "task report",
-      "on-click": "$HOME/.config/waybar/scripts/taskw.sh report",
-      "double-click": "$HOME/.config/waybar/scripts/taskw.sh add",
-      "on-click-middle": "$HOME/.config/waybar/scripts/taskw.sh fuzzel_explorer"
-      
     },
     "custom/timer": {
         // requires waybar-timer; find details at https://github.com/jbirnick/waybar-timer
