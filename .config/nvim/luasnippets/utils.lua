@@ -158,7 +158,7 @@ end
 
 P.column_count_from_string = function(descr)
   -- won't work for all cases, but good starting point
-  return #(descr:gsub("[^clm]", ""))
+  return #(descr:gsub("[^clmp]", ""))
 end
 
 -- function for dynamicNode 
