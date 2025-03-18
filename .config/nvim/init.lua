@@ -251,7 +251,7 @@ require("lazy").setup({ -- colorscheme plugin here
           ['<C-p>'] = cmp.mapping.select_prev_item(),
           ['<C-d>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-y>'] = cmp.mapping.confirm { -- press <ctrl+enter> to confirm autocomplete option
+          ['<C-b>'] = cmp.mapping.confirm { -- press <ctrl+enter> to confirm autocomplete option
             select = true       
           },
           -- ['<CR>'] = cmp.mapping.confirm { -- Enter key mapping
@@ -325,7 +325,7 @@ require("lazy").setup({ -- colorscheme plugin here
       vim.g.vimtex_quickfix_open_on_warning = 0
       vim.g.vimtex_syntax_enabled = 1
       -- prevent vimtex from indenting \item's in list environments
-      vim.g.vimtex_indent_lists = '[]'
+      -- vim.g.vimtex_indent_lists = '[]'
 
     end,
     -- opts = {
@@ -440,12 +440,12 @@ vim.api.nvim_create_augroup('spell_grp',{clear = true})
 --   desc = 'Activate spellchecking for latex, markdown and text files',
 --   command = 'setlocal spell spelllang=en_au,en_gb,cjk',
 -- })
-vim.keymap.set({'n','i','s'},'M-C-s',':setlocal spell spelllang=en_au,en_gb,cjk')
+vim.keymap.set({'n'},'<C-y>',':setlocal spell spelllang=en_au,en_gb,cjk<CR>')
 acmd('FileType', {
   pattern = {'tex','markdown'},
   group = spell_grp,
   callback = function ()
-    vim.api.nvim_set_keymap('i', "<M-,>", '<C-g>u<Esc>[s1z=`]a<C-g>u', {noremap = true})
+    vim.api.nvim_set_keymap('i', "<C-y>", '<C-g>u<Esc>[s1z=`]a<C-g>u', {noremap = true})
   end,    
 })
 -- Create secondary mapping for accessing VISUAL-BLOCK mode, as ctrl+v 

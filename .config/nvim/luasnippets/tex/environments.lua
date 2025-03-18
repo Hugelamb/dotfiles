@@ -126,7 +126,7 @@ return {
     ),
     { condition = tex_utils.in_text }
   ),
-  s({ trig = "en", dscr = "enum item", snippetType="autosnippet" },
+  s({ trig = "itn", dscr = "enum item", snippetType="autosnippet" },
     fmta(
     [[
     \item <>
@@ -137,7 +137,7 @@ return {
     ),
     { condition = tex_utils.in_enumerate * conds.line_begin }
   ),
-  s({ trig = "it", dscr = "itemize item", snippetType="autosnippet" },
+  s({ trig = "itn", dscr = "itemize item", snippetType="autosnippet" },
     fmta(
     [[
     \item <>
@@ -280,12 +280,14 @@ return {
   s({ trig = "defn", dscr = "definition", snippetType="autosnippet" },
     fmta(
       [[
-      \definition[<>]{
-        <>
-      }
+      \begin{definition}[<>]
+      <>
+      \end{definition}
+      <>
       ]],
       {
-        i(1),
+        i(1,'Defined'),
+        i(2),
         i(0)
       }
     ),

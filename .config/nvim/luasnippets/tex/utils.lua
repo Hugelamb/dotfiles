@@ -28,29 +28,52 @@ local postfix = require("luasnip.extras.postfix").postfix
 local types = require("luasnip.util.types")
 local parse = require("luasnip.util.parser").parse_snippet
 local ms = ls.multi_snippet
+local autosnippet = ls.extend_decorator.apply(s, { snippetType = "autosnippet" })
  -- Some LaTeX-specific conditional expansion functions (requires VimTeX)
 local P = {}
 util = P
--- Scaffolding for some common snippet types
+-- Auto blackslash snippet scaffolding (from kunzaatko via evesdropper, https://github.com/kunzaatko/nvim-dots/blob/trunk/lua/snippets/tex/utils/snippet_templates.lua, and https://github.com/evesdropper/dotfiles/blob/main/nvim/lua/snippets/tex/utils/scaffolding.lua respectively)
 P.auto_backslash_snippet = function(context, opts)
   opts = opts or {}
   if not context.trig then
     error("context doesn't include a `trig` key which is mandatory",2)
   end
-  context.dscr = context.dscr or (context.trig .. "with automatic backslash")
+  local trig = context.trig
+  context.dscr = context.dscr or (context.trig .. " with automatic backslash")
   context.name = context.name or context.trig
   context.docstring = context.docstring or ([[\]] .. context.trig)
-  context.trigEngine = "ecma"
-  context.trig = "(?<!\\\\)" .. "(" .. context.trig ..")"
-    return as(context,
+  context.trigEngine = "pattern"
+  context.wordTrig = false
+  context.trig = "([^%\\\\])" ..  context.trig 
+  context.snippetType = "autosnippet"
+    return s(context,
   fmta([[
   \<><>
   ]],
-  { f(function(_, snip)
-      return snip.captures[1]
-      end),
-      i(0) }),
+  {
+    t(trig),
+    i(0)
+  }),
     opts)
+end
+
+-- Symbol snippet scaffolding 
+P.symbol_snippet = function(context, command, opts)
+  opts = opts or {}
+  if not context.trig then
+    error("context doesn't include a `trig` key which is mandatory",2)
+  end
+  context.dscr = context.dscr or command
+  context.name = context.name or command:gsub([[\]], "")
+  context.docstring = context.docstring or (command .. [[{0}]])
+  context.wordTrig = context.wordTrig or false
+  j, _ = string.find(command, context.trig)
+  if j == 2 then -- command always starts with a '\'
+    context.trigEngine = "pattern"
+    context.trig = "([^%\\\\])" .. context.trig
+    context.hidden = true
+  end
+  return autosnippet(context, t(command), opts)  
 end
 
 P.generate_cases = function(args, snip)
@@ -93,31 +116,25 @@ local function in_comment()  -- comment detection
   return vim.fn['vimtex#syntax#in_comment']() 
 end
 P.in_comment = cond_obj.make_condition(in_comment)
--- P.in_env = function(name)  -- generic environment detection
---     local is_inside = vim.fn['vimtex#env#is_inside'](name)
---     return (is_inside[1] > 0 and is_inside[2] > 0)
--- end
--- A few concrete environments---adapt as needed
--- local function in_preamble()
---   local is_inside = vim.fn['vimtex#env#is_inside']("document")
---   return not (is_inside[1] > 0 and is_inside[2] > 0)
--- end
--- P.in_preamble = in_preamble()
+
 local function in_enumerate()
   local is_inside = vim.fn['vimtex#env#is_inside']("enumerate")
   return (is_inside[1] > 0 and is_inside[2] > 0)
 end
+
 P.in_enumerate = cond_obj.make_condition(in_enumerate)
 local function in_equation()  -- equation environment detection
   local is_inside = vim.fn['vimtex#env#is_inside']("equation")
   return (is_inside[1] > 0)
 end
+
 P.in_equation = cond_obj.make_condition(in_equation)
 
 local function in_itemize()  -- itemize environment detection
   local is_inside = vim.fn['vimtex#env#is_inside']("itemize")
   return (is_inside[1] > 0 and is_inside[2] > 0)
 end
+
 P.in_itemize = cond_obj.make_condition(in_itemize)
 
 local function in_tikz()  -- TikZ picture environment detection
