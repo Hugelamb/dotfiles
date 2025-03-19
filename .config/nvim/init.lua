@@ -19,6 +19,7 @@ if not vim.loop.fs_stat(lazypath) then
   end
 end
 vim.opt.rtp:prepend(lazypath)
+vim.opt.rtp:prepend("~/notebook/current-course")
 ---------------
 --- plugins ---
 ---------------
@@ -180,20 +181,21 @@ require("lazy").setup({ -- colorscheme plugin here
     dependencies = {"rafamadriz/friendly-snippets"},
     version = "v2.#",
     config = function()
-      require("luasnip.loaders.from_vscode").lazy_load()
+      -- require("luasnip.loaders.from_vscode").lazy_load()
       require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/luasnippets" })
+      require("luasnip.loaders.from_lua").lazy_load({ paths = "~/notebook/current-course/luasnippets" })
       local ls = require("luasnip")
       -- map reload snippets for ease of modification and testing
       vim.keymap.set('n', '<LocalLeader>ls', '<Cmd>lua require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/luasnippets/"})<CR>')
       -- map node navigation binds for luasnip
       vim.keymap.set('i','<C-K>', function() ls.expand() end, { silent = true })
-      vim.keymap.set({"i","s"},'<C-L>', function() ls.jump( 1) end, { silent = true })
-      vim.keymap.set({"i","s"},'<C-J>', function() ls.jump(-1) end, { silent = true })
+      vim.keymap.set({"i","s"},'C-l', function() ls.jump( 1) end, { silent = true })
+      vim.keymap.set({"i","s"},'C-j', function() ls.jump(-1) end, { silent = true })
       -- Set change choice for choice nodes to <Alt-J> and <Alt-L> for backwards and forwards
       vim.keymap.set({"i","s"},'<M-L>', function()
-        if ls.choice_active() then
-          ls.change_choice(1)
-        end
+       if ls.choice_active() then
+         ls.change_choice(1)
+       end
       end, {silent = true})
       vim.keymap.set({"i","s"},'<M-J>', function()
         if ls.choice_active() then
@@ -316,7 +318,7 @@ require("lazy").setup({ -- colorscheme plugin here
         -- vim.g.vimtex_view_method = 'mupdf'
         -- vim.g.vimtex_view_mupdf_exe = 'mupdf-gl.exe'
         -- vim.g.vimtex_view_general_viewer = 'mupdf-gl.exe'
-        vim.opt.conceallevel = 2
+        vim.opt.conceallevel = 0
         vim.g.tex_conceal = 'abdmg'
       end
     end,
@@ -445,6 +447,7 @@ acmd('FileType', {
   pattern = {'tex','markdown'},
   group = spell_grp,
   callback = function ()
+    -- vim.cmd(':setlocal spell spelllang=en_au,en_gb,cjk<CR>')
     vim.api.nvim_set_keymap('i', "<C-y>", '<C-g>u<Esc>[s1z=`]a<C-g>u', {noremap = true})
   end,    
 })
@@ -471,16 +474,18 @@ vim.keymap.set('n','<Localleader>sv',':vs<CR>',{ silent = true})     -- vertical
 vim.keymap.set('n','<Localleader>sh',':sp<CR>',{silent = true})      -- horizontal split command
 --- Closing and Hiding Macros
 vim.keymap.set('n','<Localleader>q','<C-w><C-q>')           -- close current window, as long as there are no unsaved buffer changes/is not last window for buffer
-vim.keymap.set('n','<Localleader>h','<:hide<CR>',{ silent = true})  -- hide current window
+vim.keymap.set('n','<Localleader>hc','<:hide<CR>',{ silent = true})  -- hide current window
 vim.keymap.set('n','<Localleader>ho','<:hide only<CR>')              -- hide all except current window 
 
 ---------------------
 --- Window Navigation Macros ---
 ---------------------
-vim.keymap.set('n','<Localleader><A-j>','<C-w>h')               -- move to window on left
-vim.keymap.set('n','<Localleader><A-k>','<C-w>j')               -- move to window below
-vim.keymap.set('n','<Localleader><A-i>','<C-w>k')               -- move to window above
-vim.keymap.set('n','<Localleader><A-l>','<C-w>l')               -- move to window on right
+vim.keymap.set('n','<A-j>','<C-w>h')        -- move to window on left
+vim.keymap.set('n','<A-k>','<C-w>j')        -- move to window below
+vim.keymap.set('n','<A-i>','<C-w>k')        -- move to window above
+vim.keymap.set('n','<A-l>','<C-w>l')        -- move to window on right
+vim.keymap.set('n','<A-n>','<C-w>w')        -- move to next window 
+vim.keymap.set('n','<A-p>','<C-w><S-w>')    -- move to previous window 
 ----------
 --- VimTeX Macros ---
 ----------

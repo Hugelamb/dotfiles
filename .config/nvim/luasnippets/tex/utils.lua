@@ -44,13 +44,17 @@ P.auto_backslash_snippet = function(context, opts)
   context.docstring = context.docstring or ([[\]] .. context.trig)
   context.trigEngine = "pattern"
   context.wordTrig = false
-  context.trig = "([^%\\\\])" ..  context.trig 
+  context.trig = "([^%\\\\]?)" ..  context.trig 
   context.snippetType = "autosnippet"
     return s(context,
   fmta([[
-  \<><>
+  <>\<><>
   ]],
   {
+    f( function(_, snip)
+        return snip.captures[1]
+        end
+        ),
     t(trig),
     i(0)
   }),
@@ -67,13 +71,28 @@ P.symbol_snippet = function(context, command, opts)
   context.name = context.name or command:gsub([[\]], "")
   context.docstring = context.docstring or (command .. [[{0}]])
   context.wordTrig = context.wordTrig or false
-  j, _ = string.find(command, context.trig)
-  if j == 2 then -- command always starts with a '\'
-    context.trigEngine = "pattern"
-    context.trig = "([^%\\\\])" .. context.trig
-    context.hidden = true
-  end
-  return autosnippet(context, t(command), opts)  
+  -- j, _ = string.find(command, context.trig)
+  -- if j == 2 then -- command always starts with a '\'
+  context.trigEngine = "pattern"
+  context.trig = "([^%\\\\]?)" .. context.trig
+  context.hidden = true
+  -- end
+  context.snippetType = "autosnippet"
+      return s(context,
+    fmta([[
+    <><>  <>
+    ]],
+    {
+      f( function(_, snip)
+          return snip.captures[1]
+          end
+          ),
+      t(command),
+      i(0)
+    }),
+      opts)
+
+  --  return autosnippet(context, t(command), opts)  
 end
 
 P.generate_cases = function(args, snip)

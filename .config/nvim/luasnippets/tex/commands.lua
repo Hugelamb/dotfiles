@@ -85,4 +85,17 @@ return {
     ),
   { condition = tex_utils.in_text }
   ),  
+  s({ trig = "nref", dscr =  "Insert name reference ", snippetType="autosnippet" },
+    fmta(
+    [[
+    \nameref{<>:<>}<>
+    ]],
+      {
+        i(1,'type'),
+        i(2,'name'),
+        i(0)
+      }
+    ),
+  { condition = tex_utils.in_text }
+  ),  
 }

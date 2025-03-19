@@ -256,7 +256,7 @@ local greek_snippets = {}
 for k, v in pairs(greek_specs) do
   table.insert(
     greek_snippets,
-    tex_utils.symbol_snippet(vim.tbl_deep_extend("keep", { trig = k }, v.context), v.command, { condition = tex_utils.in_mathzone, backslash = true })
+    tex_utils.symbol_snippet(vim.tbl_deep_extend("keep", { trig = k }, v.context), v.command, { condition = tex_utils.in_mathzone })
   )
 end
 vim.list_extend(M, greek_snippets)
@@ -271,10 +271,10 @@ local symbol_specs = {
   [':='] = { context = { name = ':=' }, command = [[\coloneq]] },
   ['cdot'] = { context = { name = '.' }, command = [[\cdot]] },
   ['xx'] = { context = { name = '\\times' }, command = [[\times]] },
-  ['!+'] = { context = { name = '⊕' }, command = [[\oplus]] },
-  ['!*'] = { context = { name = '⊗' }, command = [[\otimes]] },
+  -- ['!+'] = { context = { name = '⊕' }, command = [[\oplus]] },
+  -- ['!*'] = { context = { name = '⊗' }, command = [[\otimes]] },
   -- set notations
-  ['NN'] = { context = { name = '\\mathbb{N}' }, command = [[\\mathbb{N}]] },
+  ['NN'] = { context = { name = '\\mathbb{N}' }, command = [[\mathbb{N}]] },
   ['ZZ'] = { context = { name = '\\mathbb{Z}' }, command = [[\mathbb{Z}]] },  
   QQ = { context = { name = "ℚ" }, command = [[\mathbb{Q}]] },
   RR = { context = { name = "ℝ" }, command = [[\mathbb{R}]] },
@@ -291,19 +291,19 @@ local symbol_specs = {
   -- logic and quantifier symbols
   AA = { context = { name = "∀" }, command = [[\forall]] },
   EE = { context = { name = "∃" }, command = [[\exists]] },
-  isin = { context = { name = "∈" }, command = [[\in]] },
-  notin = { context = { name = "∉" }, command = [[\not\in]] },
-  ["!-"] = { context = { name = "¬" }, command = [[\lnot]] },
+  -- isin = { context = { name = "∈" }, command = [[\in]] },
+  -- notin = { context = { name = "∉" }, command = [[\not\in]] },
+  -- ["!-"] = { context = { name = "¬" }, command = [[\lnot]] },
   VV = { context = { name = "∨" }, command = [[\lor]] },
   WW = { context = { name = "∧" }, command = [[\land]] },
-  ["!!"] = { context = {name = "neg"}, command = [[\neg]] },
-  ["!W"] = { context = { name = "∧" }, command = [[\bigwedge]] },
-  ["=>"] = { context = { name = "⇒" }, command = [[\implies]] },
-  ["=<"] = { context = { name = "⇐" }, command = [[\impliedby]] },
+  -- ["!!"] = { context = {name = "neg"}, command = [[\neg]] },
+  -- ["!W"] = { context = { name = "∧" }, command = [[\bigwedge]] },
+  -- ["=>"] = { context = { name = "⇒" }, command = [[\implies]] },
+  -- ["=<"] = { context = { name = "⇐" }, command = [[\impliedby]] },
   iff = { context = { name = "⟺" }, command = [[\iff]] },
   ["->"] = { context = { name = "→", priority = 250 }, command = [[\to]] },
-  ["!>"] = { context = { name = "→" }, command = [[\mapsto]] },
-  ["<-"] = { context = { name = "←", priority = 250}, command = [[\gets]] },
+  -- ["!>"] = { context = { name = "→" }, command = [[\mapsto]] },
+  -- ["<-"] = { context = { name = "←", priority = 250}, command = [[\gets]] },
   -- differentials 
   -- dd = { context = { name = "⇒" }, command = [[\dl]] },
   dp = { context = { name = "∂" }, command = [[\partial]] },
@@ -316,8 +316,8 @@ local symbol_specs = {
   -- etc
   ['inf'] = { context = { name = 'infinity' }, command = [[\infty]] },
   ['ell'] = { context = { name = 'special l symbol' }, command = [[\ell]] },
-  ['+-'] = { context = { name = 'plusminus' }, command = [[\pm]] },
-  ['-+'] = { context = { name = 'minusplus' }, command = [[\mp]] },
+  -- ['+-'] = { context = { name = 'plusminus' }, command = [[\pm]] },
+  -- ['-+'] = { context = { name = 'minusplus' }, command = [[\mp]] },
 }
 
 local symbol_snippets = {}
