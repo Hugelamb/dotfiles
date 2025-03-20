@@ -265,7 +265,7 @@ prepend_path "$HOME/.cargo/bin"
 shopt -q login_shell && macchina --config $HOME/.config/macchina/macchina-login.toml --theme minimal || macchina --theme Mikasa
 # add task inbox to prompt
 inbox_prompt() {
-  inbox_count=$(task +in +PENDING count)
+  inbox_count=$(task rc.data.location="$HOME/.tasks/tasks" +in +PENDING count)
   if [ $inbox_count -gt 0 ]; then
     count_color=$ccrimson
   else

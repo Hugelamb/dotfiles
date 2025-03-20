@@ -1,12 +1,12 @@
 # [Created by task 3.3.0 2/24/2025 13:37:41]
-news.version=3.3.0
+# news.version=3.3.0
 
 # To use the default location of the XDG directories,
 # move this configuration file from ~/.taskrc to ~/.config/task/taskrc and update location config as follows:
-
 data.location=~/.tasks/tasks
 hooks.location=~/.config/task/hooks
-
+# Remove overly verbose output from changing default directory paths
+verbose=blank,footnote,label,new-id,affected,edit,special,project,sync,unwait
 # Color theme (uncomment one to use)
 #include light-16.theme
 #include light-256.theme
