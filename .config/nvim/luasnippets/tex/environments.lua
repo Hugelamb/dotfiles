@@ -134,12 +134,13 @@ return {
   s({ trig = "enn", dscr = "enumerate", snippetType="autosnippet" },
     fmta(
       [[
-    \begin{enumerate}
+    \begin{enumerate}<>
     <> 
     \end{enumerate}
     ]],
-      { 
-        d(1, tex_utils.list,{1}, {
+      {
+        c(1,{t(""),{ t("[label = {"), i(1), t("}]") }}),  -- Optional label (only works with the enumitem package included in preamble)
+        d(2, tex_utils.list,{1}, {
           user_args = {
             function(snip) snip.rows = snip.rows + 1 end,
             -- don't drop below one
