@@ -189,15 +189,15 @@ require("lazy").setup({ -- colorscheme plugin here
       vim.keymap.set('n', '<LocalLeader>ls', '<Cmd>lua require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/luasnippets/"})<CR>')
       -- map node navigation binds for luasnip
       vim.keymap.set('i','<C-K>', function() ls.expand() end, { silent = true })
-      vim.keymap.set({"i","s"},'C-l', function() ls.jump( 1) end, { silent = true })
-      vim.keymap.set({"i","s"},'C-j', function() ls.jump(-1) end, { silent = true })
+      vim.keymap.set({"i","s"},'<C-L>', function() ls.jump( 1) end, { silent = true })
+      vim.keymap.set({"i","s"},'<C-J>', function() ls.jump(-1) end, { silent = true })
       -- Set change choice for choice nodes to <Alt-J> and <Alt-L> for backwards and forwards
-      vim.keymap.set({"i","s"},'<M-L>', function()
+      vim.keymap.set({"i","s"},'<C-I>', function()
        if ls.choice_active() then
          ls.change_choice(1)
        end
       end, {silent = true})
-      vim.keymap.set({"i","s"},'<M-J>', function()
+      vim.keymap.set({"i","s"},'<C-,>', function()
         if ls.choice_active() then
           ls.change_choice(-1)
         end
@@ -253,7 +253,7 @@ require("lazy").setup({ -- colorscheme plugin here
           ['<C-p>'] = cmp.mapping.select_prev_item(),
           ['<C-d>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-b>'] = cmp.mapping.confirm { -- press <ctrl+enter> to confirm autocomplete option
+          ['<C-Enter>'] = cmp.mapping.confirm { -- press <ctrl+enter> to confirm autocomplete option
             select = true       
           },
           -- ['<CR>'] = cmp.mapping.confirm { -- Enter key mapping
@@ -262,8 +262,8 @@ require("lazy").setup({ -- colorscheme plugin here
           ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
-            elseif luasnip.expand_or_locally_jumpable() then
-              luasnip.expand_or_jump()
+            -- elseif luasnip.expand_or_locally_jumpable() then
+            --   luasnip.expand_or_jump()
             elseif has_words_before() then
               cmp.complete()
             else
@@ -273,8 +273,8 @@ require("lazy").setup({ -- colorscheme plugin here
           ['<S-Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-              luasnip.jump(-1)
+            -- elseif luasnip.jumpable(-1) then
+            --   luasnip.jump(-1)
             else
               fallback()
             end
@@ -353,7 +353,7 @@ require("lazy").setup({ -- colorscheme plugin here
 -- clipboard settings
 vim.opt.clipboard = "unnamedplus"
 -- errors flash screen rather than emitting beep
-vim.opt.visualbell = true
+vim.opt.visualbell = false
 
 -- set default tabwidth at 4 spaces
 vim.opt.shiftwidth = 2
