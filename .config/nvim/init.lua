@@ -19,7 +19,7 @@ if not vim.loop.fs_stat(lazypath) then
   end
 end
 vim.opt.rtp:prepend(lazypath)
-vim.opt.rtp:append("~/notebook/current_course/LuaSnip")
+vim.opt.rtp:append("~/notebook/current-course")
 ---------------
 --- plugins ---
 ---------------
