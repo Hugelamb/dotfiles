@@ -158,35 +158,20 @@ end
 
 P.column_count_from_string = function(descr)
   -- won't work for all cases, but good starting point
-  return #(descr:gsub("[^clm]", ""))
+  return #(descr:gsub("[^clmp]", ""))
 end
 
 -- function for dynamicNode 
-P.tab = function(args, snip)
-  local cols = P.column_count_from_string(args[1][1])
-  -- handle case where snip.rows is unset.
-  if not snip.rows then
-    snip.rows = 1
-  end
-  local nodes = {}
-  -- track current insert-index.
-  local ins_indx = 1
-  for j = 1, snip.rows do
-    -- use restoreNode to retain content while updating.
-    table.insert(nodes, r(ins_indx, tostring(j).."x1", i(1)))
-    ins_indx = ins_indx + 1
-    for k = 2, cols do
-      table.insert(nodes, t" & ")
-      table.insert(nodes, r(ins_indx, tostring(j).."x"..tostring(k), i(1)))
-      ins_indx = ins_indx + 1
-    end
-  table.insert(nodes, t{"\\\\", ""})
-  end
-  -- fix last node.
-  nodes[#nodes] = t""
-  return sn(nil, nodes)
+P.rec_node = function(args, parent, user_args)
+  return sn(
+    nil,
+    c(1, {
+      -- Order is important, putting the snippetNode first would cause an infinite expansion loop.
+      t(""),
+      sn(nil, { t({ "", "\t",user_args[0]," "}), i(1), d(2, rec_node, {user_args = {user_args[0]}}) }),
+    })
+  )
 end
-
 -- End Function List --
 
 return P

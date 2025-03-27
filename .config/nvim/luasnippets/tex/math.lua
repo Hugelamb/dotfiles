@@ -150,7 +150,6 @@ M = {
     ),
     { condition = tex_utils.in_mathzone}
   ), 
--- Auto backslash snippets from evesdropper
 
 
 -- Cases and matrices
@@ -164,35 +163,176 @@ M = {
       { d(1, tex_utils.generate_cases) }),
   { condition = tex_utils.in_mathzone, show_condition = tex_utils.in_mathzone }
   ),  
+         
 }
+
+-- Auto backslash snippets from evesdropper
+
 
 local auto_backslash_specs = {
-	"arcsin",
-	"sin",
-	"arccos",
-	"cos",
-	"arctan",
-	"tan",
-	"cot",
-	"csc",
-	"sec",
-	"log",
-	"ln",
-	"exp",
-	"ast",
-	"star",
-	"perp",
-	"sup",
-	"inf",
-	"det",
-	"max",
-	"min",
-	"argmax",
-	"argmin",
-        "deg",
-        "angle",
-    "pi",
+  -- trigonometry
+  "arcsin",
+  "sin",
+  "arccos",
+  "cos",
+  "arctan",
+  "tan",
+  "cot",
+  "csc",
+  "sec",
+  -- logs and exponentials
+  "log",
+  "ln",
+  "exp",
+  -- symbols in math envs
+  "ast", -- asterisk
+  "star",
+  "perp",
+  "sup",
+  "inf",
+  "det",
+  "max",
+  "min",
+  "argmax",
+  "argmin",
+  "deg",
+  "angle",
+  "pi",
+  "sum",
+  -- alternate character/symbol calls
+  "gamma",
+  "Gamma",
+  "Delta",
+  "lambda",
+  "Lambda",
+  "sigma",
+  "Sigma",
+  "int",
+  "diff",
+  "times",
+  
+
+}
+local auto_backslash_snippets = {}
+for _, v in ipairs(auto_backslash_specs) do
+  table.insert(auto_backslash_snippets, tex_utils.auto_backslash_snippet({ trig = v }, { condition = tex_utils.in_mathzone }))
+end
+vim.list_extend(M, auto_backslash_snippets)
+local greek_specs = {
+  alpha = { context = { name = "α" }, command = [[\alpha]] },
+  beta = { context = { name = "β" }, command = [[\beta]] },
+  gam = { context = { name = "γ" }, command = [[\gamma]] },
+  Gam = { context = { name = "Γ" }, command = [[\Gamma]] },
+  delta = { context = { name = "δ" }, command = [[\delta]] },
+  DD = { context = { name = "Δ" }, command = [[\Delta]] },
+  eps = { context = { name = "ε" , priority = 500 }, command = [[\epsilon]] },
+  veps = { context = { name = "ε" }, command = [[\varepsilon]] },
+  zeta = { context = { name = "ζ" }, command = [[\zeta]] },
+  eta = { context = { name = "η" , priority = 500}, command = [[\eta]] },
+  theta = { context = { name = "θ" }, command = [[\theta]] },
+  Theta = { context = { name = "Θ" }, command = [[\Theta]] },
+  iota = { context = { name = "ι" }, command = [[\iota]] },
+  kappa = { context = { name = "κ" }, command = [[\kappa]] },
+  lmbd = { context = { name = "λ" }, command = [[\lambda]] },
+  Lmbd = { context = { name = "Λ" }, command = [[\Lambda]] },
+  mu = { context = { name = "μ" }, command = [[\mu]] },
+  nu = { context = { name = "ν" }, command = [[\nu]] },
+  xi = { context = { name = "ξ" }, command = [[\xi]] },
+  pi = { context = { name = "π" }, command = [[\pi]] },
+  rho = { context = { name = "ρ" }, command = [[\rho]] },
+  sig = { context = { name = "σ" }, command = [[\sigma]] },
+  Sig = { context = { name = "Σ" }, command = [[\Sigma]] },
+  tau = { context = { name = "τ" }, command = [[\tau]] },
+  ups = { context = { name = "υ" }, command = [[\upsilon]] },
+  phi = { context = { name = "φ" }, command = [[\phi]] },
+  vphi = { context = { name = "φ" }, command = [[\varphi]] },
+  chi = { context = { name = "χ" }, command = [[\chi]] },
+  psi = { context = { name = "Ψ" }, command = [[\psi]] },
+  omega = { context = { name = "ω" }, command = [[\omega]] },
+  Omega = { context = { name = "Ω" }, command = [[\Omega]] },
+}
+-- Greek character symbol snippets
+local greek_snippets = {}
+for k, v in pairs(greek_specs) do
+  table.insert(
+    greek_snippets,
+    tex_utils.symbol_snippet(vim.tbl_deep_extend("keep", { trig = k }, v.context), v.command, { condition = tex_utils.in_mathzone })
+  )
+end
+vim.list_extend(M, greek_snippets)
+
+local symbol_specs = {
+  -- operators
+  ['ll'] = { context = { name = 'less than' }, command = [[\ll]] },
+  ['gg'] = { context = { name = 'greater than' }, command = [[\gg]] },
+  ['sim'] = { context = { name = 'similar' }, command = [[\sim]] },
+  ['approx'] = { context = { name = 'approx' }, command = [[\approx]] },
+  ['cong'] = { context = { name = 'congruent to' }, command = [[\cong]] },
+  [':='] = { context = { name = ':=' }, command = [[\coloneq]] },
+  ['cdot'] = { context = { name = '.' }, command = [[\cdot]] },
+  ['xx'] = { context = { name = '\\times' }, command = [[\times]] },
+  -- ['!+'] = { context = { name = '⊕' }, command = [[\oplus]] },
+  -- ['!*'] = { context = { name = '⊗' }, command = [[\otimes]] },
+  -- set notations
+  ['NN'] = { context = { name = '\\mathbb{N}' }, command = [[\mathbb{N}]] },
+  ['ZZ'] = { context = { name = '\\mathbb{Z}' }, command = [[\mathbb{Z}]] },  
+  QQ = { context = { name = "ℚ" }, command = [[\mathbb{Q}]] },
+  RR = { context = { name = "ℝ" }, command = [[\mathbb{R}]] },
+  CC = { context = { name = "ℂ" }, command = [[\mathbb{C}]] },
+  OO = { context = { name = "∅" }, command = [[\emptyset]] },
+  pwr = { context = { name = "P" }, command = [[\powerset]] },
+  cc = { context = { name = "⊂" }, command = [[\subset]] },
+  cq = { context = { name = "⊆" }, command = [[\subseteq]] },
+  qq = { context = { name = "⊃" }, command = [[\supset]] },
+  qc = { context = { name = "⊇" }, command = [[\supseteq]] },
+  Nn = { context = { name = "∩" }, command = [[\cap]] },
+  UU = { context = { name = "∪" }, command = [[\cup]] },
+  ["::"] = { context = { name = ":" }, command = [[\colon]] },
+  -- logic and quantifier symbols
+  AA = { context = { name = "∀" }, command = [[\forall]] },
+  EE = { context = { name = "∃" }, command = [[\exists]] },
+  -- isin = { context = { name = "∈" }, command = [[\in]] },
+  -- notin = { context = { name = "∉" }, command = [[\not\in]] },
+  -- ["!-"] = { context = { name = "¬" }, command = [[\lnot]] },
+  VV = { context = { name = "∨" }, command = [[\lor]] },
+  WW = { context = { name = "∧" }, command = [[\land]] },
+  -- ["!!"] = { context = {name = "neg"}, command = [[\neg]] },
+  -- ["!W"] = { context = { name = "∧" }, command = [[\bigwedge]] },
+  -- ["=>"] = { context = { name = "⇒" }, command = [[\implies]] },
+  -- ["=<"] = { context = { name = "⇐" }, command = [[\impliedby]] },
+  iff = { context = { name = "⟺" }, command = [[\iff]] },
+  ["->"] = { context = { name = "→", priority = 250 }, command = [[\to]] },
+  -- ["!>"] = { context = { name = "→" }, command = [[\mapsto]] },
+  -- ["<-"] = { context = { name = "←", priority = 250}, command = [[\gets]] },
+  -- differentials 
+  -- dd = { context = { name = "⇒" }, command = [[\dl]] },
+  dp = { context = { name = "∂" }, command = [[\partial]] },
+  -- arrows
+  ["-->"] = { context = { name = "⟶", priority = 500 }, command = [[\longrightarrow]] },
+  ["<->"] = { context = { name = "↔", priority = 500 }, command = [[\leftrightarrow]] },
+  ["2>"] = { context = { name = "⇉", priority = 400 }, command = [[\rightrightarrows]] },
+  upar = { context = { name = "↑" }, command = [[\uparrow]] },
+  dnar = { context = { name = "↓" }, command = [[\downarrow]] },
+  -- etc
+  ['inf'] = { context = { name = 'infinity' }, command = [[\infty]] },
+  ['ell'] = { context = { name = 'special l symbol' }, command = [[\ell]] },
+  -- ['+-'] = { context = { name = 'plusminus' }, command = [[\pm]] },
+  -- ['-+'] = { context = { name = 'minusplus' }, command = [[\mp]] },
 }
 
+local symbol_snippets = {}
+for k, v in pairs(symbol_specs) do
+	table.insert(
+		symbol_snippets,
+		tex_utils.symbol_snippet(vim.tbl_deep_extend("keep", { trig = k }, v.context), v.command, { condition = tex_utils.in_mathzone })
+	)
+end
+vim.list_extend(M, symbol_snippets)
 
+
+
+
+
+-- END LIST --
 return M
+

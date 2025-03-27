@@ -19,6 +19,7 @@ if not vim.loop.fs_stat(lazypath) then
   end
 end
 vim.opt.rtp:prepend(lazypath)
+vim.opt.rtp:prepend("~/notebook/current-course")
 ---------------
 --- plugins ---
 ---------------
@@ -180,8 +181,9 @@ require("lazy").setup({ -- colorscheme plugin here
     dependencies = {"rafamadriz/friendly-snippets"},
     version = "v2.#",
     config = function()
-      require("luasnip.loaders.from_vscode").lazy_load()
+      -- require("luasnip.loaders.from_vscode").lazy_load()
       require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/luasnippets" })
+      require("luasnip.loaders.from_lua").lazy_load({ paths = "~/notebook/current-course/luasnippets" })
       local ls = require("luasnip")
       -- map reload snippets for ease of modification and testing
       vim.keymap.set('n', '<LocalLeader>ls', '<Cmd>lua require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/luasnippets/"})<CR>')
@@ -190,12 +192,12 @@ require("lazy").setup({ -- colorscheme plugin here
       vim.keymap.set({"i","s"},'<C-L>', function() ls.jump( 1) end, { silent = true })
       vim.keymap.set({"i","s"},'<C-J>', function() ls.jump(-1) end, { silent = true })
       -- Set change choice for choice nodes to <Alt-J> and <Alt-L> for backwards and forwards
-      vim.keymap.set({"i","s"},'<M-L>', function()
-        if ls.choice_active() then
-          ls.change_choice(1)
-        end
+      vim.keymap.set({"i","s"},'<C-I>', function()
+       if ls.choice_active() then
+         ls.change_choice(1)
+       end
       end, {silent = true})
-      vim.keymap.set({"i","s"},'<M-J>', function()
+      vim.keymap.set({"i","s"},'<C-,>', function()
         if ls.choice_active() then
           ls.change_choice(-1)
         end
@@ -251,7 +253,7 @@ require("lazy").setup({ -- colorscheme plugin here
           ['<C-p>'] = cmp.mapping.select_prev_item(),
           ['<C-d>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-y>'] = cmp.mapping.confirm { -- press <ctrl+enter> to confirm autocomplete option
+          ['<C-Enter>'] = cmp.mapping.confirm { -- press <ctrl+enter> to confirm autocomplete option
             select = true       
           },
           -- ['<CR>'] = cmp.mapping.confirm { -- Enter key mapping
@@ -260,8 +262,8 @@ require("lazy").setup({ -- colorscheme plugin here
           ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
-            elseif luasnip.expand_or_locally_jumpable() then
-              luasnip.expand_or_jump()
+            -- elseif luasnip.expand_or_locally_jumpable() then
+            --   luasnip.expand_or_jump()
             elseif has_words_before() then
               cmp.complete()
             else
@@ -271,8 +273,8 @@ require("lazy").setup({ -- colorscheme plugin here
           ['<S-Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-              luasnip.jump(-1)
+            -- elseif luasnip.jumpable(-1) then
+            --   luasnip.jump(-1)
             else
               fallback()
             end
@@ -316,7 +318,7 @@ require("lazy").setup({ -- colorscheme plugin here
         -- vim.g.vimtex_view_method = 'mupdf'
         -- vim.g.vimtex_view_mupdf_exe = 'mupdf-gl.exe'
         -- vim.g.vimtex_view_general_viewer = 'mupdf-gl.exe'
-        vim.opt.conceallevel = 2
+        vim.opt.conceallevel = 0
         vim.g.tex_conceal = 'abdmg'
       end
     end,
@@ -324,6 +326,9 @@ require("lazy").setup({ -- colorscheme plugin here
       vim.g.vimtex_quickfix_method = vim.fn.executable("pplatex") == 1 and "pplatex" or "latexlog"
       vim.g.vimtex_quickfix_open_on_warning = 0
       vim.g.vimtex_syntax_enabled = 1
+      -- prevent vimtex from indenting \item's in list environments
+      -- vim.g.vimtex_indent_lists = '[]'
+
     end,
     -- opts = {
     --   conceallevel = 1,
@@ -348,7 +353,7 @@ require("lazy").setup({ -- colorscheme plugin here
 -- clipboard settings
 vim.opt.clipboard = "unnamedplus"
 -- errors flash screen rather than emitting beep
-vim.opt.visualbell = true
+vim.opt.visualbell = false
 
 -- set default tabwidth at 4 spaces
 vim.opt.shiftwidth = 2
@@ -368,7 +373,8 @@ vim.opt.swapfile = false		-- Don't use swapfiles
 vim.opt.ignorecase = true		-- Search case insensitive ...
 vim.opt.smartcase = true		-- ... unless it begins with upper case
 
-
+-- further vimtex settings
+-- vim.g.vimtex_indent_lists = []        -- Don't indent \item's in list environments
 --------------------
 --- AUTOCOMMANDS ---
 --------------------
@@ -421,6 +427,30 @@ end
 -- Map background inversion 
 vim.keymap.set('n','<Leader>b',bg_switch)
 
+-- Set Spellchecking 
+-- vim.opt_local.spell = on
+-- vim.opt.spelllang=en_AU,cjk
+vim.api.nvim_create_augroup('spell_grp',{clear = true})
+-- yaml_check = require('functions.yaml_check')
+-- acmd('DirChanged', {
+--   group = spell_grp,
+--   callback = yaml_check.is_JA,
+-- })
+-- acmd('FileType', {
+--   pattern = {'tex', 'markdown'},
+--   group = spell_grp,
+--   desc = 'Activate spellchecking for latex, markdown and text files',
+--   command = 'setlocal spell spelllang=en_au,en_gb,cjk',
+-- })
+vim.keymap.set({'n'},'<C-y>',':setlocal spell spelllang=en_au,en_gb,cjk<CR>')
+acmd('FileType', {
+  pattern = {'tex','markdown'},
+  group = spell_grp,
+  callback = function ()
+    -- vim.cmd(':setlocal spell spelllang=en_au,en_gb,cjk<CR>')
+    vim.api.nvim_set_keymap('i', "<C-y>", '<C-g>u<Esc>[s1z=`]a<C-g>u', {noremap = true})
+  end,    
+})
 -- Create secondary mapping for accessing VISUAL-BLOCK mode, as ctrl+v 
 -- is system paste from clipboard on windows.
 vim.keymap.set('n','<Leader>v','<C-v><CR>')
@@ -444,16 +474,18 @@ vim.keymap.set('n','<Localleader>sv',':vs<CR>',{ silent = true})     -- vertical
 vim.keymap.set('n','<Localleader>sh',':sp<CR>',{silent = true})      -- horizontal split command
 --- Closing and Hiding Macros
 vim.keymap.set('n','<Localleader>q','<C-w><C-q>')           -- close current window, as long as there are no unsaved buffer changes/is not last window for buffer
-vim.keymap.set('n','<Localleader>h','<:hide<CR>',{ silent = true})  -- hide current window
+vim.keymap.set('n','<Localleader>hc','<:hide<CR>',{ silent = true})  -- hide current window
 vim.keymap.set('n','<Localleader>ho','<:hide only<CR>')              -- hide all except current window 
 
 ---------------------
 --- Window Navigation Macros ---
 ---------------------
-vim.keymap.set('n','<Localleader><A-j>','<C-w>h')               -- move to window on left
-vim.keymap.set('n','<Localleader><A-k>','<C-w>j')               -- move to window below
-vim.keymap.set('n','<Localleader><A-i>','<C-w>k')               -- move to window above
-vim.keymap.set('n','<Localleader><A-l>','<C-w>l')               -- move to window on right
+vim.keymap.set('n','<A-j>','<C-w>h')        -- move to window on left
+vim.keymap.set('n','<A-k>','<C-w>j')        -- move to window below
+vim.keymap.set('n','<A-i>','<C-w>k')        -- move to window above
+vim.keymap.set('n','<A-l>','<C-w>l')        -- move to window on right
+vim.keymap.set('n','<A-n>','<C-w>w')        -- move to next window 
+vim.keymap.set('n','<A-p>','<C-w><S-w>')    -- move to previous window 
 ----------
 --- VimTeX Macros ---
 ----------
@@ -475,3 +507,5 @@ vim.api.nvim_set_keymap('s', "<C-t>", '<cmd>lua utils.dynamic_node_external_upda
 
 vim.api.nvim_set_keymap('i', "<C-g>", '<cmd>lua utils.dynamic_node_external_update(2)<Cr>', {noremap = true})
 vim.api.nvim_set_keymap('s', "<C-g>", '<cmd>lua utils.dynamic_node_external_update(2)<Cr>', {noremap = true})
+
+

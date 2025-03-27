@@ -38,4 +38,16 @@ return {
       { i(1, "trigger" ), i( 2, "description" ), i( 3, "snippet" ), i( 4, "condition" )}
     )
   ),
+  s({ trig = "sspc", dscr = "spec table entry", snippetType="autosnippet" },
+    fmta("['<>'] = { context = { name = '<>' }, command = [[<>]] },<>"
+    ,
+      {
+        i(1),
+        i(2),
+        i(3),
+        i(0)
+      }
+    )
+  
+  ),  
 }
