@@ -26,3 +26,8 @@ verbose=blank,footnote,label,new-id,affected,edit,special,project,sync,unwait
 
 ### CUSTOM THEMING ###
 include ~/.config/task/themes/dark-magenta2royal.theme
+
+### URGENCY COEFFICIENTS ### 
+urgency.user.project.vball.coaching.coefficient=      -5.0 # reduce prominence of training planning in task list default = 0
+urgency.scheduled.coefficient=           4.5 # decrease weighting of an event simply being scheduled, default = 5.0
+

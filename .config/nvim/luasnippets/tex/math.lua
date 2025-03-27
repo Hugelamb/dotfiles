@@ -71,7 +71,7 @@ M = {
     { condition = tex_utils.in_mathzone }
   ),
 -- Superscript snippet
-  s({ trig = "([%w%)%]%}])'", dscr = "Superscript", wordTrig=false, regTrig=true,snippetType="autosnippet" },
+  s({ trig = "([%w%)%]%}])^", dscr = "Superscript", wordTrig=false, regTrig=true,snippetType="autosnippet" },
     fmta(
     "<>^{<>}",
       {
@@ -210,6 +210,7 @@ local auto_backslash_specs = {
   "int",
   "diff",
   "times",
+  "prime"
   
 
 }
@@ -270,6 +271,7 @@ local symbol_specs = {
   ['cong'] = { context = { name = 'congruent to' }, command = [[\cong]] },
   [':='] = { context = { name = ':=' }, command = [[\coloneq]] },
   ['cdot'] = { context = { name = '.' }, command = [[\cdot]] },
+  ["%.%.%."] = { context = {name = '...'}, command = [[\dots]]},
   ['xx'] = { context = { name = '\\times' }, command = [[\times]] },
   -- ['!+'] = { context = { name = '⊕' }, command = [[\oplus]] },
   -- ['!*'] = { context = { name = '⊗' }, command = [[\otimes]] },
@@ -301,16 +303,16 @@ local symbol_specs = {
   -- ["=>"] = { context = { name = "⇒" }, command = [[\implies]] },
   -- ["=<"] = { context = { name = "⇐" }, command = [[\impliedby]] },
   iff = { context = { name = "⟺" }, command = [[\iff]] },
-  ["->"] = { context = { name = "→", priority = 250 }, command = [[\to]] },
+  ["to"] = { context = { name = "→", priority = 250 }, command = [[\to]] },
   -- ["!>"] = { context = { name = "→" }, command = [[\mapsto]] },
   -- ["<-"] = { context = { name = "←", priority = 250}, command = [[\gets]] },
   -- differentials 
   -- dd = { context = { name = "⇒" }, command = [[\dl]] },
   dp = { context = { name = "∂" }, command = [[\partial]] },
   -- arrows
-  ["-->"] = { context = { name = "⟶", priority = 500 }, command = [[\longrightarrow]] },
-  ["<->"] = { context = { name = "↔", priority = 500 }, command = [[\leftrightarrow]] },
-  ["2>"] = { context = { name = "⇉", priority = 400 }, command = [[\rightrightarrows]] },
+  rarl = { context = { name = "⟶", priority = 500 }, command = [[\longrightarrow]] },
+  lrar = { context = { name = "↔", priority = 500 }, command = [[\leftrightarrow]] },
+  rrar = { context = { name = "⇉", priority = 400 }, command = [[\rightrightarrows]] },
   upar = { context = { name = "↑" }, command = [[\uparrow]] },
   dnar = { context = { name = "↓" }, command = [[\downarrow]] },
   -- etc
