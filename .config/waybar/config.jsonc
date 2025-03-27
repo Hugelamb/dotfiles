@@ -152,7 +152,7 @@
       "interval":1
     }, 
     "custom/calendar": {
-      "exec": " source ~/projects/university-setup-fuzzel/scripts/.venv/bin/activate && TZ='Australia/NSW' python3 -u ~/projects/university-setup-fuzzel/scripts/countdown.py ",
+      "exec": " source ~/projects/university-setup-fuzzel/.venv/bin/activate && TZ='Australia/NSW' python3 -u ~/projects/university-setup-fuzzel/scripts/countdown.py ",
       "on-click": "firefox 'https://calendar.google.com/calendar/' -- &"
     },
 

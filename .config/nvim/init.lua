@@ -19,7 +19,6 @@ if not vim.loop.fs_stat(lazypath) then
   end
 end
 vim.opt.rtp:prepend(lazypath)
-vim.opt.rtp:append("~/notebook/current-course")
 ---------------
 --- plugins ---
 ---------------
@@ -183,7 +182,6 @@ require("lazy").setup({ -- colorscheme plugin here
     config = function()
       require("luasnip.loaders.from_vscode").lazy_load()
       require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/luasnippets" })
-      require("luasnip.loaders.from_lua").load({ paths = "~/notebook/current-course/LuaSnip"})
       local ls = require("luasnip")
       -- map reload snippets for ease of modification and testing
       vim.keymap.set('n', '<LocalLeader>ls', '<Cmd>lua require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/luasnippets/"})<CR>')
