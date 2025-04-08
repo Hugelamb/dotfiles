@@ -28,6 +28,31 @@ verbose=blank,footnote,label,new-id,affected,edit,special,project,sync,unwait
 include ~/.config/task/themes/dark-magenta2royal.theme
 
 ### URGENCY COEFFICIENTS ### 
-urgency.user.project.vball.coaching.coefficient=      -5.0 # reduce prominence of training planning in task list default = 0
-urgency.scheduled.coefficient=           4.5 # decrease weighting of an event simply being scheduled, default = 5.0
+# Default coefficients 
+urgency.user.tag.next.coefficient=          15.0 # +next tag
+urgency.due.coefficient=                    12.0 # overdue or near due date
+# urgency.blocking.coefficient=                8.0 # blocking other tasks
+urgency.blocking.coefficient=                7.0 # blocking other tasks
+urgency.uda.priority.H.coefficient=          6.0 # high Priority
+urgency.uda.priority.M.coefficient=          3.9 # medium Priority
+urgency.uda.priority.L.coefficient=          1.8 # low Priority
+# urgency.scheduled.coefficient=               5.0 # scheduled tasks # modified 
+urgency.scheduled.coefficient=               4.5 # decrease weighting of an event simply being scheduled, default = 5.0
+urgency.active.coefficient=                  4.0 # already started tasks
+urgency.age.coefficient=                     2.0 # coefficient for age
+urgency.annotations.coefficient=             1.0 # has annotations
+urgency.tags.coefficient=                    1.0 # has tags
+urgency.project.coefficient=                 1.0 # assigned to any project
+# urgency.user.project.My Project.coefficient= 5.0 # assigned to project:"My Project"
+urgency.waiting.coefficient=                -3.0 # waiting task
+urgency.blocked.coefficient=                -10.0 # blocked by other tasks
+### CUSTOM COEFFICIENTS
+urgency.user.project.vball.coaching.coefficient=-5.0 # reduce prominence of training planning in task list default = 0
+urgency.user.tag.problem.coefficient=        4.5   # Increase urgency of tasks with tag: problem
 
+### REPORT CUSTOMIZATION ###
+# NEXT report:
+report.next.columns=              id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
+report.next.context=              1
+report.next.description=          Most urgent tasks
+report.next.filter=               status:pending -WAITING limit:page

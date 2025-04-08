@@ -314,7 +314,7 @@ require("lazy").setup({ -- colorscheme plugin here
       -- VimTeX config goes here
       -- vim.g.vimtex_view_method = "zathura"
       if vim.fn.has('win32') or (vim.fn.has('unix') and vin.fn.exists('$WSLENV')) then
-        vim.g.vimtex_view_method = 'zathura'
+        vim.g.vimtex_view_method = 'zathura_simple'
         -- vim.g.vimtex_view_method = 'mupdf'
         -- vim.g.vimtex_view_mupdf_exe = 'mupdf-gl.exe'
         -- vim.g.vimtex_view_general_viewer = 'mupdf-gl.exe'

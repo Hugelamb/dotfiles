@@ -352,20 +352,18 @@ return {
   s({ trig = "exn", dscr = "exercise", snippetType="autosnippet" },
     fmta(
       [[
-      \exercise{<>}
-      \textbf{Question: }<> \\
-      \paragraph*{Solution: }<>
+      \mdex{<>}{
+        <>
+      }
       <>
       ]],
       {
         i(1,"Title"),
-        i(2,"Question"),
-        i(3,"Solution"),
+        i(2,"Contents"),
         i(0)
       }
     ),
     { condition = tex_utils.in_text + conds+line_begin }
   ),
-     
 }
 
