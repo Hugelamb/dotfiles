@@ -71,7 +71,7 @@ M = {
     { condition = tex_utils.in_mathzone }
   ),
 -- Superscript snippet
-  s({ trig = "([%w%)%]%}])'", dscr = "Superscript", wordTrig=false, regTrig=true,snippetType="autosnippet" },
+  s({ trig = "([%w%)%]%}])^", dscr = "Superscript", wordTrig=false, regTrig=true,snippetType="autosnippet" },
     fmta(
     "<>^{<>}",
       {
@@ -165,7 +165,33 @@ M = {
   ),  
          
 }
+s({trig = "([bBpvV])mat(%d+)x(%d+)([ar])", name = "[bBpvV]matrix", dscr = "matrices", regTrig = true},
+  fmta([[
+    \begin{<>}<>
+    <>
+    \end{<>}]],
+    {f(function(_, snip)
+      return snip.captures[1] .. "matrix"
+    end),
+      f(function(_, snip)
+        if snip.captures[4] == "a" then
+          out = string.rep("c", tonumber(snip.captures[3]) - 1)
+          return "[" .. out .. "|c]"
+        end
+        return ""
+      end),
+      d(1, tex_utils.generate_matrix),
+      f(function(_, snip)
+        return snip.captures[1] .. "matrix"
+      end)
+    }),
+  { condition = tex_utils.in_mathzone, show_condition = tex_utils.in_mathzone })
 
+--  s({ trig = "(%d?)mat", dscr = "description" },
+--    fmta(
+--    snippet
+--    )
+--  ),  
 -- Auto backslash snippets from evesdropper
 
 
@@ -210,7 +236,8 @@ local auto_backslash_specs = {
   "int",
   "diff",
   "times",
-  
+  "prime"
+
 
 }
 local auto_backslash_snippets = {}
@@ -270,6 +297,7 @@ local symbol_specs = {
   ['cong'] = { context = { name = 'congruent to' }, command = [[\cong]] },
   [':='] = { context = { name = ':=' }, command = [[\coloneq]] },
   ['cdot'] = { context = { name = '.' }, command = [[\cdot]] },
+  ["%.%.%."] = { context = {name = '...'}, command = [[\dots]]},
   ['xx'] = { context = { name = '\\times' }, command = [[\times]] },
   -- ['!+'] = { context = { name = '⊕' }, command = [[\oplus]] },
   -- ['!*'] = { context = { name = '⊗' }, command = [[\otimes]] },
@@ -301,16 +329,16 @@ local symbol_specs = {
   -- ["=>"] = { context = { name = "⇒" }, command = [[\implies]] },
   -- ["=<"] = { context = { name = "⇐" }, command = [[\impliedby]] },
   iff = { context = { name = "⟺" }, command = [[\iff]] },
-  ["->"] = { context = { name = "→", priority = 250 }, command = [[\to]] },
+  ["to"] = { context = { name = "→", priority = 250 }, command = [[\to]] },
   -- ["!>"] = { context = { name = "→" }, command = [[\mapsto]] },
   -- ["<-"] = { context = { name = "←", priority = 250}, command = [[\gets]] },
   -- differentials 
   -- dd = { context = { name = "⇒" }, command = [[\dl]] },
   dp = { context = { name = "∂" }, command = [[\partial]] },
   -- arrows
-  ["-->"] = { context = { name = "⟶", priority = 500 }, command = [[\longrightarrow]] },
-  ["<->"] = { context = { name = "↔", priority = 500 }, command = [[\leftrightarrow]] },
-  ["2>"] = { context = { name = "⇉", priority = 400 }, command = [[\rightrightarrows]] },
+  rarl = { context = { name = "⟶", priority = 500 }, command = [[\longrightarrow]] },
+  lrar = { context = { name = "↔", priority = 500 }, command = [[\leftrightarrow]] },
+  rrar = { context = { name = "⇉", priority = 400 }, command = [[\rightrightarrows]] },
   upar = { context = { name = "↑" }, command = [[\uparrow]] },
   dnar = { context = { name = "↓" }, command = [[\downarrow]] },
   -- etc
@@ -322,10 +350,10 @@ local symbol_specs = {
 
 local symbol_snippets = {}
 for k, v in pairs(symbol_specs) do
-	table.insert(
-		symbol_snippets,
-		tex_utils.symbol_snippet(vim.tbl_deep_extend("keep", { trig = k }, v.context), v.command, { condition = tex_utils.in_mathzone })
-	)
+  table.insert(
+    symbol_snippets,
+    tex_utils.symbol_snippet(vim.tbl_deep_extend("keep", { trig = k }, v.context), v.command, { condition = tex_utils.in_mathzone })
+  )
 end
 vim.list_extend(M, symbol_snippets)
 

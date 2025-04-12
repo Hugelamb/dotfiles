@@ -91,7 +91,7 @@ P.symbol_snippet = function(context, command, opts)
   context.snippetType = "autosnippet"
   return s(context,
     fmta([[
-    <><>  <>
+    <><> <>
     ]],
       {
         f( function(_, snip)
@@ -105,7 +105,25 @@ P.symbol_snippet = function(context, command, opts)
 
   --  return autosnippet(context, t(command), opts)  
 end
-
+P.generate_matrix = function (args, snip)
+  local rows = tonumber(snip.captures[2])
+  local cols = tonumber(snip.captures[3])
+  local nodes = {}
+  local ins_indx = 1
+  for j = 1, rows do
+    table.insert(nodes, r(ins_indx, tostring(j) .. "x1", i(1)))
+    ins_indx = ins_indx + 1
+    for k = 2, cols do
+      table.insert(nodes, t(" & "))
+      table.insert(nodes, r(ins_indx, tostring(j) .. "x" .. tostring(k), i(1)))
+      ins_indx = ins_indx + 1
+    end
+    table.insert(nodes, t({ "\\\\", "" }))
+  end
+  -- fix last node
+  nodes[#nodes] = t("\\\\")
+  return sn(nil, nodes)
+end
 P.generate_cases = function(args, snip)
   local rows = tonumber(snip.captures[1]) or 2 -- default option 2 for cases
   local cols = 2 -- fix to 2 cols
@@ -179,19 +197,24 @@ end
 
 P.list = function(_, snip)
   if not snip.rows then
-    snip.rows = 2
+    snip.rows = 1
   end
   local nodes = {}
   -- track the current insert-index
   local ins_indx = 1
   for j = 1, snip.rows do
+    print("Reached",j,"'\\item'")
     table.insert(nodes, t("\\item "))
-    table.insert(nodes, r(ins_indx, tostring(j).."x", i(1)))
-    ins_indx = ins_indx + 1
+    print('inserted \\item')
+    table.insert(nodes, r(ins_indx, tostring(j).."x1", i(1)))
+    print('inserted new node')
     table.insert(nodes, t({"",""}))
+    ins_indx = ins_indx + 1
+    print('incremented ins_indx to ',ins_indx)
   end
+  -- table.insert(nodes, t("loop exited"))
 -- fix last node
-  table.remove(nodes, #nodes)
+  -- table.remove(nodes, #nodes)
   return sn(nil,nodes)
 end
     -- use restoreNode to maintain content while updating.

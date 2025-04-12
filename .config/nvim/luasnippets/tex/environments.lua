@@ -5,9 +5,11 @@ local conds = require("luasnip.extras.expand_conditions")
 return {
   s({ trig = "mk", dscr = "Enter inline math mode",  name = "inline math environment", snippetType="autosnippet" },
     fmta(
-      "$ <> $",
+      "$ <> $<>",
       {
-        i(1,"math content")
+        i(1,"math content"),
+        i(0)
+
       }
     ),
     { condition = tex_utils.in_text}
@@ -131,46 +133,76 @@ return {
     )
   ),    
   -- Lists and bullet points
-  s({ trig = "enn", dscr = "enumerate", snippetType="autosnippet" },
+  -- enumerate
+  s({ trig = "enn", dscr = "enumerate environment", snippetType="autosnippet" },
     fmta(
-      [[
+    [[
     \begin{enumerate}<>
-    <> 
-    \end{enumerate}
+      \item <>
+    \end{enumerate}<>
     ]],
       {
-        c(1,{t(""),{ t("[label = {"), i(1), t("}]") }}),  -- Optional label (only works with the enumitem package included in preamble)
-        d(2, tex_utils.list,{1}, {
-          user_args = {
-            function(snip) snip.rows = snip.rows + 1 end,
-            -- don't drop below one
-            function(snip) snip.rows = math.max(snip.rows - 1,1) end
-          }
-        })
-
-      }
-    ),
-    { condition = tex_utils.in_text }
-  ),  
-  s({ trig = "itt", dscr = "itemize", snippetType="autosnippet" },
-    fmta(
-      [[
-    \begin{itemize}
-    <>
-    \end{itemize}
-    ]], 
-      {
-        d(1, tex_utils.list,{1}, {
-          user_args = {
-            function(snip) snip.rows = snip.rows + 1 end,
-            -- don't drop below one
-            function(snip) snip.rows = math.max(snip.rows - 1,1) end
-          }
-        })  
+        c(1,{t(""),{ t("[label = {"), i(1), t("}]") }}),
+        i(2),
+        i(0)
       }
     ),
     { condition = tex_utils.in_text }
   ),
+  s({ trig = "itt", dscr = "itemize environment", snippetType="autosnippet" },
+    fmta(
+    [[
+    \begin{itemize}
+      \item <>
+    \end{itemize}<>
+    ]],
+      {
+        i(1),
+        i(0)
+      }
+    ),
+    { condition = tex_utils.in_text }
+  ),  
+  -- s({ trig = "enn", dscr = "enumerate", snippetType="autosnippet" },
+  --   fmta(
+  --     [[
+  --   \begin{enumerate}<>
+  --   <> 
+  --   \end{enumerate}
+  --   ]],
+  --     {
+  --       c(1,{t(""),{ t("[label = {"), i(1), t("}]") }}),  -- Optional label (only works with the enumitem package included in preamble)
+  --       d(2, tex_utils.list,{1}, {
+  --         user_args = {
+  --           function(snip) snip.rows = snip.rows + 1 end,
+  --           -- don't drop below one
+  --           function(snip) snip.rows = math.max(snip.rows - 1,1) end
+  --         }
+  --       })
+
+  --     }
+  --   ),
+  --   { condition = tex_utils.in_text }
+  -- ),  
+  -- s({ trig = "itt", dscr = "itemize", snippetType="autosnippet" },
+  --   fmta(
+  --     [[
+  --   \begin{itemize}
+  --   <>
+  --   \end{itemize}
+  --   ]], 
+  --     {
+  --       d(1, tex_utils.list,{1}, {
+  --         user_args = {
+  --           function(snip) snip.rows = snip.rows + 1 end,
+  --           -- don't drop below one
+  --           function(snip) snip.rows = math.max(snip.rows - 1,1) end
+  --         }
+  --       })  
+  --     }
+  --   ),
+  --   { condition = tex_utils.in_text }
+  -- ),
   s({ trig = "itn", dscr = "enum item", snippetType="autosnippet" },
     fmta(
       [[
@@ -334,13 +366,6 @@ return {
     ),
     { condition = tex_utils.in_text + conds+line_begin }
   ),
-  s({ trig = "ls", dscr = "test recursive itemize using choice nodes", snippetType="autosnippet" },
-    {
-      t({ "\\begin{itemize}", "\t\\item " }),
-      i(1),
-      d(2, tex_utils.rec_ls, {}),
-      t({ "", "\\end{itemize}" }),
-    }
-  ),   
+     
 }
 

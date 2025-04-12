@@ -118,7 +118,8 @@
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
         "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
-        "tooltip": true
+        "tooltip": true,
+        "on-click": "foot nmtui"
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
