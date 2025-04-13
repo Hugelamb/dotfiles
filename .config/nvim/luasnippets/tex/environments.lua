@@ -5,11 +5,9 @@ local conds = require("luasnip.extras.expand_conditions")
 return {
   s({ trig = "mk", dscr = "Enter inline math mode",  name = "inline math environment", snippetType="autosnippet" },
     fmta(
-      "$ <> $<>",
+      "$ <> $",
       {
-        i(1,"math content"),
-        i(0)
-
+        i(1,"math content")
       }
     ),
     { condition = tex_utils.in_text}
@@ -51,50 +49,16 @@ return {
     ),
     { condition = conds.line_begin }
   ),
-  s({ trig = "tab", dscr = "Basic tabular environment" },
+  s({ trig = "tab", dscr = "Table environment" },
     fmta(
-      [[
+    [[
     \begin{tabular}{<>}
     <> 
     \end{tabular}
     ]],
       {
         i(1, "c"),
-        d(2, tex_utils.open_tab, {1}, {
-          user_args = {
-            function(snip) snip.rows = snip.rows + 1 end,
-            -- don't drop below one
-            function(snip) snip.rows = math.max(snip.rows - 1, 1) end
-          }
-        })})
-  ),
-  s({ trig = "tabc", dscr = "Bordered (closed) tabular environment", snippetType="autosnippet" },
-    fmta(
-      [[
-    \begin{tabular}{|<>|}
-    <> 
-    \end{tabular}
-    ]],
-      {
-        i(1, "c"),
-        d(2, tex_utils.close_tab, {1}, {
-          user_args = {
-            function(snip) snip.rows = snip.rows + 1 end,
-            -- don't drop below one
-            function(snip) snip.rows = math.max(snip.rows - 1, 1) end
-          }
-        })})
-  ),  
-  s({ trig = "tabo", dscr = "Open tabular environment", snippetType="autosnippet" },
-    fmta(
-      [[
-    \begin{tabular}{<>}
-    <> 
-    \end{tabular}
-    ]],
-      {
-        i(1, "c"),
-        d(2, tex_utils.open_tab, {1}, {
+        d(2, utils.tab, {1}, {
           user_args = {
             function(snip) snip.rows = snip.rows + 1 end,
             -- don't drop below one
@@ -104,7 +68,7 @@ return {
   ),  
   s({ trig = ";fig", dscr = "new figure environment" },
     fmta(
-      [[
+    [[
     \begin{figure}[<>]
     <>
     \end{figure}
@@ -116,7 +80,7 @@ return {
   ),
   s({ trig = ";img", dscr = "insert image in figure environment", snippetType="autosnippet" },
     fmta(
-      [[
+    [[
     \begin{figure}[<>]
     \centering
     \includegraphics[width=<>\textwidth]{<>}\caption{<>}
@@ -132,80 +96,39 @@ return {
       }
     )
   ),    
-  -- Lists and bullet points
-  -- enumerate
-  s({ trig = "enn", dscr = "enumerate environment", snippetType="autosnippet" },
+-- Lists and bullet points
+  s({ trig = "enn", dscr = "enumerate", snippetType="autosnippet" },
     fmta(
     [[
-    \begin{enumerate}<>
+    \begin{enumerate}
+      
       \item <>
-    \end{enumerate}<>
+    \end{enumerate}
     ]],
-      {
-        c(1,{t(""),{ t("[label = {"), i(1), t("}]") }}),
-        i(2),
-        i(0)
-      }
-    ),
-    { condition = tex_utils.in_text }
-  ),
-  s({ trig = "itt", dscr = "itemize environment", snippetType="autosnippet" },
-    fmta(
-    [[
-    \begin{itemize}
-      \item <>
-    \end{itemize}<>
-    ]],
-      {
-        i(1),
-        i(0)
+      { 
+        i(0) 
       }
     ),
     { condition = tex_utils.in_text }
   ),  
-  -- s({ trig = "enn", dscr = "enumerate", snippetType="autosnippet" },
-  --   fmta(
-  --     [[
-  --   \begin{enumerate}<>
-  --   <> 
-  --   \end{enumerate}
-  --   ]],
-  --     {
-  --       c(1,{t(""),{ t("[label = {"), i(1), t("}]") }}),  -- Optional label (only works with the enumitem package included in preamble)
-  --       d(2, tex_utils.list,{1}, {
-  --         user_args = {
-  --           function(snip) snip.rows = snip.rows + 1 end,
-  --           -- don't drop below one
-  --           function(snip) snip.rows = math.max(snip.rows - 1,1) end
-  --         }
-  --       })
-
-  --     }
-  --   ),
-  --   { condition = tex_utils.in_text }
-  -- ),  
-  -- s({ trig = "itt", dscr = "itemize", snippetType="autosnippet" },
-  --   fmta(
-  --     [[
-  --   \begin{itemize}
-  --   <>
-  --   \end{itemize}
-  --   ]], 
-  --     {
-  --       d(1, tex_utils.list,{1}, {
-  --         user_args = {
-  --           function(snip) snip.rows = snip.rows + 1 end,
-  --           -- don't drop below one
-  --           function(snip) snip.rows = math.max(snip.rows - 1,1) end
-  --         }
-  --       })  
-  --     }
-  --   ),
-  --   { condition = tex_utils.in_text }
-  -- ),
-  s({ trig = "itn", dscr = "enum item", snippetType="autosnippet" },
+  s({ trig = "itt", dscr = "itemize", snippetType="autosnippet" },
     fmta(
-      [[
+    [[
+    \begin{itemize}
+      
+      \item <>
+    
+    \end{itemize}
+    ]], 
+      {
+        i(0),
+      }
+    ),
+    { condition = tex_utils.in_text }
+  ),
+  s({ trig = "en", dscr = "enum item", snippetType="autosnippet" },
+    fmta(
+    [[
     \item <>
     ]],
       {
@@ -214,9 +137,9 @@ return {
     ),
     { condition = tex_utils.in_enumerate * conds.line_begin }
   ),
-  s({ trig = "itn", dscr = "itemize item", snippetType="autosnippet" },
+  s({ trig = "it", dscr = "itemize item", snippetType="autosnippet" },
     fmta(
-      [[
+    [[
     \item <>
     ]],
       {
@@ -225,11 +148,32 @@ return {
     ),
     { condition = tex_utils.in_itemize * conds.line_begin }
   ),  
-  -- Sectioning environments
-
+-- Sectioning environments
+  s({ trig = "qa", dscr = "Answer", snippetType="autosnippet" },
+    fmta(
+    [[
+    \paragraph*{Answer } <>
+    ]],
+      { 
+        i(0)
+      }
+    ), 
+    { condition = tex_utils.in_text }
+  ),
+  s({ trig = "qq", dscr = "Question", snippetType="autosnippet" },
+    fmta(
+    [[
+    \paragraph{Question <>} <>
+    ]],
+      { i(1, "A"),
+        i(0)
+      }
+    ), 
+    { condition = tex_utils.in_text }
+  ),  
   s({ trig = "chp+", dscr = "Chapter", priority = 1000, snippetType="autosnippet", hidden = false, name = "chapter"  },
     fmta(
-      [[
+    [[
     \chapter{<>}
     ]],
       {i(1)}
@@ -238,7 +182,7 @@ return {
   ),
   s({ trig = "chp*", dscr = "Unmarked Chapter", priority = 1000, snippetType="autosnippet", hidden = false, name = "unmarked chapter"  },
     fmta(
-      [[
+    [[
     \chapter*{<>}
     ]],
       {i(1)}
@@ -247,7 +191,7 @@ return {
   ),
   s({ trig = "sec+", dscr = "Section", priority = 1000, snippetType="autosnippet", hidden = false, name = "section"  },
     fmta(
-      [[
+    [[
     \section{<>}
     ]],
       {i(1)}
@@ -256,7 +200,7 @@ return {
   ), 
   s({ trig = "sec*", dscr = "Unmarked Section", snippetType="autosnippet" },
     fmta(
-      [[
+    [[
     \section*{<>}
     ]],
       {i(1)}
@@ -265,7 +209,7 @@ return {
   ),
   s({ trig = "sub+", dscr = "New Subsection", snippetType="autosnippet" , priority=1000},
     fmta(
-      [[
+    [[
     \subsection{<>}
     ]],
       {i(1)}
@@ -274,16 +218,16 @@ return {
   ),
   s({ trig = "sub*", dscr = "Unmarked Subsection", snippetType="autosnippet" },
     fmta(
-      [[
+    [[
     \subsection*{<>}
     ]],
       {i(1)}
     ),
     { condition = conds.line_begin - tex_utils.in_mathzone }
   ),
-  s({ trig = "subs+", dscr = "New Subsubsection", snippetType="autosnippet", priority = 1000 },
+  s({ trig = "subs", dscr = "New Subsubsection", snippetType="autosnippet", priority = 1000 },
     fmta(
-      [[
+    [[
     \subsubsection{<>}
     ]],
       {i(1)}
@@ -292,7 +236,7 @@ return {
   ),
   s({ trig = "subs*", dscr = "Unmarked Subsubsection", snippetType="autosnippet" },
     fmta(
-      [[
+    [[
     \subsubsection*{<>}
     ]],
       {i(1)}
@@ -301,7 +245,7 @@ return {
   ),
   s({ trig = "par+", dscr = "New Paragraph", snippetType="autosnippet" },
     fmta(
-      [[
+    [[
     \paragraph{<>}
     ]],
       {i(1)}
@@ -310,7 +254,7 @@ return {
   ),
   s({ trig = "par*", dscr = "Unmarked paragraph", snippetType="autosnippet" },
     fmta(
-      [[
+    [[
     \paragraph*{<>}
     ]],
       {i(1)}
@@ -320,7 +264,7 @@ return {
   -- Custom environments requiring specific preamble definitions
   s({ trig = "lecn", dscr = "lecture",snippetType="autosnippet" },
     fmta(
-      [[
+    [[
     \lecture{<>}{<>}{<>}
     <>
     ]],
@@ -336,14 +280,12 @@ return {
   s({ trig = "defn", dscr = "definition", snippetType="autosnippet" },
     fmta(
       [[
-      \begin{definition}[<>]
-      <>
-      \end{definition}
-      <>
+      \definition[<>]{
+        <>
+      }
       ]],
       {
-        i(1,'Defined'),
-        i(2),
+        i(1),
         i(0)
       }
     ),
@@ -352,18 +294,17 @@ return {
   s({ trig = "exn", dscr = "exercise", snippetType="autosnippet" },
     fmta(
       [[
-      \mdex{<>}{
-        <>
-      }
+      \exercise{<>}{<>}
       <>
       ]],
       {
-        i(1,"Title"),
-        i(2,"Contents"),
+        i(1,"1"),
+        i(2,"Title"),
         i(0)
       }
     ),
     { condition = tex_utils.in_text + conds+line_begin }
   ),
+  
 }
 

@@ -45,57 +45,6 @@ return {
       }
     ),
     { condition = tex_utils.in_preamble }
-  ),
-  s({ trig = "href", dscr = "insert hidden reference here", snippetType="autosnippet" },
-    fmta(
-      [[
-      \href{<>}{<>}<>
-      ]],
-      {
-        i(1,'Display text'),
-        i(2,'Link location'),
-        i(0)
-      }
-    ),
-  { condition= tex_utils.in_text }
-  ),  
-  s({ trig = "lbl", dscr = "insert label", snippetType="autosnippet" },
-    fmta(
-      [[
-      \label{<>:<>}<>
-      ]],
-      {
-        i(1,'type'),
-        i(2,'name'),
-        i(0)
-      }
-    ),
-  { condition = tex_utils.in_text }
-  ),  
-  s({ trig = "ref+", dscr = "add reference", snippetType="autosnippet" },
-    fmta(
-      [[
-      \ref{<>:<>}<>
-      ]],
-      {
-        i(1,'type'),
-        i(2,'name'),
-        i(0)
-      }
-    ),
-  { condition = tex_utils.in_text }
-  ),  
-  s({ trig = "nref", dscr =  "Insert name reference ", snippetType="autosnippet" },
-    fmta(
-    [[
-    \nameref{<>:<>}<>
-    ]],
-      {
-        i(1,'type'),
-        i(2,'name'),
-        i(0)
-      }
-    ),
-  { condition = tex_utils.in_text }
-  ),  
+  )
+
 }
