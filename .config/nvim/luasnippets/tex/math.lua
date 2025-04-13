@@ -158,14 +158,13 @@ M = {
     [[
     \begin{cases}
     <>
-    .\end{cases}
+    \end{cases}
     ]],
       { d(1, tex_utils.generate_cases) }),
   { condition = tex_utils.in_mathzone, show_condition = tex_utils.in_mathzone }
   ),  
          
-}
-s({trig = "([bBpvV])mat(%d+)x(%d+)([ar])", name = "[bBpvV]matrix", dscr = "matrices", regTrig = true},
+s({trig = "([bBpvV])mat(%d+)x(%d+)([ar])", name = "[bBpvV]matrix", dscr = "matrices", regTrig = true, trigEngine = "pattern"},
   fmta([[
     \begin{<>}<>
     <>
@@ -185,8 +184,8 @@ s({trig = "([bBpvV])mat(%d+)x(%d+)([ar])", name = "[bBpvV]matrix", dscr = "matri
         return snip.captures[1] .. "matrix"
       end)
     }),
-  { condition = tex_utils.in_mathzone, show_condition = tex_utils.in_mathzone })
-
+  { condition = tex_utils.in_mathzone, show_condition = tex_utils.in_mathzone }),
+}
 --  s({ trig = "(%d?)mat", dscr = "description" },
 --    fmta(
 --    snippet
