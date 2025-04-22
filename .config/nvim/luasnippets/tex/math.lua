@@ -150,7 +150,7 @@ M = {
     ),
     { condition = tex_utils.in_mathzone}
   ), 
-
+  
 
 -- Cases and matrices
   s({ trig = "(%d?)cases", name = "cases", dscr = "cases", regTrig = true, hidden = true, snippetType="autosnippet" },
@@ -297,7 +297,7 @@ local symbol_specs = {
   [':='] = { context = { name = ':=' }, command = [[\coloneq]] },
   ['cdot'] = { context = { name = '.' }, command = [[\cdot]] },
   ["%.%.%."] = { context = {name = '...'}, command = [[\dots]]},
-  ['xx'] = { context = { name = '\\times' }, command = [[\times]] },
+  -- ['xx'] = { context = { name = '\\times' }, command = [[\times]] },
   -- ['!+'] = { context = { name = '⊕' }, command = [[\oplus]] },
   -- ['!*'] = { context = { name = '⊗' }, command = [[\otimes]] },
   -- set notations
