@@ -91,7 +91,7 @@ P.symbol_snippet = function(context, command, opts)
   context.snippetType = "autosnippet"
   return s(context,
     fmta([[
-    <><> <>
+    <><><>
     ]],
       {
         f( function(_, snip)

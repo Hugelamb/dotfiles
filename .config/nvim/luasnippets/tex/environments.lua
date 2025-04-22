@@ -225,6 +225,18 @@ return {
     ),
     { condition = tex_utils.in_itemize * conds.line_begin }
   ),  
+  s({ trig = "itd", dscr = "item w/ description", snippetType="autosnippet" },
+    fmta(
+    [[
+    \item[<>] <>
+    ]],
+      {
+        i(1),
+        i(0)
+      }
+    ),
+  { condition = tex_utils.in_itemize * conds.line_begin }
+  ),  
   -- Sectioning environments
 
   s({ trig = "chp+", dscr = "Chapter", priority = 1000, snippetType="autosnippet", hidden = false, name = "chapter"  },
