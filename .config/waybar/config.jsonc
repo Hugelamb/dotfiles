@@ -12,7 +12,7 @@
     "custom/fuzzel",
     "custom/padding",
     "hyprland/workspaces",
-    //"hyprland/window",
+    "hyprland/window",
     "custom/padding",
     "hyprland/submap",
     "custom/padding",
@@ -30,11 +30,9 @@
     "custom/padding",
     "clock",
     "custom/padding",
-    "custom/timer",
-    "custom/padding",
-    "custom/brightness",
-    "custom/padding",
-    "battery",
+  //"custom/brightness",
+  //"custom/padding",
+  //"battery",
     "custom/padding",
     "custom/power",
     "custom/padding"
@@ -118,7 +116,8 @@
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
         "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
-        "tooltip": true
+        "tooltip": true,
+        "on-click": "foot nmtui"
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
@@ -152,7 +151,7 @@
       "interval":1
     }, 
     "custom/calendar": {
-      "exec": " source ~/projects/university-setup-fuzzel/scripts/.venv/bin/activate && TZ='Australia/NSW' python3 -u ~/projects/university-setup-fuzzel/scripts/countdown.py ",
+      "exec": " source ~/projects/university-setup-fuzzel/.venv/bin/activate && TZ='Australia/NSW' python3 -u ~/projects/university-setup-fuzzel/scripts/countdown.py ",
       "on-click": "firefox 'https://calendar.google.com/calendar/' -- &"
     },
 
