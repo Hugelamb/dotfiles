@@ -61,22 +61,22 @@
     "hyprland/submap": {
       "format": "<span style=\"italic\">{}</span>"
     },
-    "hyprland/window":  {
-      "format": "{class}",
-      "max-length": 50,
-      "rewrite": {
-        "": "<span foreground= '#458588'></span> hyprland",
-        "foot": "terminal",
-        "firefox": "browser",
-        "chrome": "browser",
-        "chromium": "browser",
-        "dolphin": "file manager",
-        "spotify": "player",
-        "nvim": "editor",
-        "xournal++": "notes"
-      },
-      "all-outputs": true
-    },
+//    "hyprland/window":  {
+//      "format": "{class}",
+//      "max-length": 50,
+//      "rewrite": {
+//        "": "<span foreground= '#458588'></span> hyprland",
+//        "foot": "terminal",
+//        "firefox": "browser",
+//        "chrome": "browser",
+//        "chromium": "browser",
+//        "dolphin": "file manager",
+//        "spotify": "player",
+//        "nvim": "editor",
+//        "xournal++": "notes"
+//      },
+//      "all-outputs": true
+//    },
     "battery": {
         //"bat": "BAT0",
         "interval": 60,
@@ -208,23 +208,23 @@
       "format": "<span color='#a89884'> >></span>",
       "tooltip": false
     },
-    "custom/timer": {
-        // requires waybar-timer; find details at https://github.com/jbirnick/waybar-timer
-      "exec": "$HOME/.config/waybar/scripts/waybar_timer hook",
-      "exec-on-event": false,
-      "return-type": "json",
-      "format": "{icon} {0}",
-      "format-icons": {
-        "standby": "<span color='#e99727' > STANDBY</span>",
-        "running": "<span color='#384015' > RUNNING</span>",
-        "paused": "PAUSE"
-      },
-      "on-click": "$HOME/.config/waybar/scripts/waybar_timer new 25 'notify-send \"Session finished\"'",
-      "on-click-middle": "$HOME/.config/waybar/scripts/waybar_timer cancel",
-      "on-click-right": "$HOME/.config/waybar/scripts/waybar_timer togglepause",
-      "on-scroll-up": "$HOME/.config/waybar/scripts/waybar_timer increase 60 || $HOME/.config/waybar/scripts/waybar_timer new 1 'notify-send -u critical \"Timer expired\"'",
-      "on-scroll-down": "$HOME/.config/waybar/scripts/waybar_timer decrease 60"
-    },
+   // "custom/timer": {
+   //     // requires waybar-timer; find details at https://github.com/jbirnick/waybar-timer
+   //   "exec": "$HOME/.config/waybar/scripts/waybar_timer hook",
+   //   "exec-on-event": false,
+   //   "return-type": "json",
+   //   "format": "{icon} {0}",
+   //   "format-icons": {
+   //     "standby": "<span color='#e99727' > STANDBY</span>",
+   //     "running": "<span color='#384015' > RUNNING</span>",
+   //     "paused": "PAUSE"
+   //   },
+   //   "on-click": "$HOME/.config/waybar/scripts/waybar_timer new 25 'notify-send \"Session finished\"'",
+   //   "on-click-middle": "$HOME/.config/waybar/scripts/waybar_timer cancel",
+   //   "on-click-right": "$HOME/.config/waybar/scripts/waybar_timer togglepause",
+   //   "on-scroll-up": "$HOME/.config/waybar/scripts/waybar_timer increase 60 || $HOME/.config/waybar/scripts/waybar_timer new 1 'notify-send -u critical \"Timer expired\"'",
+   //   "on-scroll-down": "$HOME/.config/waybar/scripts/waybar_timer decrease 60"
+   // },
     "custom/weather": {
       "format": "{}",
       "exec": "$HOME/.config/waybar/scripts/weather.sh Sydney,Australia",
