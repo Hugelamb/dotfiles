@@ -289,7 +289,7 @@ vim.list_extend(M, greek_snippets)
 
 local symbol_specs = {
   -- operators
-  ['ll'] = { context = { name = 'less than' }, command = [[\ll]] },
+  ['<'] = { context = { name = 'less than' }, command = [[\ll]] },
   ['gg'] = { context = { name = 'greater than' }, command = [[\gg]] },
   ['sim'] = { context = { name = 'similar' }, command = [[\sim]] },
   ['approx'] = { context = { name = 'approx' }, command = [[\approx]] },
