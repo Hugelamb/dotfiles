@@ -476,7 +476,6 @@ vim.keymap.set('n','<Localleader>sh',':sp<CR>',{silent = true})      -- horizont
 vim.keymap.set('n','<Localleader>q','<C-w><C-q>')           -- close current window, as long as there are no unsaved buffer changes/is not last window for buffer
 vim.keymap.set('n','<Localleader>hc','<:hide<CR>',{ silent = true})  -- hide current window
 vim.keymap.set('n','<Localleader>ho','<:hide only<CR>')              -- hide all except current window 
-
 ---------------------
 --- Window Navigation Macros ---
 ---------------------
@@ -486,6 +485,7 @@ vim.keymap.set('n','<A-i>','<C-w>k')        -- move to window above
 vim.keymap.set('n','<A-l>','<C-w>l')        -- move to window on right
 vim.keymap.set('n','<A-n>','<C-w>w')        -- move to next window 
 vim.keymap.set('n','<A-p>','<C-w><S-w>')    -- move to previous window 
+vim.keymap.set('t','<Esc>',"<C-\\><C-N>")   -- Exit terminal mode
 ----------
 --- VimTeX Macros ---
 ----------
