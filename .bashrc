@@ -190,14 +190,15 @@ alias schedule="task rc.data.location=~/.tasks/schedule" # alternate db for sche
 alias sched="task rc.data.location=~/.tasks/schedule"
 # function to add new task to provided project 
 # $1 should be project, all following are passed into task as a string
-add_projecttask() {
+ta() {
 #  task $1 "'$*'" 
-  if check_list $(task _projects) " " $1; then
-    task add project:$1 ${*:2}
+  if [[ $(task _projects) == *"$1"*  ]]; then
+    task add project:"$1" ${*:2}
   else 
     echo "*** WARNING *** This task has no assigned project."
     read -p 'Do you still wish to add the task? (Y/N) ' boolvar
     if [ "$boolvar" == "Y" ] || [ "$boolvar" == "y" ] ; then
+      echo ${*}
       task add +in ${*}
       return
     else 
@@ -205,7 +206,6 @@ add_projecttask() {
     fi
   fi
 }
-alias ta='$(add_projecttask)'
 
 # pyenv activation
 alias pya='source .venv/bin/activate'
@@ -225,7 +225,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 # eval "$(pyenv init -)"
 
 # add BOOST root directory to path
-export PATH="/usr/include/boost_1_82_0:$PATH"
+# export PATH="/usr/include/boost_1_82_0:$PATH"
 
 # if neovim installed from github release, use that version
 if [[ -d /opt/nvim-linux64/bin ]]; then
@@ -281,4 +281,13 @@ if [[ ! $(command -v task 2>&1 >/dev/null) ]]     # command -v prints the locati
 then
   export PS1='\[$(inbox_prompt)\]$(task +in +PENDING count) '$PS1               # prepend number of unprocessed inbox decisions to prompt, separate task call for prompt length calculations
 fi
+
+## Function: 
+# Apply color profile for FW13 
+if [[ ! $(command -v dispwin 2>&1 >/dev/null) ]] && [[ $(cat /sys/devices/virtual/dmi/id/product_name) == 'Laptop 13 (AMD Ryzen AI 300 Series)' ]]
+then
+  dispwin '/usr/share/color/icc/colord/NE160QDM-NZ6.icm' > /dev/null 2>&1  # Hide text output
+fi
+
+
 

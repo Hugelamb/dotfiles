@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-BACKLIGHT_PATH="/sys/class/backlight/intel_backlight/"
+BACKLIGHT_PATH="/sys/class/backlight/$(ls -A /sys/class/backlight)/"
 CURRENT_BRIGHTNESS_LOC=$BACKLIGHT_PATH"brightness"
 MAX_BRIGHTNESS_LOC=$BACKLIGHT_PATH"max_brightness"
 b- () {

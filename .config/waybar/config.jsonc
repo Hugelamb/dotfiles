@@ -1,11 +1,11 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 35,
-  "spacing": 5,
-  "margin-top": 3,
-  "margin-left": 3,
-  "margin-right": 3,
+  "height": 16,
+  "spacing": 3,
+  "margin-top": 1,
+  "margin-left": 2,
+  "margin-right": 2,
   "output": ["DP-1","eDP-1"],
   "modules-left": [
     "custom/padding",
@@ -112,7 +112,8 @@
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
+        // "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-wifi": "({signalStrength}%) ",
         "format-ethernet": "",
         "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
@@ -127,7 +128,7 @@
         "format-bluetooth": "{volume}% {con} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
         "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
+        "format-source": "",
         "format-source-muted": "",
         "format-icons": {
           "headphone": "",
@@ -148,7 +149,7 @@
 
     /* CUSTOM MODULES */
     "custom/brightness": {
-      "exec": "echo $(( $(cat /sys/class/backlight/intel_backlight/brightness)*100/$(cat /sys/class/backlight/intel_backlight/max_brightness) ))",
+      "exec": "echo $(( $(cat /sys/class/backlight/amdgpu_bl1/brightness)*100/$(cat /sys/class/backlight/amdgpu_bl1/max_brightness) ))",
       "format": " {}%",
       "interval":1
     }, 
