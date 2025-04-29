@@ -20,7 +20,8 @@
   ],
   "modules-center": ["custom/player"],
   "modules-right": [
-    "pulseaudio",
+    "wireplumber",
+    /*"custom/audiocontrol",*/
     "custom/padding",
     "custom/notification",
     "custom/padding",
@@ -85,10 +86,10 @@
           "warning": 30,
           "critical": 15
         },
-        "format": "{icon}",
-        "format-alt": "{capacity}%",
+        "format": "{capacity}%{icon}",
+        "format-alt": "{icon}",
         "format-icons": ["  ","  ","  ","  ","  "],
-        "max-length": 5 
+        "max-length": 6 
     },
     "clock": {
         // "timezone": "America/New_York",
@@ -146,8 +147,30 @@
         "spacing": 10,
         "icon-size": 15
     },
+    "wireplumber": {
+      "format": "{volume}% {icon}",
+      "format-muted":"󰝟",
+      "scroll-step":1,
+      "format-icons": {
+          "headphone": "",
+          "hands-free": "",
+          "headset": "",
+          "phone": "",
+          "portable": "",
+          "car": "",
+          "default": ["", "", ""],
+          "muted": "󰝟"
+        },
+      "on-click": "flatpak run com.saivert.pwvucontrol"
+    },
 
     /* CUSTOM MODULES */
+    /*
+    "custom/audiocontrol": {
+      "format": "{volume}% {icon} {format_source}",
+      "on-click": "flatpak run com.saivert.pwvucontrol"
+    },
+    */
     "custom/brightness": {
       "exec": "echo $(( $(cat /sys/class/backlight/amdgpu_bl1/brightness)*100/$(cat /sys/class/backlight/amdgpu_bl1/max_brightness) ))",
       "format": " {}%",
@@ -166,16 +189,16 @@
     "custom/notification": {
       "tooltip": false,
       "rotate": 0,
-      "format": "{icon}",
+      "format": "<span color='#dfdfdf'>{icon}</span>",
       "format-icons": {
-        "notification": "<span color='#ff2a0e'>󱅫</span>",
-        "none": " ",
-        "dnd-notification": "󰂛 ",
-        "dnd-none": "󰂛 ",
-        "inhibited-notification": " ",
-        "inhibited-none": " ",
-        "dnd-inhibited-notification": "󰂛 ",
-        "dnd-inhibited-none": "󰂛 "
+        "notification": "<span color='#36f9f6'>󱅫</span>",
+        "none": "",
+        "dnd-notification": "󰂛",
+        "dnd-none": "󰂛",
+        "inhibited-notification": "",
+        "inhibited-none": "",
+        "dnd-inhibited-notification": "󰂛",
+        "dnd-inhibited-none": "󰂛"
       },
       "return-type": "json",
       "exec-if": "which swaync-client",
@@ -192,13 +215,14 @@
       "format": "{}",
       "exec": "~/.config/waybar/scripts/player.sh",
       "interval": 1,
-      "max-length": 35,
+      "min-length": 30,
+      "max-length": 30,
       "tooltip": false,
       "on-click-right": "playerctl next",
       "on-click": "playerctl previous",
       "on-click-middle": "playerctl play-pause",
-      "on-scroll-up": "playerctl volume 0.05+",
-      "on-scroll-down": "playerctl volume 0.05-"
+      "on-scroll-up": "playerctl position 1+",
+      "on-scroll-down": "playerctl position 1-"
     },
     "custom/power": {
       "format" : "⏻ ",

@@ -63,6 +63,8 @@ window#waybar.hidden {
 #backlight,
 #pulseaudio,
 #pulseaudio-muted,
+#wireplumber,
+#wireplumber-muted,
 #battery,
 #battery-critical,
 #battery-warning,
@@ -77,12 +79,16 @@ window#waybar.hidden {
 
 
 
+
 #clock {
     font-family: MesloLGM Nerd Font Mono;
     font-weight: 400;
     color: #00071a;
 }
 
+#wireplumber-muted {
+  color: #57b5e3;
+}
 /* ================================ */
 /*            WORKSPACES            */
 /* ================================ */
@@ -107,6 +113,7 @@ window#waybar.hidden {
     border: 2px solid #00071a;
     border-radius: 8px;
 }
+
 /* ================================ */
 /*          CUSTOM MODULES          */
 /* ================================ */
