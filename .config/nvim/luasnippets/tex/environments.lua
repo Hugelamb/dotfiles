@@ -102,6 +102,18 @@ return {
           }
         })})
   ),  
+  s({ trig = "incfig", dscr = "include figure command", snippetType="autosnippet" },
+    fmta(
+    [[
+    \incfig{<>}<>
+    ]],
+      {
+        i(1),
+        i(0)
+      }
+    ),
+  { condition = tex_utils.in_text }
+  ),  
   s({ trig = ";fig", dscr = "new figure environment" },
     fmta(
       [[
@@ -348,7 +360,7 @@ return {
   s({ trig = "defn", dscr = "definition", snippetType="autosnippet" },
     fmta(
       [[
-      \begin{definition}[<>]
+      \begin{definition}{<>}{<>}
       <>
       \end{definition}
       <>
@@ -356,6 +368,7 @@ return {
       {
         i(1,'Defined'),
         i(2),
+        i(3),
         i(0)
       }
     ),

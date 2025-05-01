@@ -495,6 +495,7 @@ vim.opt.splitright = true       -- enforce that windows split right by default
 vim.keymap.set('n','<Localleader>nv',':browse vsplit  . <CR>')     -- vert split and open current directory tree
 vim.keymap.set('n','<Localleader>sv',':vs<CR>',{ silent = true})     -- vertical split command
 vim.keymap.set('n','<Localleader>sh',':sp<CR>',{silent = true})      -- horizontal split command
+vim.keymap.set('t','<Esc>', '<C-\\><C-n>',{silent = true})    -- Exit terminal mode
 --- Closing and Hiding Macros
 vim.keymap.set('n','<Localleader>q','<C-w><C-q>')           -- close current window, as long as there are no unsaved buffer changes/is not last window for buffer
 vim.keymap.set('n','<Localleader>hc','<:hide<CR>',{ silent = true})  -- hide current window
