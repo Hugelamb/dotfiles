@@ -163,27 +163,27 @@ return {
     ),
     { condition = tex_utils.in_text }
   ),  
-  -- s({ trig = "enn", dscr = "enumerate", snippetType="autosnippet" },
-  --   fmta(
-  --     [[
+  --  s({ trig = "enn", dscr = "enumerate", snippetType="autosnippet" },
+  --    fmta(
+  --      [[
   --   \begin{enumerate}<>
   --   <> 
   --   \end{enumerate}
   --   ]],
-  --     {
-  --       c(1,{t(""),{ t("[label = {"), i(1), t("}]") }}),  -- Optional label (only works with the enumitem package included in preamble)
-  --       d(2, tex_utils.list,{1}, {
-  --         user_args = {
-  --           function(snip) snip.rows = snip.rows + 1 end,
-  --           -- don't drop below one
-  --           function(snip) snip.rows = math.max(snip.rows - 1,1) end
-  --         }
-  --       })
-
-  --     }
-  --   ),
-  --   { condition = tex_utils.in_text }
-  -- ),  
+  --      {
+  --        c(1,{t(""),{ t("[label = {"), i(1), t("}]") }}),  -- Optional label (only works with the enumitem package included in preamble)
+  --        d(2, tex_utils.list,{1}, {
+  --          user_args = {
+  --            function(snip) snip.rows = snip.rows + 1 end,
+  --            -- don't drop below one
+  --            function(snip) snip.rows = math.max(snip.rows - 1,1) end
+  --          }
+  --        })
+  --
+  --      }
+  --    ),
+  --    { condition = tex_utils.in_text }
+  --  ),  
   -- s({ trig = "itt", dscr = "itemize", snippetType="autosnippet" },
   --   fmta(
   --     [[
@@ -227,7 +227,7 @@ return {
   ),  
   s({ trig = "itd", dscr = "item w/ description", snippetType="autosnippet" },
     fmta(
-    [[
+      [[
     \item[<>] <>
     ]],
       {
@@ -235,7 +235,7 @@ return {
         i(0)
       }
     ),
-  { condition = tex_utils.in_itemize * conds.line_begin }
+    { condition = tex_utils.in_itemize * conds.line_begin }
   ),  
   -- Sectioning environments
 
@@ -345,10 +345,33 @@ return {
     ),
     { condition = tex_utils.in_text + conds.line_begin }
   ),
+  s({ trig = "dptn", dscr = "definition,theorem or property", snippetType="autosnippet" },
+    fmta(
+      [[
+      \begin{<>}{<>}{<>}
+      <>
+      \end{<>}
+      <>
+      ]],
+      {
+        c(1, {
+          t("definition"),
+          t("property"),
+          t("theorem")
+        }, {key = "c1-key"}),
+        i(2,'Title'),
+        i(3), -- label 
+        i(4), -- box contents
+        extras.rep(1),
+        i(0)
+      }
+    ),
+    { condition = tex_utils.in_text + conds.line_begin }
+  ),
   s({ trig = "defn", dscr = "definition", snippetType="autosnippet" },
     fmta(
       [[
-      \begin{definition}[<>]
+      \begin{definition}{<>}{<>}
       <>
       \end{definition}
       <>
@@ -356,6 +379,7 @@ return {
       {
         i(1,'Defined'),
         i(2),
+        i(3),
         i(0)
       }
     ),
@@ -378,6 +402,6 @@ return {
     ),
     { condition = tex_utils.in_text + conds+line_begin }
   ),
-     
+
 }
 

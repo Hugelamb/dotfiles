@@ -224,9 +224,11 @@ end
 --   local is_inside = vim.fn["vimtex#env#is_inside"](name)
 --   return (is_inside[1] > 0 and is_inside[2] > 0)
 -- end
--- function P.in_preamble()
---   return not in_env("document")
--- end
+local function in_preamble()
+  local is_inside = vim.fn['vimtex#env#is_inside']("document")
+  return not (is_inside[1] > 0 and is_inside[2] > 0)
+ end
+P.in_preamble = cond_obj.make_condition(in_preamble)
 local function in_mathzone()  -- math context detection
   return vim.api.nvim_eval('vimtex#syntax#in_mathzone()') == 1
   --return vim.fn['vimtex#syntax#in_mathzone']()

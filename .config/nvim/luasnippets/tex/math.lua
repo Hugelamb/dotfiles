@@ -214,7 +214,7 @@ local auto_backslash_specs = {
   "star",
   "perp",
   "sup",
-  "inf",
+  "infty",
   "det",
   "max",
   "min",
@@ -289,7 +289,7 @@ vim.list_extend(M, greek_snippets)
 
 local symbol_specs = {
   -- operators
-  ['<'] = { context = { name = 'less than' }, command = [[\ll]] },
+  ['ll'] = { context = { name = 'less than' }, command = [[\ll]] },
   ['gg'] = { context = { name = 'greater than' }, command = [[\gg]] },
   ['sim'] = { context = { name = 'similar' }, command = [[\sim]] },
   ['approx'] = { context = { name = 'approx' }, command = [[\approx]] },

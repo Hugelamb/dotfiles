@@ -258,6 +258,7 @@ prepend_path "$HOME/.mupdf/bin"
 
 # add cargo to path (for macchina)
 prepend_path "$HOME/.cargo/bin"
+# Add XDG_DATA_DIRS 
 #------------------------------------------------
 # Custom Commands
 #------------------------------------------------

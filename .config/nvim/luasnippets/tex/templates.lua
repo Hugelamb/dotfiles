@@ -40,53 +40,73 @@ return {
     ),
     { condition = tex_utils.in_text + conds.line_begin }
   ),
-  -- The following assumes you have defined certain volleyball related lengths
-  s({ trig = "vballcourt", dscr = "create tikzpicture containing empty halfcourt"},
+  s({ trig = "vbd+", dscr = "Volleyball Drill description" },
     fmta(
-      [[
-      \begin{figure}
-        \pagecolor{<>}
-        \caption{<>}
-        \begin{tikzpicture}
-          \begin{scope}[yshift=10cm]
-            % define some useful coordinates
-            \coordinate (origin) at (0,0);
-            \coordinate (leftant) at (-4.5\m,0\m);
-            \coordinate(rightant) at (4.5\m,0\m);
-            \coordinate(l3m) at (-4.5\m,-3\m);
-            \coordinate(m3m) at (0,-3\m);
-            \coordinate(r3m) at (4.5\m,-3\m);
-            \coordinate(lbase) at (-4.5\m,-9\m);
-            \coordinate(mbase) at (0,-9\m);
-            \coordinate(rbase) at (4.5\m,-9\m);
+    [[
+    \subsubsection*{<>}
+    \textbf{Objective:} <> \\
+    \textbf{Explanation:} <> \\
+    \textbf{Minimum Requirements: } 
+    \begin{center}
+      \begin{tabular}[lr]
+        Players & <> \\
+        Balls   & <> \\
+        Space   & <> \\
+        Other   & <>
+      \end{tabular}
+    \end{center}
 
-
-            \coordinate (attacklinecenter) at (0,-3\m);
-            \draw[fill=brown,draw=black] ([xshift=-.1\m,yshift=-.05\m]leftant) rectangle ++ (0.1\m,0.1\m);
-            \draw[fill=brown,draw=black] ([xshift=.1\m,yshift=-.05\m]rightant) rectangle ++ (-0.1\m,0.1\m);
-            \draw[draw=none] ([yshift=-\sidelength]leftant) rectangle (rightant); 
-            \draw[courtlines] ([yshift=0.5\courtlinewidth]leftant) rectangle ([yshift=-0.5\courtlinewidth]rightant);
-            \draw[courtlines] (leftant) rectangle ++ (\courtlinewidth,-\sidelength);
-            \draw[courtlines] (rightant) rectangle ++ (-\courtlinewidth,-\sidelength);
-            \draw[courtlines] ([yshift=-\sidelength]leftant) rectangle ++ (\baselength,\courtlinewidth);
-            \draw[courtlines] ([yshift=-\sidelength/3]leftant) rectangle ++ (\baselength,\courtlinewidth);
-            % Player Locations
-            \node[player] (lf) at ([xshift=\m,yshift=-\m]leftant) {LF};
-            \node[player] (mf) at ([yshift=-.5\m]origin) {MF};
-            \node[player] (rf) at ([xshift=-\m,yshift=-\m]rightant) {RF};
-            \node[player] (lb) at ([xshift=1.5\m,yshift=-4\m]leftant) {LB}; 
-            \node[player] (mb) at ([yshift=-\sidelength+1\m]origin) {MB};
-            \node[player] (rb) at ([xshift=-1.5\m,yshift=-4\m]rightant) {RB};
-
-            <>
-          \end{scope}
-        \end{tikzpicture}
-      \end{figure}
-      ]],
+    <> 
+    ]],
       {
-        i(2),i(1),i(0)
+        i(1,'Title'),
+        i(2),
+        i(3),
+        i(4),
+        i(5),
+        i(6),
+        i(7),
+        -- i(8,"placeholder")
+        -- c(8, {
+        --   t"hello",
+        --   sn(nil, {
+        --     i(1),
+        --     t"hi!"
+        --   })
+        -- })
+        c(8, {
+          i(1),
+          sn(nil, {
+            fmta(
+              [[
+              \begin{figure}[h]
+                \scalebox{0.6}{\begin{tikzpicture}
+                  \begin{scope}[yshift=10cm]
+                  \pic (ct) {halfcourt};
+                  % Participants
+                  <>
+                  % Ghosts
+                  <>
+                  % Paths/Directions
+                  <>
+                  % Diagram Label
+                  \ node [] (title) at (0,-\sidelength\m) {<>};
+                  \end{scope}
+                  \end{tikzfigure}
+                }
+              \end{figure}
+              ]],
+              {
+                i(1),
+                i(2),
+                i(3), 
+                i(4)
+              }
+            ) 
+          })
+        })
       }
     )
-  ),  
+  ),   
 }
 

@@ -32,7 +32,7 @@ local utils = require('luasnippets.utils')
 local conds = require("luasnip.extras.expand_conditions")
 
 return {
-  s({ trig = "pac", dscr = "", snippetType="autosnippet" },
+  s({ trig = ";pac", dscr = "", snippetType="autosnippet" },
     fmta(
     [[
     \usepackage[<>]{<>}
