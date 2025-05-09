@@ -258,6 +258,9 @@ prepend_path "$HOME/.mupdf/bin"
 
 # add cargo to path (for macchina)
 prepend_path "$HOME/.cargo/bin"
+
+# Quartus dev tools path
+prepend_path "$HOME/altera/13.0sp1/quartus/bin"
 # Add XDG_DATA_DIRS 
 #------------------------------------------------
 # Custom Commands
@@ -281,3 +284,5 @@ then
   export PS1='\[$(inbox_prompt)\]$(task +in +PENDING count) '$PS1               # prepend number of unprocessed inbox decisions to prompt, separate task call for prompt length calculations
 fi
 
+
+export QSYS_ROOTDIR="/home/hug/altera_lite/24.1std/quartus/sopc_builder/bin"
