@@ -1,2 +1,2 @@
 -- LaTeX delimiter snippets
-require('luasnippets.utils')
+local tex_utils = require("tex.utils")

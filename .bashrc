@@ -1,5 +1,3 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
 # If not running interactively, don't do anything
@@ -110,10 +108,6 @@ esac
 # customize bash prompt (style and colors)
 # PS1='\[[38;5;220m[\]\u[38;5;20m@[38;5;220m\h\] [38;5;13m\w[38;5;220m \$ [0m'
 # [\]\u@\h\] \w\$  
-set_ps1() {
-  echo -e "${colive}[${cyellow}\u${cblue}@${cyellow}\h${colive}] ${cpink}\w ${cyellow}\$${NC}"
-}
-PS1="\[${colive}\][\[${cyellow}\]\u\[${cblue}\]@\[${cyellow}\]\h\[${colive}\]] \[${cpink}\]\w \[${cyellow}\]$\[${NC}\]"
 PS1='\[${colive}\][\[${cyellow}\]\u\[${cblue}\]@\[${cyellow}\]\h\[${colive}\]] \[${cpink}\]\w \[${cyellow}\]\$\[${NC}\]'
 #------------------------------------------------
 # Commands
@@ -134,6 +128,12 @@ prepend_path () {
         export PATH="$1:$PATH"
     fi
 } 
+check_list() {
+  LIST=$1
+  DELIMITER=$2
+  VALUE=$3
+  [[ "$LIST" =~ ($DELIMITER|^)$VALUE($DELIMITER|$) ]]
+}
 #------------------------------------------------
 # Aliases
 #------------------------------------------------
@@ -180,13 +180,46 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# alias todo app 
+### TASKWARRIOR COMMANDS AND FUNCTIONS
 alias in='task add +in'
+alias inbox='task +in list'
+
+alias tt='task +DUE list'
+alias habit="task rc.data.location=~/.tasks/habit" # alternate db for personal habits etc
+alias schedule="task rc.data.location=~/.tasks/schedule" # alternate db for scheduled events
+alias sched="task rc.data.location=~/.tasks/schedule"
+# function to add new task to provided project 
+# $1 should be project, all following are passed into task as a string
+add_projecttask() {
+#  task $1 "'$*'" 
+  if check_list $(task _projects) " " $1; then
+    task add project:$1 ${*:2}
+  else 
+    echo "*** WARNING *** This task has no assigned project."
+    read -p 'Do you still wish to add the task? (Y/N) ' boolvar
+    if [ "$boolvar" == "Y" ] || [ "$boolvar" == "y" ] ; then
+      task add +in ${*}
+      return
+    else 
+      return 1
+    fi
+  fi
+}
+alias ta='$(add_projecttask)'
+
+# pyenv activation
+alias pya='source .venv/bin/activate'
+alias pyd='deactivate'
+
+# zathura shortcut
+alias zth='zathura' 
+
 # add to bash prompt
 # change color based on number of pending tasks
 #------------------------------------------------
 # Paths
 #------------------------------------------------
+prepend_path "$HOME/.local/lib/python3.11.1/bin"
 
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
@@ -204,8 +237,9 @@ export EDITOR="nvim"
 export PATH="$HOME/.config/nvim:$PATH"
 # add colorschemes to lua path
 export LUA_PATH=";;$HOME/.config/nvim/colors/?.lua;$LUA_PATH"
+# add lua snippets to path
 export LUA_PATH="$HOME/.config/nvim/?.lua;$LUA_PATH"
-export LUA_PATH="$HOME/.config/nvim/LuaSnip/?.lua;$LUA_PATH"
+export LUA_PATH="$HOME/.config/nvim/luasnippets/?.lua;$LUA_PATH"
 
 # add tex environment variables
 if [[ -d /media ]]; then
@@ -217,13 +251,17 @@ else
   export INFOPATH="/usr/local/texlive/2024/texmf-dist/doc/info:$INFOPATH"
   prepend_path "/usr/local/texlive/2024/bin/x86_64-linux"
 fi
-prepend_path "/home/hug/.local/bin"
+prepend_path "$HOME/.local/bin"
 
 # add mupdf fileviewer binary to path
 prepend_path "$HOME/.mupdf/bin"
 
 # add cargo to path (for macchina)
 prepend_path "$HOME/.cargo/bin"
+
+# Quartus dev tools path
+prepend_path "$HOME/altera/13.0sp1/quartus/bin"
+# Add XDG_DATA_DIRS 
 #------------------------------------------------
 # Custom Commands
 #------------------------------------------------
@@ -231,7 +269,7 @@ prepend_path "$HOME/.cargo/bin"
 shopt -q login_shell && macchina --config $HOME/.config/macchina/macchina-login.toml --theme minimal || macchina --theme Mikasa
 # add task inbox to prompt
 inbox_prompt() {
-  inbox_count=$(task +in +PENDING count)
+  inbox_count=$(task rc.data.location="$HOME/.tasks/tasks" +in +PENDING count)
   if [ $inbox_count -gt 0 ]; then
     count_color=$ccrimson
   else
@@ -246,3 +284,5 @@ then
   export PS1='\[$(inbox_prompt)\]$(task +in +PENDING count) '$PS1               # prepend number of unprocessed inbox decisions to prompt, separate task call for prompt length calculations
 fi
 
+
+export QSYS_ROOTDIR="/home/hug/altera_lite/24.1std/quartus/sopc_builder/bin"

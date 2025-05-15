@@ -99,8 +99,11 @@ window#waybar.hidden {
     padding: 0 8px 0 0; /* added to balance offset of font in boxes */
     margin: 5px 3px;
 }
-
 #workspaces button.visible {
+    border: 2px solid #000000;
+    border-radius: 12px;
+} 
+#workspaces button.active {
     border: 2px solid #00071a;
     border-radius: 12px;
 }

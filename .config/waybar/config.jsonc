@@ -6,7 +6,7 @@
   "margin-top": 3,
   "margin-left": 3,
   "margin-right": 3,
-  "output": ["DP-1","eDP-1"],
+  "output": ["DP-3","eDP-1"],
   "modules-left": [
     "custom/padding",
     "custom/fuzzel",
@@ -15,12 +15,11 @@
     "hyprland/window",
     "custom/padding",
     "hyprland/submap",
-    "tray"
+    "custom/padding",
+    "custom/calendar"
   ],
   "modules-center": ["custom/player"],
   "modules-right": [
-    "custom/tasks",
-    "custom/padding",
     "pulseaudio",
     "custom/padding",
     "custom/notification",
@@ -31,9 +30,9 @@
     "custom/padding",
     "clock",
     "custom/padding",
-    "custom/timer",
-    "custom/padding",
-    "battery",
+  //"custom/brightness",
+  //"custom/padding",
+  //"battery",
     "custom/padding",
     "custom/power",
     "custom/padding"
@@ -54,7 +53,8 @@
         "5":"<span color='#64e699' >󱎓</span>"
       },
       "persistent-workspaces": {
-        "*": 5
+        "DP-3": 5,
+        "DP-2": 5
       }
     },
     "hyprland/submap": {
@@ -117,7 +117,8 @@
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
         "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
-        "tooltip": true
+        "tooltip": true,
+        "on-click": "foot nmtui"
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
@@ -145,6 +146,16 @@
     },
 
     /* CUSTOM MODULES */
+    "custom/brightness": {
+      "exec": "echo $(( $(cat /sys/class/backlight/intel_backlight/brightness)*100/$(cat /sys/class/backlight/intel_backlight/max_brightness) ))",
+      "format": " {}%",
+      "interval":1
+    }, 
+    "custom/calendar": {
+      "exec": " source ~/projects/university-setup-fuzzel/.venv/bin/activate && TZ='Australia/NSW' python3 -u ~/projects/university-setup-fuzzel/scripts/countdown.py ",
+      "on-click": "firefox 'https://calendar.google.com/calendar/' -- &"
+    },
+
     "custom/fuzzel": {
       "tooltip": false,
       "format": "<span color='#fff8e5'></span>",
@@ -195,18 +206,6 @@
     "custom/prefix": {
       "format": "<span color='#a89884'> >></span>",
       "tooltip": false
-    },
-    "custom/tasks": {
-      // exec: ,
-      "tooltip": true,
-      "exec-on-event": false,
-      "format": "TASKS",
-      "return-type": "json",
-      "on-click-right": "task report",
-      "on-click": "$HOME/.config/waybar/scripts/taskw.sh report",
-      "double-click": "$HOME/.config/waybar/scripts/taskw.sh add",
-      "on-click-middle": "$HOME/.config/waybar/scripts/taskw.sh fuzzel_explorer"
-      
     },
     "custom/timer": {
         // requires waybar-timer; find details at https://github.com/jbirnick/waybar-timer
