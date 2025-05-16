@@ -123,11 +123,16 @@ xterm*|rxvt*)
 esac
 
 # Check if given path exists, if it does, add to $PATH
-prepend_path () {
+prepend_if_not_in_path () {
     if [[ -d $1 ]]; then
         export PATH="$1:$PATH"
     fi
 } 
+prepend_if_not_in_path () {
+    if [[ -d $1 ]] && [[ ":$PATH" != *"$1"* ]]; then
+      export PATH="$1:$PATH"
+    fi
+}
 check_list() {
   LIST=$1
   DELIMITER=$2
@@ -221,19 +226,19 @@ alias zth='zathura'
 #------------------------------------------------
 
 export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init -)"
+[[ -d $PYENV_ROOT/bin ]] && prepend_if_not_in_path "$PYENV_ROOT/bin"
+# eval "$(pyenv init -)
 
 # add BOOST root directory to path
 # export PATH="/usr/include/boost_1_82_0:$PATH"
 
 # if neovim installed from github release, use that version
 if [[ -d /opt/nvim-linux64/bin ]]; then
-    export PATH="$PATH:/opt/nvim-linux64/bin"
+    prepend_if_not_in_path "/opt/nvim-linux64/bin"
 fi
 # add neovim config to path
 export EDITOR="nvim"
-export PATH="$HOME/.config/nvim:$PATH"
+prepend_if_not_in_path "$HOME/.config/nvim"
 # add colorschemes to lua path
 export LUA_PATH=";;$HOME/.config/nvim/colors/?.lua;$LUA_PATH"
 # add lua snippets to path
@@ -244,22 +249,26 @@ export LUA_PATH="$HOME/.config/nvim/luasnippets/?.lua;$LUA_PATH"
 if [[ -d /media ]]; then
   export MANPATH="/media/tex/texmf-dist/doc/man:$MANPATH"
   export INFOPATH="/media/tex/texmf-dist/doc/info:$INFOPATH"
-  prepend_path "/media/tex/bin/x86_64-linux"
+  prepend_if_not_in_path "/media/tex/bin/x86_64-linux"
 else
   export MANPATH="/usr/local/texlive/2024/texmf-dist/doc/man:$MANPATH"
   export INFOPATH="/usr/local/texlive/2024/texmf-dist/doc/info:$INFOPATH"
-  prepend_path "/usr/local/texlive/2024/bin/x86_64-linux"
+  prepend_if_not_in_path "/usr/local/texlive/2024/bin/x86_64-linux"
 fi
-prepend_path "$HOME/.local/bin"
+
+prepend_if_not_in_path "$HOME/.local/bin"
 
 # add mupdf fileviewer binary to path
-prepend_path "$HOME/.mupdf/bin"
+prepend_if_not_in_path "$HOME/.mupdf/bin"
 
 # add cargo to path (for macchina)
-prepend_path "$HOME/.cargo/bin"
+prepend_if_not_in_path "$HOME/.cargo/bin"
 
 ## UNI setup path for scripts ## 
-prepend_path "$HOME/projects/university-setup-fuzzel/scripts"
+prepend_if_not_in_path "$HOME/projects/university-setup-fuzzel/scripts"
+
+# XDG Dirs
+export XDG_DATA_HOME="$HOME/.local/share"
 #------------------------------------------------
 # Custom Commands
 #------------------------------------------------
