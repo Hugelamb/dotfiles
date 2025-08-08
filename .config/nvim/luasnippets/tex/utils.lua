@@ -220,52 +220,65 @@ end
     -- use restoreNode to maintain content while updating.
     -- table.
 
--- local function in_env(name)
---   local is_inside = vim.fn["vimtex#env#is_inside"](name)
---   return (is_inside[1] > 0 and is_inside[2] > 0)
--- end
--- function P.in_preamble()
---   return not in_env("document")
--- end
+local function in_env(name)
+  local is_inside = vim.fn["vimtex#env#is_inside"](name)
+  return (is_inside[1] > 0 and is_inside[2] > 0)
+end
+-- Detect if active buffer is a preamble file
+local function in_preamble()
+  local buffer = vim.fn['bufname'](vim.fn['bufnr']('%'))
+   return string.find(buffer, 'preamble') 
+end
+
+P.in_preamble = cond_obj.make_condition(in_preamble)
+
+-- Math zone detection
 local function in_mathzone()  -- math context detection
   return vim.api.nvim_eval('vimtex#syntax#in_mathzone()') == 1
   --return vim.fn['vimtex#syntax#in_mathzone']()
 end
 P.in_mathzone = cond_obj.make_condition(in_mathzone)
+
+-- In text detection
 local function in_text()
   return not P.in_mathzone()
 end
 P.in_text = cond_obj.make_condition(in_text)
+
+-- In comment 
 local function in_comment()  -- comment detection
   return vim.fn['vimtex#syntax#in_comment']() 
 end
 P.in_comment = cond_obj.make_condition(in_comment)
 
+-- In enumerate environment
 local function in_enumerate()
   local is_inside = vim.fn['vimtex#env#is_inside']("enumerate")
   return (is_inside[1] > 0 and is_inside[2] > 0)
 end
-
 P.in_enumerate = cond_obj.make_condition(in_enumerate)
+
+-- In equation environment
 local function in_equation()  -- equation environment detection
   local is_inside = vim.fn['vimtex#env#is_inside']("equation")
   return (is_inside[1] > 0)
 end
-
 P.in_equation = cond_obj.make_condition(in_equation)
 
+-- In itemize environment
 local function in_itemize()  -- itemize environment detection
   local is_inside = vim.fn['vimtex#env#is_inside']("itemize")
   return (is_inside[1] > 0 and is_inside[2] > 0)
 end
-
 P.in_itemize = cond_obj.make_condition(in_itemize)
 
+-- In tikzpicture environment
 local function in_tikz()  -- TikZ picture environment detection
   local is_inside = vim.fn['vimtex#env#is_inside']("tikzpicture")
   return (is_inside[1] > 0)
 end
 P.in_tikz = cond_obj.make_condition(in_tikz)
 
+-- END Function List --
 return P
 

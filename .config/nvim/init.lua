@@ -532,4 +532,33 @@ vim.api.nvim_set_keymap('s', "<C-t>", '<cmd>lua utils.dynamic_node_external_upda
 vim.api.nvim_set_keymap('i', "<C-g>", '<cmd>lua utils.dynamic_node_external_update(2)<Cr>', {noremap = true})
 vim.api.nvim_set_keymap('s', "<C-g>", '<cmd>lua utils.dynamic_node_external_update(2)<Cr>', {noremap = true})
 
+-------------------------------
+--- Text Replacement Macros ---
+-------------------------------
+--- Replace line with specified character from current column to end, maintaining line length
+--- vim.api.nvim_create_user_command('ReplaceLine',
+---   function(opts)
+---     vim.cmd
+--- )
+function ReplaceWholeLine(newchar)
+  vim.cmd([[%s./\%>.c./a:newchar/g]])
+end
+vim.api.nvim_create_user_command("ReplaceLine",ReplaceWholeLine, {
+  nargs = 1,
+  desc = "Replace line with repeated character given as input",
+})
+vim.keymap.set('n','<leader>cg', ":call ReplaceLine input('Replacement: ') <CR>", {noremap = true})
+
+--- Commands ---
+--- Commands ---
+--- Commands ---
+
+function in_preamble()
+  local buffer = vim.fn['bufname'](vim.fn['bufnr']('%'))
+  if string.find(buffer, 'preamble') then
+    return 1
+  else 
+    return 0
+  end
+end
 

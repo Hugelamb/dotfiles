@@ -32,7 +32,7 @@ local utils = require('luasnippets.utils')
 local conds = require("luasnip.extras.expand_conditions")
 
 return {
-  s({ trig = "pac", dscr = "", snippetType="autosnippet" },
+  s({ trig = "pac", dscr = "insert \\usepackage command", snippetType="autosnippet" },
     fmta(
     [[
     \usepackage[<>]{<>}
@@ -44,7 +44,7 @@ return {
         i(0)
       }
     ),
-    { condition = tex_utils.in_preamble }
+    { condition = tex_utils.in_preamble } 
   ),
   s({ trig = "href", dscr = "insert hidden reference here", snippetType="autosnippet" },
     fmta(
@@ -52,8 +52,8 @@ return {
       \href{<>}{<>}<>
       ]],
       {
-        i(1,'Display text'),
-        i(2,'Link location'),
+        i(1,'Link location'),
+        i(2,'Display text'),
         i(0)
       }
     ),

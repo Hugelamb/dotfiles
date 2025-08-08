@@ -172,6 +172,21 @@ P.rec_node = function(args, parent, user_args)
     })
   )
 end
+-- function to dump table contents to terminal output
+P.dump_table = function(table)
+  if type(table) == 'table' then
+    local s = '{ '
+    for k,v in pairs(table) do
+      if type(k) ~= 'number' then
+        k = '"'..k..'"' 
+      end
+      s = s .. '['..k..'] = ' .. dump(v) .. ','
+    end
+    return s .. '} '
+  else
+    return tostring(table)
+  end
+end
 -- End Function List --
 
 return P
