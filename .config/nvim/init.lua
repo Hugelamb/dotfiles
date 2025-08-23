@@ -540,25 +540,22 @@ vim.api.nvim_set_keymap('s', "<C-g>", '<cmd>lua utils.dynamic_node_external_upda
 ---   function(opts)
 ---     vim.cmd
 --- )
-function ReplaceWholeLine(newchar)
-  vim.cmd([[%s./\%>.c./a:newchar/g]])
-end
-vim.api.nvim_create_user_command("ReplaceLine",ReplaceWholeLine, {
-  nargs = 1,
-  desc = "Replace line with repeated character given as input",
-})
-vim.keymap.set('n','<leader>cg', ":call ReplaceLine input('Replacement: ') <CR>", {noremap = true})
+----------------
+----------------
+----------------
+vim.api.nvim_create_user_command('GetCursorChar',
+  function(opts)
+    vim.cmd.normal([[yl]]) -- save current char at cursor to reg "0
+    local rep = vim.fn.getreg('0')
+    vim.cmd.normal([[v$hr]] .. rep)
+  end,
+  {}
+)
+-- The command sequence below is as follows:
+-- v : enter visual mode
+-- yl : yank current character under cursor to register "0
+-- 
+vim.api.nvim_set_keymap('n', '<localleader>cl', ':GetCursorChar<CR><Esc>' , {noremap = true})
 
---- Commands ---
---- Commands ---
---- Commands ---
 
-function in_preamble()
-  local buffer = vim.fn['bufname'](vim.fn['bufnr']('%'))
-  if string.find(buffer, 'preamble') then
-    return 1
-  else 
-    return 0
-  end
-end
-
+------------------

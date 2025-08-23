@@ -100,6 +100,6 @@
     "pdf_viewer_name": "",
     "text_editor": "nvim",
     "use_system_pdf_viewer": true,
-    "working_dir": "/home/hug/projects/3d-printer-build/tmc2209-stepstick"
+    "working_dir": "/home/hug/projects/rack-psu/rack-psu"
   }
 }

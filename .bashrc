@@ -255,6 +255,7 @@ else
   export INFOPATH="/usr/local/texlive/2024/texmf-dist/doc/info:$INFOPATH"
   prepend_if_not_in_path "/usr/local/texlive/2024/bin/x86_64-linux"
 fi
+export TEXMFHOME="$HOME/.local/share/texmf"
 
 prepend_if_not_in_path "$HOME/.local/bin"
 
@@ -300,3 +301,5 @@ fi
 
 
 
+
+export STM32_PRG_PATH=/home/hug/applications/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin
