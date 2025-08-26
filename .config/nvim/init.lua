@@ -414,9 +414,10 @@ local acmd = vim.api.nvim_create_autocmd
 ------------------------------
 -- source custom colortheme 
 vim.cmd.source("$HOME/.config/nvim/colors/custom_dark.vim")
+vim.cmd.source("$HOME/.config/nvim/colors/subneon.lua")
 -- vim.cmd.source("$HOME/.config/nvim/colors/solarized.vim")
 vim.cmd("colorscheme kanagawa")
--- vim.cmd.colorscheme("synthwave")
+vim.cmd [[colorscheme subneon]]
 -- vim.cmd.colorscheme("paperback")
 -- activate custom colortheme
 -- vim.cmd.colorscheme("custom_dark")
@@ -493,8 +494,8 @@ vim.opt.foldnestmax = 4         -- Maximum number of nested folds that can be cr
 vim.opt.splitright = true       -- enforce that windows split right by default
 --- Opening/Splitting Macros
 vim.keymap.set('n','<Localleader>nv',':browse vsplit  . <CR>')     -- vert split and open current directory tree
-vim.keymap.set('n','<Localleader>sv',':vs<CR>',{ silent = true})     -- vertical split command
-vim.keymap.set('n','<Localleader>sh',':sp<CR>',{silent = true})      -- horizontal split command
+vim.keymap.set('n','<Localleader>sh',':vs<CR>',{ silent = true})     -- vertical split command
+vim.keymap.set('n','<Localleader>sv',':sp<CR>',{silent = true})      -- horizontal split command
 vim.keymap.set('t','<Esc>', '<C-\\><C-n>',{silent = true})    -- Exit terminal mode
 --- Closing and Hiding Macros
 vim.keymap.set('n','<Localleader>q','<C-w><C-q>')           -- close current window, as long as there are no unsaved buffer changes/is not last window for buffer
@@ -504,9 +505,9 @@ vim.keymap.set('n','<Localleader>ho','<:hide only<CR>')              -- hide all
 ---------------------
 --- Window Navigation Macros ---
 ---------------------
-vim.keymap.set('n','<A-j>','<C-w>h')        -- move to window on left
-vim.keymap.set('n','<A-k>','<C-w>j')        -- move to window below
-vim.keymap.set('n','<A-i>','<C-w>k')        -- move to window above
+vim.keymap.set('n','<A-h>','<C-w>h')        -- move to window on left
+vim.keymap.set('n','<A-j>','<C-w>j')        -- move to window below
+vim.keymap.set('n','<A-k>','<C-w>k')        -- move to window above
 vim.keymap.set('n','<A-l>','<C-w>l')        -- move to window on right
 vim.keymap.set('n','<A-n>','<C-w>w')        -- move to next window 
 vim.keymap.set('n','<A-p>','<C-w><S-w>')    -- move to previous window 

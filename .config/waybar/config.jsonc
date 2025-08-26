@@ -1,4 +1,7 @@
-{
+[
+  /* Bar for inbuilt laptop display */
+  {
+  "name": "inbuilt",
   "layer": "top",
   "position": "top",
   "height": 16,
@@ -6,7 +9,7 @@
   "margin-top": 1,
   "margin-left": 2,
   "margin-right": 2,
-  "output": ["Samsung Electric Company C49J89x H4ZN300228","eDP-1"],
+  "output": ["eDP-1"],
   "modules-left": [
     "custom/padding",
     "custom/fuzzel",
@@ -44,40 +47,307 @@
     //Modules Configuration
     "hyprland/workspaces": {
       "disable-scroll": true,
-      "all-outputs": true,
+      "all-outputs": false,
       "active-only": false,
       "warp-on-scroll": false,
       "format": " {icon}",
       "format-icons": {
-        "1":"<span color='#f821b2' ></span>",
-        "2":"<span color='#ff5761' ></span>",
-        "3":"<span color='#e99727' ></span>",
-        "4":"<span color='#acc642' ></span>",
-        "5":"<span color='#64e699' >󱎓</span>"
-      },
-      "persistent-workspaces": {
-        "*": 5
-      }
+        "1":  "",
+        "2":  "", // Web
+        "3":  "󱑽", // Music
+        "4":  "", //Editor
+        "5":  "", /* #ff5761 */
+        "6":  "", /* KiCAD */
+        "7":  "󰐫",
+        "8":  "",
+        "9":  "", /* FreeCAD */
+        "10": "10"
+      }//,
+      //"persistent-workspaces": {
+      // }
     },
     "hyprland/submap": {
       "format": "<span style=\"italic\">{}</span>"
     },
-//    "hyprland/window":  {
-//      "format": "{class}",
-//      "max-length": 50,
-//      "rewrite": {
-//        "": "<span foreground= '#458588'></span> hyprland",
-//        "foot": "terminal",
-//        "firefox": "browser",
-//        "chrome": "browser",
-//        "chromium": "browser",
-//        "dolphin": "file manager",
-//        "spotify": "player",
-//        "nvim": "editor",
-//        "xournal++": "notes"
-//      },
-//      "all-outputs": true
-//    },
+      //    "hyprland/window":  {
+      //      "format": "{class}",
+      //      "max-length": 50,
+      //      "rewrite": {
+      //        "": "<span foreground= '#458588'></span> hyprland",
+      //        "foot": "terminal",
+      //        "firefox": "browser",
+      //        "chrome": "browser",
+      //        "chromium": "browser",
+      //        "dolphin": "file manager",
+      //        "spotify": "player",
+      //        "nvim": "editor",
+      //        "xournal++": "notes"
+      //      },
+      //      "all-outputs": true
+      //    },
+    "battery": {
+        "interval": 60,
+        "states": {
+          "charged":90,
+          "warning": 30,
+          "critical": 15
+        },
+        "format": "{capacity}%{icon}",
+        "format-alt": "{icon}",
+        "format-icons": ["  ","  ","  ","  ","  "],
+        "max-length": 6 
+    },
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "<span color='#00071a'> {:%Y-%m-%d}</span>"
+    },
+    "cpu": {
+      "format": "{usage}% ",
+      "tooltip": false
+    },
+    "keyboard-state": {
+      "format": {
+        "numlock": "N {icon}",
+        "capslock": "C {icon}",
+        "scrolllock": "S {icon}"
+      },
+      "format-icons": {
+        "locked": "",
+        "unlocked": ""
+      }
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        // "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-wifi": "({signalStrength}%) ",
+        "format-ethernet": "",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip": true,
+        "on-click": "foot nmtui"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {con} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "",
+        "format-source-muted": "",
+        "format-icons": {
+          "headphone": "",
+          "hands-free": "",
+          "headset": "",
+          "phone": "",
+          "portable": "",
+          "car": "",
+          "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10,
+        "icon-size": 15
+    },
+    "wireplumber": {
+      "format": "{volume}% {icon}",
+      "format-muted":"󰝟",
+      "scroll-step":1,
+      "format-icons": {
+          "headphone": "",
+          "hands-free": "",
+          "headset": "",
+          "phone": "",
+          "portable": "",
+          "car": "",
+          "default": ["", "", ""],
+          "muted": "󰝟"
+        },
+      "on-click": "flatpak run com.saivert.pwvucontrol"
+    },
+
+    /* CUSTOM MODULES */
+    /*
+    "custom/audiocontrol": {
+      "format": "{volume}% {icon} {format_source}",
+      "on-click": "flatpak run com.saivert.pwvucontrol"
+    },
+    */
+    "custom/brightness": {
+      "exec": "echo $(( $(cat /sys/class/backlight/amdgpu_bl1/brightness)*100/$(cat /sys/class/backlight/amdgpu_bl1/max_brightness) ))",
+      "format": " {}%",
+      "interval":1
+    }, 
+    "custom/calendar": {
+      "exec": " source ~/projects/university-setup-fuzzel/.venv/bin/activate && TZ='Australia/NSW' python3 -u ~/projects/university-setup-fuzzel/scripts/countdown.py ",
+      "on-click": "firefox 'https://calendar.google.com/calendar/' -- &"
+    },
+    "custom/fuzzel": {
+      "tooltip": false,
+      "format": "<span color='#fff8e5'></span>",
+      "on-click": "fuzzel"
+    },
+    "custom/notification": {
+      "tooltip": false,
+      "rotate": 0,
+      "format": "<span color='#dfdfdf'>{icon}</span>",
+      "format-icons": {
+        "notification": "<span color='#36f9f6'>󱅫</span>",
+        "none": "",
+        "dnd-notification": "󰂛",
+        "dnd-none": "󰂛",
+        "inhibited-notification": "",
+        "inhibited-none": "",
+        "dnd-inhibited-notification": "󰂛",
+        "dnd-inhibited-none": "󰂛"
+      },
+      "return-type": "json",
+      "exec-if": "which swaync-client",
+      "exec": "swaync-client -swb",
+      "on-click-right": "swaync-client -d -sw",
+      "on-click": "swaync-client -t -sw",
+      "escape": true
+    },
+    "custom/padding": {
+      "format": " ",
+      "tooltip": false
+    },
+    "custom/player": {
+      "format": "{}",
+      "exec": "~/.config/waybar/scripts/player.sh",
+      "interval": 1,
+      "min-length": 30,
+      "max-length": 30,
+      "tooltip": false,
+      "on-click-right": "playerctl next",
+      "on-click": "playerctl previous",
+      "on-click-middle": "playerctl play-pause",
+      "on-scroll-up": "playerctl position 1+",
+      "on-scroll-down": "playerctl position 1-"
+    },
+    "custom/power": {
+      "format" : "⏻ ",
+      "tooltip": false,
+      "on-click": "$HOME/.config/waybar/scripts/power-menu.sh"
+    },
+    "custom/prefix": {
+      "format": "<span color='#a89884'> >></span>",
+      "tooltip": false
+    },
+       // "custom/timer": {
+       //     // requires waybar-timer; find details at https://github.com/jbirnick/waybar-timer
+       //   "exec": "$HOME/.config/waybar/scripts/waybar_timer hook",
+       //   "exec-on-event": false,
+       //   "return-type": "json",
+       //   "format": "{icon} {0}",
+       //   "format-icons": {
+       //     "standby": "<span color='#e99727' > STANDBY</span>",
+       //     "running": "<span color='#384015' > RUNNING</span>",
+       //     "paused": "PAUSE"
+       //   },
+       //   "on-click": "$HOME/.config/waybar/scripts/waybar_timer new 25 'notify-send \"Session finished\"'",
+       //   "on-click-middle": "$HOME/.config/waybar/scripts/waybar_timer cancel",
+       //   "on-click-right": "$HOME/.config/waybar/scripts/waybar_timer togglepause",
+       //   "on-scroll-up": "$HOME/.config/waybar/scripts/waybar_timer increase 60 || $HOME/.config/waybar/scripts/waybar_timer new 1 'notify-send -u critical \"Timer expired\"'",
+       //   "on-scroll-down": "$HOME/.config/waybar/scripts/waybar_timer decrease 60"
+       // },
+    "custom/weather": {
+      "format": "{}",
+      "exec": "$HOME/.config/waybar/scripts/weather.sh Sydney,Australia",
+      "return-type": "json",
+      "tooltip": true,
+      "interval": 3600
+    }
+},
+  /* Bar for external ultrawide */
+  {
+  "name": "ultrawide",
+  "layer": "top",
+  "position": "top",
+  "height": 16,
+  "spacing": 3,
+  "margin-top": 1,
+  "margin-left": 2,
+  "margin-right": 2,
+  "output": ["Samsung Electric Company C49J89x H4ZN300228"],
+  "modules-left": [
+    "custom/padding",
+    "custom/fuzzel",
+    "custom/padding",
+    "hyprland/workspaces",
+    //"hyprland/window",
+    "custom/padding",
+    "hyprland/submap",
+    "custom/padding",
+    "custom/calendar"
+  ],
+  "modules-center": ["custom/player"],
+  "modules-right": [
+    "wireplumber",
+    /*"custom/audiocontrol",*/
+    "custom/padding",
+    "custom/notification",
+    "custom/padding",
+    "network",
+    "custom/padding",
+    "custom/weather",
+    "custom/padding",
+    "clock",
+    "custom/padding",
+    "custom/timer",
+    "custom/padding",
+    "custom/brightness",
+    "custom/padding",
+    "battery",
+    "custom/padding",
+    "custom/power",
+    "custom/padding"
+  ],
+
+    //Modules Configuration
+    "hyprland/workspaces": {
+      "disable-scroll": true,
+      "all-outputs": false,
+      "active-only": false,
+      "warp-on-scroll": false,
+      "format": " {icon}",
+      "format-icons": {
+        "4":  "", /* #f821b2 */
+        "5":  "", /* #ff5761 */
+        "6":  "", /* KiCAD */
+        "9":  "", /* FreeCAD */
+        "10": "10"
+      },
+      "persistent-workspaces": {
+        "4":[],
+        "5":[],
+        "6":[]
+        
+       }
+    },
+    "hyprland/submap": {
+      "format": "<span style=\"italic\">{}</span>"
+    },
+    //    "hyprland/window":  {
+    //      "format": "{class}",
+    //      "max-length": 50,
+    //      "rewrite": {
+    //        "": "<span foreground= '#458588'></span> hyprland",
+    //        "foot": "terminal",
+    //        "firefox": "browser",
+    //        "chrome": "browser",
+    //        "chromium": "browser",
+    //        "dolphin": "file manager",
+    //        "spotify": "player",
+    //        "nvim": "editor",
+    //        "xournal++": "notes"
+    //      },
+    //      "all-outputs": true
+    //    },
     "battery": {
         //"bat": "BAT0",
         "interval": 60,
@@ -232,23 +502,261 @@
       "format": "<span color='#a89884'> >></span>",
       "tooltip": false
     },
-   // "custom/timer": {
-   //     // requires waybar-timer; find details at https://github.com/jbirnick/waybar-timer
-   //   "exec": "$HOME/.config/waybar/scripts/waybar_timer hook",
-   //   "exec-on-event": false,
-   //   "return-type": "json",
-   //   "format": "{icon} {0}",
-   //   "format-icons": {
-   //     "standby": "<span color='#e99727' > STANDBY</span>",
-   //     "running": "<span color='#384015' > RUNNING</span>",
-   //     "paused": "PAUSE"
-   //   },
-   //   "on-click": "$HOME/.config/waybar/scripts/waybar_timer new 25 'notify-send \"Session finished\"'",
-   //   "on-click-middle": "$HOME/.config/waybar/scripts/waybar_timer cancel",
-   //   "on-click-right": "$HOME/.config/waybar/scripts/waybar_timer togglepause",
-   //   "on-scroll-up": "$HOME/.config/waybar/scripts/waybar_timer increase 60 || $HOME/.config/waybar/scripts/waybar_timer new 1 'notify-send -u critical \"Timer expired\"'",
-   //   "on-scroll-down": "$HOME/.config/waybar/scripts/waybar_timer decrease 60"
-   // },
+     // "custom/timer": {
+     //     // requires waybar-timer; find details at https://github.com/jbirnick/waybar-timer
+     //   "exec": "$HOME/.config/waybar/scripts/waybar_timer hook",
+     //   "exec-on-event": false,
+     //   "return-type": "json",
+     //   "format": "{icon} {0}",
+     //   "format-icons": {
+     //     "standby": "<span color='#e99727' > STANDBY</span>",
+     //     "running": "<span color='#384015' > RUNNING</span>",
+     //     "paused": "PAUSE"
+     //   },
+     //   "on-click": "$HOME/.config/waybar/scripts/waybar_timer new 25 'notify-send \"Session finished\"'",
+     //   "on-click-middle": "$HOME/.config/waybar/scripts/waybar_timer cancel",
+     //   "on-click-right": "$HOME/.config/waybar/scripts/waybar_timer togglepause",
+     //   "on-scroll-up": "$HOME/.config/waybar/scripts/waybar_timer increase 60 || $HOME/.config/waybar/scripts/waybar_timer new 1 'notify-send -u critical \"Timer expired\"'",
+     //   "on-scroll-down": "$HOME/.config/waybar/scripts/waybar_timer decrease 60"
+     // },
+    "custom/weather": {
+      "format": "{}",
+      "exec": "$HOME/.config/waybar/scripts/weather.sh Sydney,Australia",
+      "return-type": "json",
+      "tooltip": true,
+      "interval": 3600
+    }
+},
+  /* Bar for secondary 1440p monitor */
+  {
+  "name": "secondary",
+  "layer": "top",
+  "position": "bottom",
+  "height": 16,
+  "spacing": 3,
+  "margin-top": 0,
+  "margin-left": 2,
+  "margin-right": 2,
+  "output": ["Ancor Communications Inc ROG PG279Q HBLMQS061448"],
+  "modules-left": [
+    "custom/padding",
+    "hyprland/window"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "custom/padding",
+    "hyprland/workspaces",
+    "custom/padding"
+  ],
+
+    //Modules Configuration
+    "hyprland/workspaces": {
+      "disable-scroll": true,
+      "all-outputs": false,
+      "active-only": false,
+      "warp-on-scroll": false,
+      "format": " {icon}",
+      "format-icons": {
+        "7":"󰐫",
+        "8":""
+      }
+      //"format-icons": {
+      //  }//,
+      //"persistent-workspaces": {
+      // }
+    },
+    "hyprland/submap": {
+      "format": "<span style=\"italic\">{}</span>"
+    },
+      //    "hyprland/window":  {
+      //      "format": "{class}",
+      //      "max-length": 50,
+      //      "rewrite": {
+      //        "": "<span foreground= '#458588'></span> hyprland",
+      //        "foot": "terminal",
+      //        "firefox": "browser",
+      //        "chrome": "browser",
+      //        "chromium": "browser",
+      //        "dolphin": "file manager",
+      //        "spotify": "player",
+      //        "nvim": "editor",
+      //        "xournal++": "notes"
+      //      },
+      //      "all-outputs": true
+      //    },
+    "battery": {
+        //"bat": "BAT0",
+        "interval": 60,
+        "states": {
+          "charged":90,
+          "warning": 30,
+          "critical": 15
+        },
+        "format": "{capacity}%{icon}",
+        "format-alt": "{icon}",
+        "format-icons": ["  ","  ","  ","  ","  "],
+        "max-length": 6 
+    },
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "</span> {:%Y-%m-%d}</span>"
+    },
+    "cpu": {
+      "format": "{usage}% ",
+      "tooltip": false
+    },
+    "keyboard-state": {
+      "format": {
+        "numlock": "N {icon}",
+        "capslock": "C {icon}",
+        "scrolllock": "S {icon}"
+      },
+      "format-icons": {
+        "locked": "",
+        "unlocked": ""
+      }
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        // "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-wifi": "({signalStrength}%) ",
+        "format-ethernet": "",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip": true,
+        "on-click": "foot nmtui"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {con} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "",
+        "format-source-muted": "",
+        "format-icons": {
+          "headphone": "",
+          "hands-free": "",
+          "headset": "",
+          "phone": "",
+          "portable": "",
+          "car": "",
+          "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10,
+        "icon-size": 15
+    },
+    "wireplumber": {
+      "format": "{volume}% {icon}",
+      "format-muted":"󰝟",
+      "scroll-step":1,
+      "format-icons": {
+          "headphone": "",
+          "hands-free": "",
+          "headset": "",
+          "phone": "",
+          "portable": "",
+          "car": "",
+          "default": ["", "", ""],
+          "muted": "󰝟"
+        },
+      "on-click": "flatpak run com.saivert.pwvucontrol"
+    },
+
+    /* CUSTOM MODULES */
+    /*
+    "custom/audiocontrol": {
+      "format": "{volume}% {icon} {format_source}",
+      "on-click": "flatpak run com.saivert.pwvucontrol"
+    },
+    */
+    "custom/brightness": {
+      "exec": "echo $(( $(cat /sys/class/backlight/amdgpu_bl1/brightness)*100/$(cat /sys/class/backlight/amdgpu_bl1/max_brightness) ))",
+      "format": " {}%",
+      "interval":1
+    }, 
+    "custom/calendar": {
+      "exec": " source ~/projects/university-setup-fuzzel/.venv/bin/activate && TZ='Australia/NSW' python3 -u ~/projects/university-setup-fuzzel/scripts/countdown.py ",
+      "on-click": "firefox 'https://calendar.google.com/calendar/' -- &"
+    },
+    "custom/fuzzel": {
+      "tooltip": false,
+      "format": "<span color='#fff8e5'></span>",
+      "on-click": "fuzzel"
+    },
+    "custom/notification": {
+      "tooltip": false,
+      "rotate": 0,
+      "format": "<span color='#dfdfdf'>{icon}</span>",
+      "format-icons": {
+        "notification": "<span color='#36f9f6'>󱅫</span>",
+        "none": "",
+        "dnd-notification": "󰂛",
+        "dnd-none": "󰂛",
+        "inhibited-notification": "",
+        "inhibited-none": "",
+        "dnd-inhibited-notification": "󰂛",
+        "dnd-inhibited-none": "󰂛"
+      },
+      "return-type": "json",
+      "exec-if": "which swaync-client",
+      "exec": "swaync-client -swb",
+      "on-click-right": "swaync-client -d -sw",
+      "on-click": "swaync-client -t -sw",
+      "escape": true
+    },
+    "custom/padding": {
+      "format": " ",
+      "tooltip": false
+    },
+    "custom/player": {
+      "format": "{}",
+      "exec": "~/.config/waybar/scripts/player.sh",
+      "interval": 1,
+      "min-length": 30,
+      "max-length": 30,
+      "tooltip": false,
+      "on-click-right": "playerctl next",
+      "on-click": "playerctl previous",
+      "on-click-middle": "playerctl play-pause",
+      "on-scroll-up": "playerctl position 1+",
+      "on-scroll-down": "playerctl position 1-"
+    },
+    "custom/power": {
+      "format" : " ⏻ ",
+      "tooltip": false,
+      "on-click": "$HOME/.config/waybar/scripts/power-menu.sh"
+    },
+    "custom/prefix": {
+      "format": "<span color='#a89884'> >></span>",
+      "tooltip": false
+    },
+     // "custom/timer": {
+     //     // requires waybar-timer; find details at https://github.com/jbirnick/waybar-timer
+     //   "exec": "$HOME/.config/waybar/scripts/waybar_timer hook",
+     //   "exec-on-event": false,
+     //   "return-type": "json",
+     //   "format": "{icon} {0}",
+     //   "format-icons": {
+     //     "standby": "<span color='#e99727' > STANDBY</span>",
+     //     "running": "<span color='#384015' > RUNNING</span>",
+     //     "paused": "PAUSE"
+     //   },
+     //   "on-click": "$HOME/.config/waybar/scripts/waybar_timer new 25 'notify-send \"Session finished\"'",
+     //   "on-click-middle": "$HOME/.config/waybar/scripts/waybar_timer cancel",
+     //   "on-click-right": "$HOME/.config/waybar/scripts/waybar_timer togglepause",
+     //   "on-scroll-up": "$HOME/.config/waybar/scripts/waybar_timer increase 60 || $HOME/.config/waybar/scripts/waybar_timer new 1 'notify-send -u critical \"Timer expired\"'",
+     //   "on-scroll-down": "$HOME/.config/waybar/scripts/waybar_timer decrease 60"
+     // },
     "custom/weather": {
       "format": "{}",
       "exec": "$HOME/.config/waybar/scripts/weather.sh Sydney,Australia",
@@ -257,3 +765,4 @@
       "interval": 3600
     }
 }
+]

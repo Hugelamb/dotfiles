@@ -4,49 +4,76 @@
 /* Standard colour set  */
 /* Light Text:          #fff8e5
  * Dark Text:           #00071a
- * Left Background:     #8c57ff
- * Right Background:    #36f9f6
+ * Left Background:     #503c87
+ * Right Background:    #e75c22
  * Workspace Icons (L->R):
  * #f821b2, #ff5761, #e99727, #acc642, #64e699  
  * Border:              # 202735
  * Player Background:   # dfd92a
  *
  */
+
+
+/* custom colorset */
+@define-color sunset-base0    #e75c22; /* core colour - ORANGE */
+@define-color sunset-base1    #eb865b; /* lighter */
+@define-color sunset-base2    #efaf95; /* lighter */
+@define-color sunset-base3    #F3D9CE; /* lightest base */
+@define-color sunset-base00   #503c87; /* core colour - PURPLE */
+@define-color sunset-base01   #423270; /* darker */
+@define-color sunset-base02   #271D41; /* darker */
+@define-color sunset-base03   #19132a; /* darkest base */
+@define-color sunset-yellow   #fde74c;
+@define-color sunset-orange   #e75c22; /* core colour */
+@define-color sunset-red      #dc322f;
+@define-color sunset-magenta  #f51aa4;
+@define-color sunset-violet   #503c87;
+@define-color sunset-blue     #5bc0eb;
+@define-color sunset-cyan     #36f9f6;
+@define-color sunset-green    #3B8748; /* Sea Green */
+@define-color sunset-lightgreen #8fe092;
+/* end colorset */
+
+/* custom component colours */
+@define-color darkText                @sunset-base03;
+@define-color lightText                 @sunset-base3;
+
+@define-color workspace                 @sunset-base03;
+@define-color workspace_active          @sunset-lightgreen;
+@define-color workspace_visible         @sunset-blue;
+@define-color workspace_urgent          @sunset-magenta;
+@define-color workspace_background      rgba(0,0,0,0); /* set background as transparent */ 
+@define-color workspace_button          @sunset-base03;
+/* =================== */
+/* inbuilt display css */
+/* =================== */
 *   {
     /*  `otf-font-awesome` must be installed for icons */
     font-family: Noto Sans CJK, Symbols Nerd Font, MesloLGM Nerd Font Propo;
-    padding: 0;
-    border-radius: 0;
     min-height: 0;
-    margin: 0;
-    border: none;
+    border-radius:0;
     text-shadow: none;
     transition: none;
     box-shadow: none;
 }
 /* for whole status bar */
 window#waybar {
-    background: rgba(172,172,172,255); /* = #00071a */
-    background: linear-gradient(45deg, #503c87 0%, #e75c22 100%); /* #36f9f6 100% );*/ 
-    color: #fff8e5;
-    border-radius: 10px;
-    border: 1px solid #DFDFDF;
-    margin: -2;
-    padding-left: 2px;
-    padding-right: 2px;
-    font-size: 13px;
+    color: @lightText;
+    /*border: 2px dashed @sunset-base03;
+    border-image:  linear-gradient(45deg, @sunset-violet, @sunset-orange ) 4;  
+    background: @sunset-base02 ; */ 
+    /* approach 2 */
+    background: linear-gradient(@sunset-base03,@sunset-base03) padding-box,
+                linear-gradient(to right, @sunset-violet, @sunset-orange) border-box;
+    border-radius: 50em;
+    border: 2px solid transparent;
+    font-size: 14px;
     
 }
 window#waybar.hidden {
     opacity: 1;
 }
-.modules-left {
-/*    padding-left: 5px;    */
-    color: #fff8e5;
-}
-.modules-right {
-    color: #00071a;
-}
+
 #workspaces button,
 #workspaces button:hover,
 #workspaces button.visible,
@@ -67,7 +94,6 @@ window#waybar.hidden {
 #wireplumber-muted,
 #battery,
 #battery-critical,
-#battery-warning,
 #timer,
 #custom-fuzzel,
 #custom-padding,
@@ -83,7 +109,7 @@ window#waybar.hidden {
 #clock {
     font-family: MesloLGM Nerd Font Mono;
     font-weight: 400;
-    color: #00071a;
+    /*color: #00071a;*/
 }
 
 #wireplumber-muted {
@@ -96,23 +122,29 @@ window#waybar.hidden {
 #workspaces {
     /*font-size: ;*/ 
     margin: 0px;
+    color: @workspace;
 }
 
-#workspaces button {
-    color:#000000; 
-    background: rgba(0,7,26,0);
+window#waybar #workspaces button, button.persistent {
+    /*color:#000000; */
+    color: @lightText;
+    background: transparent;
     min-width: 25px;
-    padding: 0 8px 0 0; /* added to balance offset of font in boxes */
+    padding: 0 0.6em 0 0; /* added to balance offset of font in boxes */
     margin: 5px 3px;
 }
-#workspaces button.visible {
-    border: 2px solid #000000;
-    border-radius: 8px;
+window#waybar * #workspaces button.visible {
+    border: 1px dashed @workspace_visible;
+    border-radius: 6px;
+    color: @workspace_visible;
 } 
-#workspaces button.active {
-    border: 2px solid #00071a;
+window#waybar #workspaces button.active {
+    border: 1px solid @workspace_active;
     border-radius: 8px;
+    color: @darkText;
+    background-color: @workspace_active;
 }
+/* bar specific overrides */
 
 /* ================================ */
 /*          CUSTOM MODULES          */
@@ -125,7 +157,7 @@ window#waybar.hidden {
     font-size: 20px;
 }
 #custom-notification {
-    color: #fff8e6;
+    color: @sunset-base3;
     background: rgba(0,7,26,0);
     font-size: 14px;
     padding: 2px 2px;
@@ -135,14 +167,17 @@ window#waybar.hidden {
     border-radius: 12px;
 }
 #custom-player {
-    color: #00071a;
+    color: @sunset-base2;
     background: rgba(0,0,0,0);
-    border: 1px solid #dfdfdf;
-    border-radius: 21px;
     padding-left: 9px;
     padding-right: 9px;
 }
 #custom-timer {
-    color: #00071a;
+    color: @sunset-base2;
     background: rgba(0,7,26,0);
 }
+
+#custom-power {
+}
+
+
