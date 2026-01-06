@@ -279,6 +279,8 @@ local function in_tikz()  -- TikZ picture environment detection
 end
 P.in_tikz = cond_obj.make_condition(in_tikz)
 
+-- documentclass is beamer
+
 -- END Function List --
 return P
 

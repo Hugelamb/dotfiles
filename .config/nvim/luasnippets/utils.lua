@@ -180,7 +180,7 @@ P.dump_table = function(table)
       if type(k) ~= 'number' then
         k = '"'..k..'"' 
       end
-      s = s .. '['..k..'] = ' .. dump(v) .. ','
+      s = s .. '['..k..'] = ' .. P.dump_table(v) .. ','
     end
     return s .. '} '
   else

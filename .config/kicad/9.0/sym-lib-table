@@ -249,4 +249,8 @@
   (lib (name "01_HL_MountingEquipment")(type "KiCad")(uri "${KICAD_HL_LIBRARIES}/symbols/01_HL_MountingEquipment.kicad_sym")(options "")(descr ""))
   (lib (name "01_HL_Converter")(type "KiCad")(uri "${KICAD_HL_LIBRARIES}/symbols/01_HL_Converter.kicad_sym")(options "")(descr ""))
   (lib (name "01_HL_Connector")(type "KiCad")(uri "${KICAD_HL_LIBRARIES}/symbols/01_HL_Connector.kicad_sym")(options "")(descr ""))
+  (lib (name "01_HL_Electromechanical")(type "KiCad")(uri "${KICAD_HL_LIBRARIES}/symbols/01_HL_Electromechanical.kicad_sym")(options "")(descr ""))
+  (lib (name "kikit")(type "KiCad")(uri "${KICAD9_3RD_PARTY}/symbols/com_github_yaqwsx_kikit-library/kikit.kicad_sym")(options "")(descr "Added by Plugin and Content Manager"))
+  (lib (name "01_HL_Sensors")(type "KiCad")(uri "${KICAD_HL_LIBRARIES}/symbols/01_HL_Sensors.kicad_sym")(options "")(descr ""))
+  (lib (name "01_HL_Crystal")(type "KiCad")(uri "${KICAD_HL_LIBRARIES}/symbols/01_HL_Crystal.kicad_sym")(options "")(descr ""))
 )

@@ -49,7 +49,7 @@
 /* =================== */
 *   {
     /*  `otf-font-awesome` must be installed for icons */
-    font-family: Noto Sans CJK, Symbols Nerd Font, MesloLGM Nerd Font Propo;
+    font-family: Noto Sans CJK, FontAwesome, Symbols Nerd Font, MesloLGM Nerd Font Propo;
     min-height: 0;
     border-radius:0;
     text-shadow: none;
@@ -102,7 +102,7 @@ window#waybar.hidden {
 #custom-power,
 #custom-player,
 #custom-tasks,
-
+#mpris,
 
 
 
@@ -114,6 +114,10 @@ window#waybar.hidden {
 
 #wireplumber-muted {
   color: #57b5e3;
+}
+
+#mpris.firefox {
+  color: @sunset-cyan;
 }
 /* ================================ */
 /*            WORKSPACES            */

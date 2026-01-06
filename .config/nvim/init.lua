@@ -397,6 +397,7 @@ vim.opt.ignorecase = true		-- Search case insensitive ...
 vim.opt.smartcase = true		-- ... unless it begins with upper case
 
 -- further vimtex settings
+vim.g.do_filetype_lua = 1
 -- vim.g.vimtex_indent_lists = []        -- Don't indent \item's in list environments
 --------------------
 --- AUTOCOMMANDS ---

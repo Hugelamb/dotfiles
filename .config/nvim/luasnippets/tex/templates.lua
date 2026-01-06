@@ -88,5 +88,78 @@ return {
       }
     )
   ),  
+  -- The following are only used inside a genealogypicture environment
+  s({ trig = "chld", dscr = "Child environment", snippetType="autosnippet" },
+      fmta(
+      [[
+      child{
+        g[id=<>]{
+          <>,
+          name={\surn{<>}<>\pref{<>}},
+          birth={<>}{<>},<>
+        }<>
+      }
+      ]],
+      {
+        i(1,"SurnGiveYear"),
+        c(2,{t"male",t"female",t"other",i(1)}),
+        i(3),
+        i(4,"Chinese Given Name(s)"),
+        i(5,"Western Given Name(s)"),
+        i(6,"YYYY-MM-DD"),
+        i(7,"Place of Birth"),
+        i(8),
+        i(0)
+
+      }
+    ),
+    { condition = tex_utils.in_text + conds.line_begin }
+  ),
+  s({ trig = "np", dscr = "new parent", snippetType="autosnippet"},
+    fmta(
+    [[
+      p[id=<>]{
+        <>,
+        name={\surn{<>}<>\pref{<>}},
+        birth={<>}{<>},<>
+      }<>
+    ]],
+      {
+        i(1,"SurnGiveYear"),
+        c(2,{t"male",t"female",t"other",i(1)}),
+        i(3),
+        i(4,"Chinese Given Name(s)"),
+        i(5,"Western Given Name(s)"),
+        i(6,"YYYY-MM-DD"),
+        i(7,"Place of Birth"),
+        i(8),
+        i(0)
+      }
+    ),
+    { condition = tex_utils.in_text + conds.line_begin }
+  ),  
+  s({ trig = "nc", dscr = "new child", snippetType="autosnippet"},
+    fmta(
+    [[
+      c[id=<>]{
+        <>,
+        name={\surn{<>}<>\pref{<>}},
+        birth={<>}{<>},<>
+      }<>
+    ]],
+      {
+        i(1,"SurnGiveYear"),
+        c(2,{t"male",t"female",t"other",i(1)}),
+        i(3),
+        i(4,"Chinese Given Name(s)"),
+        i(5,"Western Given Name(s)"),
+        i(6,"YYYY-MM-DD"),
+        i(7,"Place of Birth"),
+        i(8),
+        i(0)
+      }
+    ),
+    { condition = tex_utils.in_text + conds.line_begin }
+  ), 
 }
 

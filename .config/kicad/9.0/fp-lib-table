@@ -188,4 +188,7 @@
   (lib (name "Switch_Keyboard_Cherry_MX")(type "KiCad")(uri "${KICAD9_3RD_PARTY}/footprints/com_github_perigoso_keyswitch-kicad-library/Switch_Keyboard_Cherry_MX.pretty")(options "")(descr "Added by Plugin and Content Manager"))
   (lib (name "01_HL_PanelCutout")(type "KiCad")(uri "${KICAD_HL_LIBRARIES}/footprints/01_HL_PanelCutout.pretty")(options "")(descr ""))
   (lib (name "01_HL_Transistor")(type "KiCad")(uri "${KICAD_HL_LIBRARIES}/footprints/01_HL_Transistor.pretty")(options "")(descr ""))
+  (lib (name "kikit")(type "KiCad")(uri "${KICAD9_3RD_PARTY}/footprints/com_github_yaqwsx_kikit-library/kikit.pretty")(options "")(descr "Added by Plugin and Content Manager"))
+  (lib (name "01_HL_Sensors")(type "KiCad")(uri "${KICAD_HL_LIBRARIES}/footprints/01_HL_Sensors.pretty")(options "")(descr ""))
+  (lib (name "01_HL_Crystal")(type "KiCad")(uri "${KICAD_HL_LIBRARIES}/footprints/01_HL_Crystal.pretty")(options "")(descr ""))
 )

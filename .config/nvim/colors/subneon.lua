@@ -2,14 +2,6 @@
 --- Subdued Neon Colorscheme ---
 --------------------------------
 
--- local c = 
-
-
-
-
-
-
-
 
 local M = {}
 

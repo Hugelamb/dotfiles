@@ -52,7 +52,7 @@
     "auto_pan_acceleration": 5,
     "center_on_zoom": true,
     "focus_follow_sch_pcb": false,
-    "horizontal_pan": false,
+    "horizontal_pan": true,
     "hotkey_feedback": true,
     "immediate_actions": true,
     "mouse_left": -1,
@@ -60,9 +60,9 @@
     "mouse_right": 2,
     "reverse_scroll_pan_h": false,
     "reverse_scroll_zoom": false,
-    "scroll_modifier_pan_h": 308,
-    "scroll_modifier_pan_v": 306,
-    "scroll_modifier_zoom": 0,
+    "scroll_modifier_pan_h": 306,
+    "scroll_modifier_pan_v": 0,
+    "scroll_modifier_zoom": 308,
     "warp_mouse_on_move": true,
     "zoom_acceleration": false,
     "zoom_speed": 1,
@@ -78,7 +78,7 @@
     "sash_pos": 160
   },
   "package_manager": {
-    "sash_pos": 593
+    "sash_pos": 462
   },
   "session": {
     "pinned_design_block_libs": [],
@@ -100,6 +100,6 @@
     "pdf_viewer_name": "",
     "text_editor": "nvim",
     "use_system_pdf_viewer": true,
-    "working_dir": "/home/hug/projects/rack-psu/rack-psu"
+    "working_dir": "/home/hug/projects/canbus-toolheads"
   }
 }

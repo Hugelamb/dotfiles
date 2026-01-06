@@ -5,7 +5,7 @@
     "method": 0,
     "options": 0,
     "recursive": true,
-    "scope": 0,
+    "scope": 1,
     "sort_order": 0
   },
   "appearance": {
@@ -14,12 +14,12 @@
     "edit_label_height": 600,
     "edit_label_visible_columns": "0 1 2 3 4 5 6 7",
     "edit_label_width": 800,
-    "edit_sheet_height": 436,
+    "edit_sheet_height": 600,
     "edit_sheet_visible_columns": "0 1 2 3 4 5 6 7",
     "edit_sheet_width": 1022,
-    "edit_symbol_height": 595,
+    "edit_symbol_height": 975,
     "edit_symbol_visible_columns": "0 1 2 3 4 5 6 7",
-    "edit_symbol_width": 1391,
+    "edit_symbol_width": 1114,
     "erc_severities": 48,
     "footprint_preview": true,
     "mark_sim_exclusions": false,
@@ -106,7 +106,7 @@
     "zoom_to_fit": true
   },
   "design_block_chooser": {
-    "height": 910,
+    "height": 833,
     "keep_annotations": false,
     "lib_tree": {
       "column_widths": {
@@ -117,7 +117,7 @@
     "place_as_sheet": false,
     "repeated_placement": false,
     "sash_pos_h": 440,
-    "sash_pos_v": 539,
+    "sash_pos_v": 502,
     "sort_mode": 0,
     "width": 300
   },
@@ -160,11 +160,11 @@
       "Reference": 242,
       "Value": 160
     },
-    "height": 857,
+    "height": 740,
     "page": 0,
     "scope": 0,
     "selection_mode": 0,
-    "width": 1427
+    "width": 2266
   },
   "find_replace": {
     "find_history": [
@@ -210,10 +210,12 @@
       "Description"
     ],
     "open_libs": [
+      "-- Recently Used --",
       "-- Already Placed --",
-      "01_HL_Converter",
-      "Device",
-      "PCM_4ms_Diode"
+      "PCM_4ms_Connector",
+      "Connector_Generic",
+      "Connector_Generic_MountingPin",
+      "Connector_Generic_Shielded"
     ]
   },
   "lib_view": {
@@ -467,27 +469,27 @@
     "height": 600,
     "keep_symbol": true,
     "place_all_units": true,
-    "sash_pos_h": 644,
-    "sash_pos_v": 562,
+    "sash_pos_h": 597,
+    "sash_pos_v": 526,
     "sort_mode": 0,
     "width": 800
   },
   "system": {
     "file_history": [
-      "/home/hug/projects/rack-psu/psu-12V-only.kicad_sch",
-      "/home/hug/projects/rack-psu/psu.kicad_sch",
-      "/home/hug/projects/psu-12V-only/psu-12V-only.kicad_sch",
-      "/home/hug/projects/pikelet/pikelet.kicad_sch",
-      "/run/media/hug/X9 Pro/backup_arch_241224/arch241224/hug/projects/moby_split/moby_split.kicad_sch",
-      "/home/hug/projects/3d-printer-build/tmc2209-stepstick/tmc2209-stepstick.kicad_sch",
-      "/home/hug/projects/3d-printer-build/tmc5160-stepstick/tmc5160-stepstick.kicad_sch",
-      "/run/media/hug/X9 Pro/backup_AMDI3KK_151124/home/Desktop/Keebs/split-direct-pin/split-direct-pin.kicad_sch",
-      "/run/media/hug/X9 Pro/backup_AMDI3KK_151124/home/Desktop/Keebs/split-direct with led/split-direct with led.kicad_sch"
+      "/home/hug/projects/canbus-toolheads/canbus-toolheads.kicad_sch",
+      "/home/hug/projects/3dp-resources/sensor-pcb-designs/voc_sensor/voc_sensor.kicad_sch",
+      "/home/hug/projects/kicad-libraries/library-manager/library-manager.kicad_sch",
+      "/home/hug/projects/keyboard-designs/iqs550-trackpad/trackpad-iqs550-zones/trackpad-iqs550-zones.kicad_sch",
+      "/home/hug/projects/keyboard-designs/old-designs/trackpad-iqs550.kicad_sch/trackpad-iqs550.kicad_sch.kicad_sch",
+      "/home/hug/projects/euro-modules/cd40106-vco/cd40106-vco.kicad_sch",
+      "/home/hug/projects/eurorack/6-layer-Bboard/6-layer-bboard.kicad_sch",
+      "/home/hug/projects/rack-psu/rack-psu.kicad_sch",
+      "/home/hug/projects/3dp-resources/open-source/Nevermore-Sensors/EasyEDA-kicad/EasyEDA.kicad_sch"
     ],
     "first_run_shown": false,
     "last_imperial_units": 5,
     "last_metric_units": 1,
-    "last_symbol_lib_dir": "${KICAD9_3RD_PARTY}/plugins/partdb-integration",
+    "last_symbol_lib_dir": "${KICAD_HL_LIBRARIES}/symbols",
     "max_undo_items": 0,
     "never_show_rescue_dialog": false,
     "show_import_issues": true,
@@ -498,7 +500,7 @@
       "always_show_cursor": true,
       "fullscreen_cursor": false
     },
-    "display": 2,
+    "display": 0,
     "grid": {
       "axes_enabled": false,
       "fast_grid_1": 1,
@@ -547,11 +549,11 @@
     },
     "maximized": false,
     "mru_path": "/home/hug/huskee/scanner-conn-inversion-v2/",
-    "perspective": "layout2|name=InfoBar;caption=;state=131454;dir=1;layer=1;row=0;pos=0;prop=100000;bestw=20;besth=30;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=MainToolbar;caption=;state=139632;dir=1;layer=6;row=0;pos=0;prop=100000;bestw=1172;besth=34;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=MsgPanel;caption=;state=131452;dir=3;layer=6;row=0;pos=0;prop=100000;bestw=400;besth=38;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=SchematicHierarchy;caption=Schematic Hierarchy;state=2099150;dir=4;layer=3;row=0;pos=1;prop=100000;bestw=200;besth=200;minw=120;minh=60;maxw=-1;maxh=-1;floatx=5493;floaty=92;floatw=200;floath=200|name=PropertiesManager;caption=Properties;state=2099150;dir=4;layer=3;row=0;pos=0;prop=100000;bestw=300;besth=200;minw=240;minh=60;maxw=-1;maxh=-1;floatx=50;floaty=200;floatw=300;floath=400|name=SelectionFilter;caption=Selection Filter;state=2098638;dir=4;layer=3;row=0;pos=1;prop=0;bestw=180;besth=-1;minw=180;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=DesignBlocks;caption=Design Blocks;state=2099150;dir=2;layer=3;row=0;pos=0;prop=100000;bestw=300;besth=200;minw=240;minh=60;maxw=-1;maxh=-1;floatx=50;floaty=200;floatw=800;floath=600|name=NetNavigator;caption=Net Navigator;state=2099150;dir=4;layer=3;row=0;pos=0;prop=100000;bestw=200;besth=200;minw=120;minh=60;maxw=-1;maxh=-1;floatx=50;floaty=200;floatw=200;floath=200|name=OptToolbar;caption=;state=139596;dir=4;layer=2;row=0;pos=0;prop=100000;bestw=34;besth=460;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=ToolsToolbar;caption=;state=139596;dir=2;layer=2;row=0;pos=0;prop=100000;bestw=34;besth=890;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=DrawFrame;caption=;state=1020;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=400;besth=188;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=Search;caption=Search;state=2098686;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=180;besth=100;minw=180;minh=60;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=480;floath=200|dock_size(1,6,0)=34|dock_size(3,6,0)=38|dock_size(4,2,0)=34|dock_size(2,2,0)=34|dock_size(5,0,0)=402|",
-    "pos_x": 5448,
-    "pos_y": 47,
-    "size_x": 1446,
-    "size_y": 1025,
+    "perspective": "layout2|name=InfoBar;caption=;state=131454;dir=1;layer=1;row=0;pos=0;prop=100000;bestw=20;besth=30;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=MainToolbar;caption=;state=139632;dir=1;layer=6;row=0;pos=0;prop=100000;bestw=1172;besth=34;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=MsgPanel;caption=;state=131452;dir=3;layer=6;row=0;pos=0;prop=100000;bestw=400;besth=38;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=SchematicHierarchy;caption=Schematic Hierarchy;state=2099150;dir=4;layer=3;row=0;pos=1;prop=100000;bestw=200;besth=200;minw=120;minh=60;maxw=-1;maxh=-1;floatx=50;floaty=116;floatw=200;floath=200|name=PropertiesManager;caption=Properties;state=2099150;dir=4;layer=3;row=0;pos=0;prop=100000;bestw=300;besth=200;minw=240;minh=60;maxw=-1;maxh=-1;floatx=50;floaty=200;floatw=300;floath=400|name=SelectionFilter;caption=Selection Filter;state=2098638;dir=4;layer=3;row=0;pos=1;prop=0;bestw=180;besth=-1;minw=180;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=DesignBlocks;caption=Design Blocks;state=2099150;dir=2;layer=3;row=0;pos=0;prop=100000;bestw=300;besth=200;minw=240;minh=60;maxw=-1;maxh=-1;floatx=50;floaty=200;floatw=800;floath=600|name=NetNavigator;caption=Net Navigator;state=2099150;dir=4;layer=3;row=0;pos=0;prop=100000;bestw=200;besth=200;minw=120;minh=60;maxw=-1;maxh=-1;floatx=50;floaty=200;floatw=200;floath=200|name=OptToolbar;caption=;state=139596;dir=4;layer=2;row=0;pos=0;prop=100000;bestw=34;besth=460;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=ToolsToolbar;caption=;state=139596;dir=2;layer=2;row=0;pos=0;prop=100000;bestw=34;besth=890;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=DrawFrame;caption=;state=1020;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=400;besth=188;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=Search;caption=Search;state=2098686;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=180;besth=100;minw=180;minh=60;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=480;floath=200|dock_size(1,6,0)=34|dock_size(3,6,0)=38|dock_size(4,2,0)=34|dock_size(2,2,0)=34|dock_size(5,0,0)=402|",
+    "pos_x": 5,
+    "pos_y": 44,
+    "size_x": 1526,
+    "size_y": 975,
     "zoom_factors": [
       0.05,
       0.07,

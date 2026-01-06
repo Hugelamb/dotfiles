@@ -124,8 +124,8 @@
             "repository_name": "KiCad official repository"
         },
         {
-            "current_version": "2.17",
-            "install_timestamp": 1747624018,
+            "current_version": "2.17.1",
+            "install_timestamp": 1763645261,
             "package": {
                 "author": {
                     "contact": {
@@ -153,6 +153,16 @@
                 },
                 "type": "plugin",
                 "versions": [
+                    {
+                        "download_sha256": "1600133bafa55fe422e830ca00003030e2a828ec5dc41cbcf77a4059d0f100c1",
+                        "download_size": 19685,
+                        "download_url": "https://github.com/30350n/pcb2blender/releases/download/v2.17.1-k9.0-b4.2lts/pcb2blender_exporter_v2-17-1_k9-0.zip",
+                        "install_size": 40162,
+                        "kicad_version": "9.0",
+                        "kicad_version_max": "9.0",
+                        "status": "stable",
+                        "version": "2.17.1"
+                    },
                     {
                         "download_sha256": "cc4a8e1735f99c50eee67307153921d8cf683622f0e1f3e46abf2fa49821e257",
                         "download_size": 19637,
@@ -469,6 +479,51 @@
             "repository_name": "KiCad official repository"
         },
         {
+            "current_version": "1.0.15",
+            "install_timestamp": 1756770384,
+            "package": {
+                "author": {
+                    "contact": {
+                        "github": "https://github.com/MitjaNemec"
+                    },
+                    "name": "Mitja Nemec"
+                },
+                "description": "copies 3D models to the project local subfolder",
+                "description_full": "Copies footprint models to the project local subfolder and remaps all the links within the used footprints.\n !!! Warning! If you update the footprint the link between the footprint and 3D model will be reset. You'll need to re-run the plugin in order to remap the links. You can make the layout file completely independent if you also export the footprints to project local librarary via menu File/Export/Footprints to new library and update the footprint to refer to new library.",
+                "identifier": "com.github.MitjaNemec.Archive3DModels",
+                "license": "GPL-2.0",
+                "name": "Archive 3D Models",
+                "resources": {
+                    "homepage": "https://github.com/MitjaNemec/Archive3DModels"
+                },
+                "tags": [
+                    "pcbnew",
+                    "models"
+                ],
+                "type": "plugin",
+                "versions": [
+                    {
+                        "download_sha256": "83c0e0d25d26d6372ff0f6086a21fb83137055440e5aa7314e2e269b328631d1",
+                        "download_size": 17476,
+                        "download_url": "https://github.com/MitjaNemec/Archive3DModels/releases/download/1.0.15/Archive3DModels-1.0.15-pcm.zip",
+                        "install_size": 39898,
+                        "kicad_version": "6.0",
+                        "kicad_version_max": "9.1",
+                        "platforms": [
+                            "linux",
+                            "macos",
+                            "windows"
+                        ],
+                        "status": "stable",
+                        "version": "1.0.15"
+                    }
+                ]
+            },
+            "pinned": false,
+            "repository_id": "46f88614eade3439",
+            "repository_name": "KiCad official repository"
+        },
+        {
             "current_version": "0.1",
             "install_timestamp": 1747624015,
             "package": {
@@ -510,8 +565,8 @@
             "repository_name": "KiCad official repository"
         },
         {
-            "current_version": "0.1.13",
-            "install_timestamp": 1753606601,
+            "current_version": "0.1.14",
+            "install_timestamp": 1762820731,
             "package": {
                 "author": {
                     "contact": {
@@ -537,6 +592,15 @@
                 },
                 "type": "plugin",
                 "versions": [
+                    {
+                        "download_sha256": "3f5dfc51322968cc0415d469bf38c382f72fe874abe59c7f800caa99eb52dc95",
+                        "download_size": 13670,
+                        "download_url": "https://github.com/TheJigsApp/kicad-parts-placer-pcm/releases/download/v0.1.14/kicad-parts-placer-0.1.14-pcm.zip",
+                        "install_size": 31010,
+                        "kicad_version": "8.0",
+                        "status": "stable",
+                        "version": "0.1.14"
+                    },
                     {
                         "download_sha256": "a42e7e17f16f7a89bbc77d08e414f89a806e46dab84d58cc64c045a298ec3c11",
                         "download_size": 13656,
@@ -580,8 +644,8 @@
             "repository_name": "KiCad official repository"
         },
         {
-            "current_version": "0.2",
-            "install_timestamp": 1747624024,
+            "current_version": "0.3",
+            "install_timestamp": 1762820732,
             "package": {
                 "author": {
                     "contact": {
@@ -600,6 +664,15 @@
                 },
                 "type": "plugin",
                 "versions": [
+                    {
+                        "download_sha256": "2481bf1af471876d89388f62ed79362ce4f1c9d16cdb686a61872477193587c7",
+                        "download_size": 30841,
+                        "download_url": "https://github.com/adamws/kicad-via-patterns/releases/download/v0.3/kicad_via_patterns-0.3.zip",
+                        "install_size": 29799,
+                        "kicad_version": "7.0",
+                        "status": "stable",
+                        "version": "0.3"
+                    },
                     {
                         "download_sha256": "926407d5d1b9a7188f749cd06d37bc95725ca639ca20eee0767170bb8d075697",
                         "download_size": 28249,
@@ -625,8 +698,8 @@
             "repository_name": "KiCad official repository"
         },
         {
-            "current_version": "5.1.0",
-            "install_timestamp": 1747624014,
+            "current_version": "5.2.0",
+            "install_timestamp": 1762820728,
             "package": {
                 "author": {
                     "contact": {
@@ -658,13 +731,13 @@
                 "type": "plugin",
                 "versions": [
                     {
-                        "download_sha256": "0dc6ad2fbd9e0be58cf2be029979871fe12b437416047b537aa57f9410eab290",
-                        "download_size": 20797,
-                        "download_url": "https://github.com/bennymeg/JLC-Plugin-for-KiCad/releases/download/5.1.0/JLC-Plugin-for-KiCad-5.1.0.zip",
-                        "install_size": 55836,
+                        "download_sha256": "4561b8feeeb37446caabeb815bc56b6e863760604bd1342781bccc91c767077a",
+                        "download_size": 21235,
+                        "download_url": "https://github.com/bennymeg/JLC-Plugin-for-KiCad/releases/download/5.2.0/JLC-Plugin-for-KiCad-5.2.0.zip",
+                        "install_size": 58037,
                         "kicad_version": "6.00",
                         "status": "stable",
-                        "version": "5.1.0"
+                        "version": "5.2.0"
                     },
                     {
                         "download_sha256": "2285113715d24d6e581ee1bee4c8e2fd92ad92bc72737e1dd05f7c05210e0e67",
@@ -735,6 +808,60 @@
                         ],
                         "status": "stable",
                         "version": "1.0.6"
+                    }
+                ]
+            },
+            "pinned": false,
+            "repository_id": "46f88614eade3439",
+            "repository_name": "KiCad official repository"
+        },
+        {
+            "current_version": "1.6.1",
+            "install_timestamp": 1756770387,
+            "package": {
+                "author": {
+                    "contact": {
+                        "github": "https://github.com/gregdavill",
+                        "twitter": "https://twitter.com/gregdavill",
+                        "web": "https://gregdavill.com"
+                    },
+                    "name": "Greg Davill"
+                },
+                "description": "Custom font label generator",
+                "description_full": "A label generator that renders svgs from truetype fonts, and creates silkscreen footprints for your PCB. Based of a similar plugin for Cadsoft Eagle called Buzzard",
+                "identifier": "com.github.gregdavill.KiBuzzard",
+                "license": "MIT",
+                "maintainer": {
+                    "contact": {
+                        "github": "https://github.com/gregdavill",
+                        "twitter": "https://twitter.com/gregdavill",
+                        "web": "https://gregdavill.com"
+                    },
+                    "name": "Greg Davill"
+                },
+                "name": "KiBuzzard",
+                "resources": {
+                    "homepage": "https://github.com/gregdavill/KiBuzzard"
+                },
+                "type": "plugin",
+                "versions": [
+                    {
+                        "download_sha256": "581ebde287ca88efbb6ca898f298d1974fb667900e6eb9708c1de53119c1dcd0",
+                        "download_size": 7640444,
+                        "download_url": "https://github.com/gregdavill/KiBuzzard/releases/download/1.6.1/KiBuzzard-1.6.1-pcm.zip",
+                        "install_size": 23684054,
+                        "kicad_version": "5.99",
+                        "status": "stable",
+                        "version": "1.6.1"
+                    },
+                    {
+                        "download_sha256": "300501596a945dc78392aeaff57078e3af66fca510b65776dda9e400a6653eeb",
+                        "download_size": 7775467,
+                        "download_url": "https://github.com/gregdavill/KiBuzzard/releases/download/1.6.0/KiBuzzard-1.6.0-pcm.zip",
+                        "install_size": 27631911,
+                        "kicad_version": "5.99",
+                        "status": "stable",
+                        "version": "1.6.0"
                     }
                 ]
             },
@@ -1078,6 +1205,96 @@
             "repository_name": "KiCad official repository"
         },
         {
+            "current_version": "1.6.0",
+            "install_timestamp": 1756770388,
+            "package": {
+                "author": {
+                    "contact": {
+                        "github": "https://github.com/yaqwsx",
+                        "twitter": "https://twitter.com/yaqwsx_cz",
+                        "web": "https://honzamrazek.cz"
+                    },
+                    "name": "Jan Mrázek"
+                },
+                "description": "Automation for KiCAD",
+                "description_full": "KiKit is a Python library, KiCAD plugin and a CLI tool to automate several tasks in a standard KiCAD workflow like:\n• panelization of both, regular and oddly shaped, boards\n• automated exporting manufacturing data based on manufacturer presets\n• multi-board project in KiCAD\n• building board presentation pages\n• making 3D-printed solder stencils\n• and more",
+                "identifier": "com.github.yaqwsx.kikit",
+                "license": "MIT",
+                "maintainer": {
+                    "contact": {
+                        "github": "https://github.com/yaqwsx",
+                        "twitter": "https://twitter.com/yaqwsx_cz",
+                        "web": "https://honzamrazek.cz"
+                    },
+                    "name": "Jan Mrázek"
+                },
+                "name": "KiKit",
+                "resources": {
+                    "homepage": "https://github.com/yaqwsx/KiKit"
+                },
+                "type": "plugin",
+                "versions": [
+                    {
+                        "download_sha256": "c654f4ffb73d7687830ed94c9ba110fe6fbc6baf4011e8e4167e00b1396ae10c",
+                        "download_size": 9533,
+                        "download_url": "https://github.com/yaqwsx/KiKit/releases/download/v1.6.0/pcm-kikit.zip",
+                        "install_size": 10579,
+                        "kicad_version": "7.0",
+                        "status": "stable",
+                        "version": "1.6.0"
+                    }
+                ]
+            },
+            "pinned": false,
+            "repository_id": "46f88614eade3439",
+            "repository_name": "KiCad official repository"
+        },
+        {
+            "current_version": "1.6.0",
+            "install_timestamp": 1756787049,
+            "package": {
+                "author": {
+                    "contact": {
+                        "github": "https://github.com/yaqwsx",
+                        "twitter": "https://twitter.com/yaqwsx_cz",
+                        "web": "https://honzamrazek.cz"
+                    },
+                    "name": "Jan Mrázek"
+                },
+                "description": "A footprint and schematic library for KiKit annotations.",
+                "description_full": "KiKit uses these symbols a footprints to annotate your boards (e.g., to place a tab in a panel).",
+                "identifier": "com.github.yaqwsx.kikit-library",
+                "license": "MIT",
+                "maintainer": {
+                    "contact": {
+                        "github": "https://github.com/yaqwsx",
+                        "twitter": "https://twitter.com/yaqwsx_cz",
+                        "web": "https://honzamrazek.cz"
+                    },
+                    "name": "Jan Mrázek"
+                },
+                "name": "KiKit Library",
+                "resources": {
+                    "homepage": "https://github.com/yaqwsx/KiKit"
+                },
+                "type": "library",
+                "versions": [
+                    {
+                        "download_sha256": "a1944630656cb1c02a890ad11f218bbc48cc210c21b4c947c032de1c076f8101",
+                        "download_size": 12713,
+                        "download_url": "https://github.com/yaqwsx/KiKit/releases/download/v1.6.0/pcm-kikit-lib.zip",
+                        "install_size": 17762,
+                        "kicad_version": "7.0",
+                        "status": "stable",
+                        "version": "1.6.0"
+                    }
+                ]
+            },
+            "pinned": false,
+            "repository_id": "46f88614eade3439",
+            "repository_name": "KiCad official repository"
+        },
+        {
             "current_version": "0.6.0",
             "install_timestamp": 1747624034,
             "package": {
@@ -1122,8 +1339,8 @@
             "repository_name": "KiCad official repository"
         },
         {
-            "current_version": "0.5.1",
-            "install_timestamp": 1752809338,
+            "current_version": "0.5.2",
+            "install_timestamp": 1762820731,
             "package": {
                 "author": {
                     "contact": {
@@ -1144,6 +1361,15 @@
                 },
                 "type": "plugin",
                 "versions": [
+                    {
+                        "download_sha256": "963a6e32f24f9a921979136e07fa2fa66a825fa7fdb752fe798378381a09b39e",
+                        "download_size": 47059,
+                        "download_url": "https://pcm.kivar.markh.de/kivar-0.5.2-pcm.zip",
+                        "install_size": 121197,
+                        "kicad_version": "8.0",
+                        "status": "stable",
+                        "version": "0.5.2"
+                    },
                     {
                         "download_sha256": "6a270a16c9f97bb848f92ca2bdad8a22f1be3632817459ae632e9b0c760e5c29",
                         "download_size": 47060,

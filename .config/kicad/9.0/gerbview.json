@@ -66,8 +66,20 @@
     "selection_zoom": 1
   },
   "system": {
-    "drill_file_history": [],
-    "file_history": [],
+    "drill_file_history": [
+      "/home/hug/projects/3dp-resources/open-source/Bird's Nest/Gerber/Drill_NPTH_Through.DRL"
+    ],
+    "file_history": [
+      "/home/hug/projects/3dp-resources/open-source/Bird's Nest/Gerber/Gerber_TopSolderMaskLayer.GTS",
+      "/home/hug/projects/3dp-resources/open-source/Bird's Nest/Gerber/Gerber_TopSilkscreenLayer.GTO",
+      "/home/hug/projects/3dp-resources/open-source/Bird's Nest/Gerber/Gerber_TopPasteMaskLayer.GTP",
+      "/home/hug/projects/3dp-resources/open-source/Bird's Nest/Gerber/Gerber_TopLayer.GTL",
+      "/home/hug/projects/3dp-resources/open-source/Bird's Nest/Gerber/Gerber_InnerLayer2.G2",
+      "/home/hug/projects/3dp-resources/open-source/Bird's Nest/Gerber/Gerber_InnerLayer1.G1",
+      "/home/hug/projects/3dp-resources/open-source/Bird's Nest/Gerber/Gerber_DrillDrawingLayer.GDD",
+      "/home/hug/projects/3dp-resources/open-source/Bird's Nest/Gerber/Gerber_DocumentLayer.GDL",
+      "/home/hug/projects/3dp-resources/open-source/Bird's Nest/Gerber/Gerber_BottomSolderMaskLayer.GBS"
+    ],
     "first_run_shown": false,
     "job_file_history": [],
     "last_imperial_units": 5,
@@ -82,7 +94,7 @@
       "always_show_cursor": true,
       "fullscreen_cursor": false
     },
-    "display": 0,
+    "display": 1,
     "grid": {
       "axes_enabled": true,
       "fast_grid_1": 15,
@@ -220,12 +232,12 @@
       "user_grid_y": ""
     },
     "maximized": false,
-    "mru_path": "/home/hug/huskee/scanner-conn-inversion/",
-    "perspective": "layout2|name=MainToolbar;caption=;state=139632;dir=1;layer=6;row=0;pos=0;prop=100000;bestw=610;besth=38;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=AuxToolbar;caption=;state=139644;dir=1;layer=4;row=0;pos=0;prop=100000;bestw=1064;besth=38;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=MsgPanel;caption=;state=131452;dir=3;layer=6;row=0;pos=0;prop=100000;bestw=400;besth=38;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=OptToolbar;caption=;state=139596;dir=4;layer=3;row=0;pos=0;prop=100000;bestw=34;besth=620;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=LayersManager;caption=Layers Manager;state=1532;dir=2;layer=3;row=0;pos=0;prop=100000;bestw=169;besth=32;minw=169;minh=32;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=169;floath=32|name=DrawFrame;caption=;state=1020;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=400;besth=188;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(1,6,0)=38|dock_size(1,4,0)=38|dock_size(3,6,0)=38|dock_size(4,3,0)=34|dock_size(2,3,0)=169|dock_size(5,0,0)=384|",
-    "pos_x": 5,
-    "pos_y": 44,
-    "size_x": 760,
-    "size_y": 975,
+    "mru_path": "/home/hug/projects/3dp-resources/open-source/Bird's Nest/Gerber",
+    "perspective": "layout2|name=MainToolbar;caption=;state=139632;dir=1;layer=6;row=0;pos=0;prop=100000;bestw=610;besth=38;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=AuxToolbar;caption=;state=139644;dir=1;layer=4;row=0;pos=0;prop=100000;bestw=1064;besth=38;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=MsgPanel;caption=;state=131452;dir=3;layer=6;row=0;pos=0;prop=100000;bestw=400;besth=38;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=OptToolbar;caption=;state=139596;dir=4;layer=3;row=0;pos=0;prop=100000;bestw=34;besth=620;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=LayersManager;caption=Layers Manager;state=1532;dir=2;layer=3;row=0;pos=0;prop=100000;bestw=318;besth=32;minw=318;minh=32;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=318;floath=32|name=DrawFrame;caption=;state=1020;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=400;besth=188;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(1,6,0)=38|dock_size(1,4,0)=38|dock_size(3,6,0)=38|dock_size(4,3,0)=34|dock_size(2,3,0)=318|dock_size(5,0,0)=228|",
+    "pos_x": 4803,
+    "pos_y": 43,
+    "size_x": 1913,
+    "size_y": 1033,
     "zoom_factors": [
       0.022,
       0.035,
