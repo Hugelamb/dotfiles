@@ -8,3 +8,8 @@ vim.filetype.add({
     graph = "latex",
   },
 })
+vim.filetype.add({
+  extension = {
+    FCMacro = "python",
+  },
+})

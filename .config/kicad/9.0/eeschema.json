@@ -68,7 +68,7 @@
     "search_panel_width": 284,
     "show_net_nav_panel": false,
     "show_properties": false,
-    "show_schematic_hierarchy": false,
+    "show_schematic_hierarchy": true,
     "show_search": false
   },
   "autoplace_fields": {
@@ -106,7 +106,7 @@
     "zoom_to_fit": true
   },
   "design_block_chooser": {
-    "height": 833,
+    "height": 882,
     "keep_annotations": false,
     "lib_tree": {
       "column_widths": {
@@ -117,7 +117,7 @@
     "place_as_sheet": false,
     "repeated_placement": false,
     "sash_pos_h": 440,
-    "sash_pos_v": 502,
+    "sash_pos_v": 525,
     "sort_mode": 0,
     "width": 300
   },
@@ -151,20 +151,21 @@
     "export_filename": "",
     "field_widths": {
       "${DNP}": 100,
-      "${EXCLUDE_FROM_BOARD}": 100,
-      "${EXCLUDE_FROM_BOM}": 100,
+      "${EXCLUDE_FROM_BOARD}": 268,
+      "${EXCLUDE_FROM_BOM}": 252,
       "${QUANTITY}": 100,
       "Datasheet": 100,
       "Footprint": 277,
       "LCSC Part #": 100,
+      "LCSC Part Number": 100,
       "Reference": 242,
       "Value": 160
     },
-    "height": 740,
+    "height": 667,
     "page": 0,
     "scope": 0,
     "selection_mode": 0,
-    "width": 2266
+    "width": 1617
   },
   "find_replace": {
     "find_history": [
@@ -209,14 +210,7 @@
       "Item",
       "Description"
     ],
-    "open_libs": [
-      "-- Recently Used --",
-      "-- Already Placed --",
-      "PCM_4ms_Connector",
-      "Connector_Generic",
-      "Connector_Generic_MountingPin",
-      "Connector_Generic_Shielded"
-    ]
+    "open_libs": []
   },
   "lib_view": {
     "cmp_list_width": 150,
@@ -469,22 +463,22 @@
     "height": 600,
     "keep_symbol": true,
     "place_all_units": true,
-    "sash_pos_h": 597,
+    "sash_pos_h": 691,
     "sash_pos_v": 526,
     "sort_mode": 0,
     "width": 800
   },
   "system": {
     "file_history": [
+      "/home/hug/projects/DryBox/PCBs/controller/controller.kicad_sch",
+      "/home/hug/projects/pwm_fan_controller/controller_pcb/controller_pcb.kicad_sch",
       "/home/hug/projects/canbus-toolheads/canbus-toolheads.kicad_sch",
       "/home/hug/projects/3dp-resources/sensor-pcb-designs/voc_sensor/voc_sensor.kicad_sch",
       "/home/hug/projects/kicad-libraries/library-manager/library-manager.kicad_sch",
       "/home/hug/projects/keyboard-designs/iqs550-trackpad/trackpad-iqs550-zones/trackpad-iqs550-zones.kicad_sch",
       "/home/hug/projects/keyboard-designs/old-designs/trackpad-iqs550.kicad_sch/trackpad-iqs550.kicad_sch.kicad_sch",
       "/home/hug/projects/euro-modules/cd40106-vco/cd40106-vco.kicad_sch",
-      "/home/hug/projects/eurorack/6-layer-Bboard/6-layer-bboard.kicad_sch",
-      "/home/hug/projects/rack-psu/rack-psu.kicad_sch",
-      "/home/hug/projects/3dp-resources/open-source/Nevermore-Sensors/EasyEDA-kicad/EasyEDA.kicad_sch"
+      "/home/hug/projects/eurorack/6-layer-Bboard/6-layer-bboard.kicad_sch"
     ],
     "first_run_shown": false,
     "last_imperial_units": 5,
@@ -549,7 +543,7 @@
     },
     "maximized": false,
     "mru_path": "/home/hug/huskee/scanner-conn-inversion-v2/",
-    "perspective": "layout2|name=InfoBar;caption=;state=131454;dir=1;layer=1;row=0;pos=0;prop=100000;bestw=20;besth=30;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=MainToolbar;caption=;state=139632;dir=1;layer=6;row=0;pos=0;prop=100000;bestw=1172;besth=34;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=MsgPanel;caption=;state=131452;dir=3;layer=6;row=0;pos=0;prop=100000;bestw=400;besth=38;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=SchematicHierarchy;caption=Schematic Hierarchy;state=2099150;dir=4;layer=3;row=0;pos=1;prop=100000;bestw=200;besth=200;minw=120;minh=60;maxw=-1;maxh=-1;floatx=50;floaty=116;floatw=200;floath=200|name=PropertiesManager;caption=Properties;state=2099150;dir=4;layer=3;row=0;pos=0;prop=100000;bestw=300;besth=200;minw=240;minh=60;maxw=-1;maxh=-1;floatx=50;floaty=200;floatw=300;floath=400|name=SelectionFilter;caption=Selection Filter;state=2098638;dir=4;layer=3;row=0;pos=1;prop=0;bestw=180;besth=-1;minw=180;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=DesignBlocks;caption=Design Blocks;state=2099150;dir=2;layer=3;row=0;pos=0;prop=100000;bestw=300;besth=200;minw=240;minh=60;maxw=-1;maxh=-1;floatx=50;floaty=200;floatw=800;floath=600|name=NetNavigator;caption=Net Navigator;state=2099150;dir=4;layer=3;row=0;pos=0;prop=100000;bestw=200;besth=200;minw=120;minh=60;maxw=-1;maxh=-1;floatx=50;floaty=200;floatw=200;floath=200|name=OptToolbar;caption=;state=139596;dir=4;layer=2;row=0;pos=0;prop=100000;bestw=34;besth=460;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=ToolsToolbar;caption=;state=139596;dir=2;layer=2;row=0;pos=0;prop=100000;bestw=34;besth=890;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=DrawFrame;caption=;state=1020;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=400;besth=188;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=Search;caption=Search;state=2098686;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=180;besth=100;minw=180;minh=60;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=480;floath=200|dock_size(1,6,0)=34|dock_size(3,6,0)=38|dock_size(4,2,0)=34|dock_size(2,2,0)=34|dock_size(5,0,0)=402|",
+    "perspective": "layout2|name=InfoBar;caption=;state=131454;dir=1;layer=1;row=0;pos=0;prop=100000;bestw=20;besth=30;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=MainToolbar;caption=;state=139632;dir=1;layer=6;row=0;pos=0;prop=100000;bestw=1172;besth=34;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=MsgPanel;caption=;state=131452;dir=3;layer=6;row=0;pos=0;prop=100000;bestw=400;besth=38;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=SchematicHierarchy;caption=Schematic Hierarchy;state=2099148;dir=4;layer=3;row=0;pos=0;prop=100000;bestw=300;besth=200;minw=120;minh=60;maxw=-1;maxh=-1;floatx=352;floaty=72;floatw=200;floath=200|name=PropertiesManager;caption=Properties;state=2099150;dir=4;layer=3;row=0;pos=0;prop=100000;bestw=300;besth=200;minw=240;minh=60;maxw=-1;maxh=-1;floatx=50;floaty=200;floatw=300;floath=400|name=SelectionFilter;caption=Selection Filter;state=2098636;dir=4;layer=3;row=0;pos=1;prop=0;bestw=180;besth=-1;minw=180;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=DesignBlocks;caption=Design Blocks;state=2099150;dir=2;layer=3;row=0;pos=0;prop=100000;bestw=300;besth=200;minw=240;minh=60;maxw=-1;maxh=-1;floatx=50;floaty=200;floatw=800;floath=600|name=NetNavigator;caption=Net Navigator;state=2099150;dir=4;layer=3;row=0;pos=0;prop=100000;bestw=200;besth=200;minw=120;minh=60;maxw=-1;maxh=-1;floatx=50;floaty=200;floatw=200;floath=200|name=OptToolbar;caption=;state=139596;dir=4;layer=2;row=0;pos=0;prop=100000;bestw=34;besth=460;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=ToolsToolbar;caption=;state=139596;dir=2;layer=2;row=0;pos=0;prop=100000;bestw=34;besth=890;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=DrawFrame;caption=;state=1020;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=400;besth=188;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=Search;caption=Search;state=2098686;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=180;besth=100;minw=180;minh=60;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=480;floath=200|dock_size(1,6,0)=34|dock_size(3,6,0)=38|dock_size(4,3,0)=302|dock_size(4,2,0)=34|dock_size(2,2,0)=34|dock_size(5,0,0)=402|",
     "pos_x": 5,
     "pos_y": 44,
     "size_x": 1526,

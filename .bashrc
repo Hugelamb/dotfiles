@@ -100,6 +100,10 @@ HISTFILESIZE=2000
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
+# Set terminal as foot
+if [ builtin type -P "foot" &> /dev/null ]; then
+  export TERM=foot
+fi
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
@@ -112,6 +116,7 @@ PS1='\[${colive}\][\[${cyellow}\]\u\[${cblue}\]@\[${cyellow}\]\h\[${colive}\]] \
 #------------------------------------------------
 # Commands
 #------------------------------------------------
+
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -258,6 +263,7 @@ fi
 export TEXMFHOME="$HOME/.local/share/texmf"
 
 prepend_if_not_in_path "$HOME/.local/bin"
+prepend_if_not_in_path "$HOME/.local"
 
 # add mupdf fileviewer binary to path
 prepend_if_not_in_path "$HOME/.mupdf/bin"
@@ -303,3 +309,4 @@ fi
 
 
 export STM32_PRG_PATH=/home/hug/applications/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin
+

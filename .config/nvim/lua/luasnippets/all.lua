@@ -1,4 +1,5 @@
-local utils = require('luasnippets.utils')
+local ls = require("luasnip")
+local utils = require("luasnippets.utils")
 local get_date = utils.get_ISO_8601_date 
 local get_custom_date_fmt = utils.get_custom_date_fmt 
 return {

@@ -1,6 +1,6 @@
 -- LaTeX math environment snippets (
 local utils = require('luasnippets.utils')
-local tex_utils = require('tex.utils')
+local tex_utils = require('luasnippets.tex.utils')
 -- Table snippet definitions
 M = {
 -- Symbols

@@ -66,25 +66,25 @@
   "system": {
     "check_for_kicad_updates": true,
     "file_history": [
+      "/home/hug/projects/DryBox/PCBs/controller/controller.kicad_pro",
+      "/home/hug/projects/pwm_fan_controller/controller_pcb/controller_pcb.kicad_pro",
       "/home/hug/projects/canbus-toolheads/canbus-toolheads.kicad_pro",
       "/home/hug/projects/3dp-resources/sensor-pcb-designs/voc_sensor/voc_sensor.kicad_pro",
       "/home/hug/projects/kicad-libraries/library-manager/library-manager.kicad_pro",
       "/home/hug/projects/keyboard-designs/iqs550-trackpad/trackpad-iqs550-zones/trackpad-iqs550-zones.kicad_pro",
       "/home/hug/projects/keyboard-designs/old-designs/trackpad-iqs550.kicad_sch/trackpad-iqs550_TH_Connector.kicad_pro",
       "/home/hug/projects/euro-modules/cd40106-vco/cd40106-vco.kicad_pro",
-      "/home/hug/projects/eurorack/6-layer-Bboard/6-layer-bboard.kicad_pro",
-      "/home/hug/projects/rack-psu/rack-psu.kicad_pro",
-      "/home/hug/projects/3dp-resources/open-source/Nevermore-Sensors/EasyEDA-kicad/EasyEDA.kicad_pro"
+      "/home/hug/projects/eurorack/6-layer-Bboard/6-layer-bboard.kicad_pro"
     ],
     "first_run_shown": false,
     "last_design_block_lib_dir": "",
     "last_imperial_units": 5,
     "last_metric_units": 1,
     "last_received_update": "",
-    "last_update_check_time": "2025-12-31T14:49:11",
+    "last_update_check_time": "2026-02-25T10:28:17",
     "max_undo_items": 0,
     "open_projects": [
-      "/home/hug/projects/canbus-toolheads/canbus-toolheads.kicad_pro"
+      "/home/hug/projects/DryBox/PCBs/controller/controller.kicad_pro"
     ],
     "show_import_issues": true,
     "units": 1
@@ -244,12 +244,12 @@
       "user_grid_y": ""
     },
     "maximized": false,
-    "mru_path": "/home/hug/projects/canbus-toolheads/",
-    "perspective": "layout2|name=ProjectTree;caption=Project Files;state=1532;dir=4;layer=1;row=0;pos=0;prop=100000;bestw=430;besth=-1;minw=250;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=Editors;caption=Editors;state=508;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=700;besth=590;minw=700;minh=590;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=MainToolbar;caption=;state=139596;dir=4;layer=2;row=0;pos=0;prop=100000;bestw=34;besth=227;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(4,2,0)=34|dock_size(4,1,0)=430|dock_size(5,0,0)=700|",
-    "pos_x": 5,
-    "pos_y": 44,
-    "size_x": 1526,
-    "size_y": 975,
+    "mru_path": "/home/hug/projects/DryBox/PCBs/controller/",
+    "perspective": "layout2|name=MainToolbar;caption=;state=139596;dir=4;layer=2;row=0;pos=0;prop=100000;bestw=34;besth=227;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=ProjectTree;caption=Project Files;state=1532;dir=4;layer=1;row=0;pos=0;prop=100000;bestw=430;besth=-1;minw=250;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=Editors;caption=Editors;state=508;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=700;besth=590;minw=700;minh=590;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(4,2,0)=34|dock_size(4,1,0)=430|dock_size(5,0,0)=700|",
+    "pos_x": 4,
+    "pos_y": 43,
+    "size_x": 1528,
+    "size_y": 977,
     "zoom_factors": [
       0.13,
       0.22,

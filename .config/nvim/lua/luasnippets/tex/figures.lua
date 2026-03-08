@@ -1,6 +1,6 @@
 -- Snippets focussing on creation and manipulation of mathematical and logical figures
 -- such as graphs, diagrams, flowcharts and the like
-local tex_utils = require("tex.utils")
+-- local tex_utils = require("tex.utils")
 
 return {
   s({ trig = "fig", dscr = "Figure environment" },

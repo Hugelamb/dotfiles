@@ -1,6 +1,6 @@
 -- LaTeX environment snippets
-local tex_utils = require('tex.utils')
-local utils = require('utils')
+local tex_utils = require('luasnippets.tex.utils')
+local utils = require('luasnippets.utils')
 local conds = require("luasnip.extras.expand_conditions")
 return {
   s({ trig = "mk", dscr = "Enter inline math mode",  name = "inline math environment", snippetType="autosnippet" },
@@ -175,46 +175,6 @@ return {
     ),
     { condition = tex_utils.in_text }
   ),  
-  -- s({ trig = "enn", dscr = "enumerate", snippetType="autosnippet" },
-  --   fmta(
-  --     [[
-  --   \begin{enumerate}<>
-  --   <> 
-  --   \end{enumerate}
-  --   ]],
-  --     {
-  --       c(1,{t(""),{ t("[label = {"), i(1), t("}]") }}),  -- Optional label (only works with the enumitem package included in preamble)
-  --       d(2, tex_utils.list,{1}, {
-  --         user_args = {
-  --           function(snip) snip.rows = snip.rows + 1 end,
-  --           -- don't drop below one
-  --           function(snip) snip.rows = math.max(snip.rows - 1,1) end
-  --         }
-  --       })
-
-  --     }
-  --   ),
-  --   { condition = tex_utils.in_text }
-  -- ),  
-  -- s({ trig = "itt", dscr = "itemize", snippetType="autosnippet" },
-  --   fmta(
-  --     [[
-  --   \begin{itemize}
-  --   <>
-  --   \end{itemize}
-  --   ]], 
-  --     {
-  --       d(1, tex_utils.list,{1}, {
-  --         user_args = {
-  --           function(snip) snip.rows = snip.rows + 1 end,
-  --           -- don't drop below one
-  --           function(snip) snip.rows = math.max(snip.rows - 1,1) end
-  --         }
-  --       })  
-  --     }
-  --   ),
-  --   { condition = tex_utils.in_text }
-  -- ),
   s({ trig = "itn", dscr = "enum item", snippetType="autosnippet" },
     fmta(
       [[
@@ -357,6 +317,22 @@ return {
     ),
     { condition = tex_utils.in_text + conds.line_begin }
   ),
+  s({ trig = "tutn", dscr = "tutorial",snippetType="autosnippet" },
+    fmta(
+      [[
+    \tutorial{<>}{<>}{<>}
+    <>
+    ]],
+      {
+        i(1),
+        d(2, utils.get_custom_date_fmt, {}, { user_args = { "%a %d %b %Y %H:%M" }}),
+        i(3),
+        i(0)
+      }
+    ),
+    { condition = tex_utils.in_text + conds.line_begin }
+  ),
+
   s({ trig = "defn", dscr = "definition", snippetType="autosnippet" },
     fmta(
       [[
@@ -367,6 +343,40 @@ return {
       ]],
       {
         i(1,'Defined'),
+        i(2),
+        i(3),
+        i(0)
+      }
+    ),
+    { condition = tex_utils.in_text + conds.line_begin }
+  ),
+  s({ trig = "propn", dscr = "property", snippetType="autosnippet" },
+    fmta(
+      [[
+      \begin{property}{<>}{<>}
+      <>
+      \end{property}
+      <>
+      ]],
+      {
+        i(1,'Property Name'),
+        i(2),
+        i(3),
+        i(0)
+      }
+    ),
+    { condition = tex_utils.in_text + conds.line_begin }
+  ),
+  s({ trig = "thmn", dscr = "theorem", snippetType="autosnippet" },
+    fmta(
+      [[
+      \begin{theorem}{<>}{<>}
+      <>
+      \end{theorem}
+      <>
+      ]],
+      {
+        i(1,'Theorem Name'),
         i(2),
         i(3),
         i(0)
@@ -391,6 +401,5 @@ return {
     ),
     { condition = tex_utils.in_text + conds+line_begin }
   ),
-     
 }
 

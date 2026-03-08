@@ -149,26 +149,6 @@ window#waybar #workspaces button.active {
     color: @darkText;
     background-color: @workspace_active;
 }
-
-/* Battery Status Styling */
-/* cycle through "  ","  ","  ","  ","  " */
-
-
-#battery.charging {
-  color: @sunset-lightgreen;
-}
-
-#battery.discharging {
-
-}
-
-#battery.full {
-
-}
-
-#battery.unknown {
-
-}
 /* bar specific overrides */
 
 /* ================================ */
@@ -208,7 +188,6 @@ window#waybar #workspaces button.active {
     color: @sunset-red;
 }
 #custom-power {
-
 }
 
 

@@ -44,7 +44,7 @@
     "useDefaultAuthor": true
   },
   "graphics": {
-    "cairo_antialiasing_mode": 0,
+    "cairo_antialiasing_mode": 2,
     "opengl_antialiasing_mode": 2
   },
   "input": {
@@ -100,6 +100,6 @@
     "pdf_viewer_name": "",
     "text_editor": "nvim",
     "use_system_pdf_viewer": true,
-    "working_dir": "/home/hug/projects/canbus-toolheads"
+    "working_dir": "/home/hug/projects/DryBox/PCBs/controller"
   }
 }

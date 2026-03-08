@@ -1,6 +1,6 @@
 -- Utility functions for lua snippets
 -- include using require('luasnippets.utils')
-local utils = require('luasnippets.utils')
+local utils = require("luasnippets.utils")
 local cond_obj = require("luasnip.extras.conditions")
 local ls = require("luasnip")
 local s = ls.snippet

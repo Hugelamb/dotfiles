@@ -1,4 +1,6 @@
 {
+  // To open a program window floating and in specific location, use the following as a template:
+  // hyprctl dispatch exec \"[float; move onscreen x y]\" "YOUR PROGRAM"
 
   //Modules Configuration
     "hyprland/workspaces": {
@@ -51,6 +53,7 @@
           "critical": 15
         },
         "format": "{capacity}%{icon}",
+        "format-charging": "{icon}",
         "format-alt": "{icon}",
         "format-icons": ["  ","  ","  ","  ","  "],
         "max-length": 6 
@@ -125,8 +128,9 @@
           "default": ["", "", ""],
           "muted": "󰝟"
         },
-      "on-click": "flatpak run com.saivert.pwvucontrol"
+      "on-click": "hyprctl dispatch exec \"[float; move onscreen 100% 38]\" \"flatpak run com.saivert.pwvucontrol\"" // Double escape, to pass a single \ to the dispatcher, rather than it being interpreted as a special escape sequence by the waybar program when the configuration is being read.
     },
+    // mpris not used, use custom/player instead
     "mpris": {
       "format": "{player_icon} : {dynamic}",
       "format-paused": "{status_icon} <i>{dynamic}</i>",
@@ -183,6 +187,14 @@
       "on-click": "swaync-client -t -sw",
       "escape": true
     },
+    "custom/nordvpn": {
+      "format": "{}",
+      "exec": "~/.config/waybar/scripts/nordvpn-status.sh",
+      "return-type":"json",
+      "interval": 5,
+      "on-click": "/bin/bash -c nordvpn-gui",
+      "tooltip": true
+    },
     "custom/padding": {
       "format": " ",
       "tooltip": false
@@ -210,29 +222,18 @@
       "format": "<span color='#a89884'> >></span>",
       "tooltip": false
     },
-       // "custom/timer": {
-       //     // requires waybar-timer; find details at https://github.com/jbirnick/waybar-timer
-       //   "exec": "$HOME/.config/waybar/scripts/waybar_timer hook",
-       //   "exec-on-event": false,
-       //   "return-type": "json",
-       //   "format": "{icon} {0}",
-       //   "format-icons": {
-       //     "standby": "<span color='#e99727' > STANDBY</span>",
-       //     "running": "<span color='#384015' > RUNNING</span>",
-       //     "paused": "PAUSE"
-       //   },
-       //   "on-click": "$HOME/.config/waybar/scripts/waybar_timer new 25 'notify-send \"Session finished\"'",
-       //   "on-click-middle": "$HOME/.config/waybar/scripts/waybar_timer cancel",
-       //   "on-click-right": "$HOME/.config/waybar/scripts/waybar_timer togglepause",
-       //   "on-scroll-up": "$HOME/.config/waybar/scripts/waybar_timer increase 60 || $HOME/.config/waybar/scripts/waybar_timer new 1 'notify-send -u critical \"Timer expired\"'",
-       //   "on-scroll-down": "$HOME/.config/waybar/scripts/waybar_timer decrease 60"
-       // },
     "custom/weather": {
       "format": "{}",
       "exec": "$HOME/.config/waybar/scripts/weather.sh Sydney,Australia",
       "return-type": "json",
       "tooltip": true,
       "interval": 3600
+    },
+    "custom/battery": {
+      "format": "{text}",
+      "exec": "$HOME/.config/waybar/scripts/battery.sh refresh",
+      "return-type": "json",
+      "tooltip": true
+      //"interval": 0.2
     }
-
 }

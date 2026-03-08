@@ -1,0 +1,141 @@
+/* ==================== */
+/*      Common CSS      */
+/* ==================== */
+/* Standard colour set  */
+/* Light Text:          #fff8e5
+ * Dark Text:           #00071a
+ * Left Background:     #8c57ff
+ * Right Background:    #36f9f6
+ * Workspace Icons (L->R):
+ * #f821b2, #ff5761, #e99727, #acc642, #64e699  
+ * Border:              # 202735
+ * Player Background:   # dfd92a
+ *
+ */
+*   {
+    /*  `otf-font-awesome` must be installed for icons */
+    font-family: Noto Sans CJK, Symbols Nerd Font, MesloLGM Nerd Font Propo;
+    padding: 0;
+    border-radius: 0;
+    min-height: 0;
+    margin: 0;
+    border: none;
+    text-shadow: none;
+    transition: none;
+    box-shadow: none;
+}
+/* for whole status bar */
+window#waybar {
+    background: rgba(172,172,172,255); /* = #00071a */
+    background: linear-gradient(45deg, #8c57ff 0%, #36f9f6 100%); /* #36f9f6 100% );*/ 
+    color: #fff8e5;
+    border-radius: 10px;
+    border: 1px solid #202735;
+    margin: -2px;
+    padding-left: 2px;
+    padding-right: 2px;
+    font-size: 13px;
+    
+}
+window#waybar.hidden {
+    opacity: 1;
+}
+.modules-left {
+/*    padding-left: 5px;    */
+    color: #fff8e5;
+}
+.modules-right {
+    color: #00071a;
+}
+#workspaces button,
+#workspaces button:hover,
+#workspaces button.visible,
+#workspaces button.visible:hover,
+#workspaces button.active,
+#workspaces button.active:hover,
+#workspaces button.urgent,
+#window,
+#tray,
+#cpu,
+#clock,
+#temperature,
+#temperature-critical,
+#backlight,
+#pulseaudio,
+#pulseaudio-muted,
+#battery,
+#battery-critical,
+#battery-warning,
+#timer,
+#custom-fuzzel,
+#custom-padding,
+#custom-notification,
+#custom-timer,
+#custom-power,
+#custom-player,
+#custom-tasks,
+
+
+
+#clock {
+    font-family: MesloLGM Nerd Font Mono;
+    font-weight: 400;
+    color: #00071a;
+}
+
+/* ================================ */
+/*            WORKSPACES            */
+/* ================================ */
+
+#workspaces {
+    /*font-size: ;*/ 
+    margin: 0px;
+}
+
+#workspaces button {
+    color:#000000; 
+    background: rgba(0,7,26,0);
+    min-width: 25px;
+    padding: 0 8px 0 0; /* added to balance offset of font in boxes */
+    margin: 5px 3px;
+}
+#workspaces button.visible {
+    border: 2px solid #000000;
+    border-radius: 8px;
+} 
+#workspaces button.active {
+    border: 2px solid #00071a;
+    border-radius: 8px;
+}
+/* ================================ */
+/*          CUSTOM MODULES          */
+/* ================================ */
+
+
+#custom-fuzzel {
+    padding: 0 6px;
+    margin: 5px 0px;
+    font-size: 20px;
+}
+#custom-notification {
+    color: #fff8e6;
+    background: rgba(0,7,26,0);
+    font-size: 14px;
+    padding: 2px 2px;
+}
+#custom-notification button.visible {
+    border: 2px solid #00071a;
+    border-radius: 12px;
+}
+#custom-player {
+    color: #00071a;
+    background: rgba(0,0,0,0);
+    border: 1px solid #202735;
+    border-radius: 21px;
+    padding-left: 9px;
+    padding-right: 9px;
+}
+#custom-timer {
+    color: #00071a;
+    background: rgba(0,7,26,0);
+}
