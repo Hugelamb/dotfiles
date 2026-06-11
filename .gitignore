@@ -1,1 +1,5 @@
 .dotfiles
+.config/QtProject.conf
+.config/nvim/lazy-lock.json
+.config/nvim/spell/**
+

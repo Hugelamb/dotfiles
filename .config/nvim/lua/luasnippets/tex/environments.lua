@@ -85,7 +85,7 @@ return {
           }
         })})
   ),  
-  s({ trig = "tabo", dscr = "Open tabular environment", snippetType="autosnippet" },
+  s({ trig = "tabo", dscr = "Open tabular environment", snippetType="autosnippet", name = "open_table" },
     fmta(
       [[
     \begin{tabular}{<>}
@@ -154,7 +154,13 @@ return {
     \end{enumerate}<>
     ]],
       {
-        c(1,{t(""),{ t("[label = {"), i(1), t("}]") }}),
+        c(1,{
+          t(""),
+          t("[label = {\\ensquared{\\Alph*}}]"),
+          t("[label = {\\textbf{\\arabic*}}]"),
+          t("[label = {\\textbf{\\alph*}}]"),
+          { t("[label = {"), i(1), t("}]") },
+        }),
         i(2),
         i(0)
       }
@@ -164,12 +170,18 @@ return {
   s({ trig = "itt", dscr = "itemize environment", snippetType="autosnippet" },
     fmta(
     [[
-    \begin{itemize}
+    \begin{itemize}<>
       \item <>
     \end{itemize}<>
     ]],
       {
-        i(1),
+        c(1,{
+          t(""),
+          { t("[label = {"), i(1), t("}]") },
+          t("[label = {\\arrowheadbullet}]"),
+          t("[label = {\\PaperPortrait}]")
+        }),
+        i(2),
         i(0)
       }
     ),
@@ -332,7 +344,6 @@ return {
     ),
     { condition = tex_utils.in_text + conds.line_begin }
   ),
-
   s({ trig = "defn", dscr = "definition", snippetType="autosnippet" },
     fmta(
       [[
@@ -360,6 +371,23 @@ return {
       ]],
       {
         i(1,'Property Name'),
+        i(2),
+        i(3),
+        i(0)
+      }
+    ),
+    { condition = tex_utils.in_text + conds.line_begin }
+  ),
+  s({ trig = "rdn", dscr = "new reading note", snippetType="autosnippet" },
+    fmta(
+      [[
+      \begin{reading}{<>}{<>}
+      <>
+      \end{reading}
+      <>
+      ]],
+      {
+        i(1,'Text Name'),
         i(2),
         i(3),
         i(0)
@@ -399,7 +427,7 @@ return {
         i(0)
       }
     ),
-    { condition = tex_utils.in_text + conds+line_begin }
+    { condition = tex_utils.in_text + conds.line_begin }
   ),
 }
 

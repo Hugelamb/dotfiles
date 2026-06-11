@@ -11,37 +11,22 @@
   "margin-right": 2,
   "output": ["eDP-1"],
   "modules-left": [
-    "custom/padding",
     "custom/fuzzel",
-    "custom/padding",
     "hyprland/workspaces",
-    "custom/padding",
     "hyprland/submap",
-    "custom/padding",
     "custom/calendar"
   ],
   "modules-center": ["custom/player"],
   "modules-right": [
-    "wireplumber",
-    "custom/padding",
-    "custom/notification",
-    "custom/padding",
-    "network",
-    "custom/padding",
-    "custom/nordvpn",
-    "custom/padding",
     "custom/weather",
-    "custom/padding",
+    "custom/nordvpn",
+    "wireplumber",
+    //"custom/notification",
+    "network",
     "clock",
-    "custom/padding",
-    "custom/timer",
-    "custom/padding",
-    "custom/brightness",
-    "custom/padding",
+    //"custom/brightness",
     "battery",
-    "custom/padding",
-    "custom/power",
-    "custom/padding"
+    "custom/power"
   ],
   "include": [
     "~/.config/waybar/default-modules.jsonc"
@@ -59,39 +44,24 @@
   "margin-right": 2,
   "output": ["Ancor Communications Inc ASUS PB287Q 0x00015C9F"],
   "modules-left": [
-    "custom/padding",
     "custom/fuzzel",
-    "custom/padding",
     "hyprland/workspaces",
-    //"hyprland/window",
-    "custom/padding",
     "hyprland/submap",
-    "custom/padding",
     "custom/calendar"
   ],
   "modules-center": ["custom/player"],
   "modules-right": [
     "wireplumber",
     /*"custom/audiocontrol",*/
-    "custom/padding",
     "custom/notification",
-    "custom/padding",
     "network",
-    "custom/padding",
     "custom/nordvpn",
-    "custom/padding",
     "custom/weather",
-    "custom/padding",
     "clock",
-    "custom/padding",
     "custom/timer",
-    "custom/padding",
     "custom/brightness",
-    "custom/padding",
     "battery",
-    "custom/padding",
-    "custom/power",
-    "custom/padding"
+    "custom/power"
   ],
   "include": [
     "~/.config/waybar/default-modules.jsonc"
@@ -109,39 +79,24 @@
   "margin-right": 2,
   "output": ["Samsung Electric Company C49J89x H4ZN300228"],
   "modules-left": [
-    "custom/padding",
     "custom/fuzzel",
-    "custom/padding",
     "hyprland/workspaces",
-    //"hyprland/window",
-    "custom/padding",
     "hyprland/submap",
-    "custom/padding",
     "custom/calendar"
   ],
   "modules-center": ["custom/player"],
   "modules-right": [
     "wireplumber",
     /*"custom/audiocontrol",*/
-    "custom/padding",
     "custom/notification",
-    "custom/padding",
     "network",
-    "custom/padding",
     "custom/nordvpn",
-    "custom/padding",
     "custom/weather",
-    "custom/padding",
     "clock",
-    "custom/padding",
     "custom/timer",
-    "custom/padding",
     "custom/brightness",
-    "custom/padding",
     "battery",
-    "custom/padding",
-    "custom/power",
-    "custom/padding"
+    "custom/power"
   ],
   "include": [
     "~/.config/waybar/default-modules.jsonc"
@@ -160,16 +115,13 @@
   "margin-right": 2,
   "output": ["Ancor Communications Inc ROG PG279Q HBLMQS061448"],
   "modules-left": [
-    "custom/padding",
     "hyprland/window"
   ],
   "modules-center": [
     "clock"
   ],
   "modules-right": [
-    "custom/padding",
-    "hyprland/workspaces",
-    "custom/padding"
+    "hyprland/workspaces"
   ],
   "include": [
     "~/.config/waybar/default-modules.jsonc"

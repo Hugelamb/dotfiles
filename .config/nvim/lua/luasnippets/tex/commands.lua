@@ -46,6 +46,19 @@ return {
     ),
     { condition = tex_utils.in_preamble } 
   ),
+  s({ trig = "hypl", dscr = "insert hyperlink", snippetType="autosnippet" },
+    fmta(
+      [[
+      \hyperlink{<>}{<>}<>
+      ]],
+      {
+        i(1,'Link location'),
+        i(2,'Display text'),
+        i(0)
+      }
+    ),
+  { condition= tex_utils.in_text }
+  ),
   s({ trig = "href", dscr = "insert hidden reference here", snippetType="autosnippet" },
     fmta(
       [[
@@ -97,5 +110,33 @@ return {
       }
     ),
   { condition = tex_utils.in_text }
+  ),  
+  s({ trig = "hypref", dscr =  "Insert name reference ", snippetType="autosnippet" },
+    fmta(
+      [[
+      \hyperref[<>]{<>}<>
+      ]],
+      {
+        i(1,'lbl:name'),
+        i(2,'Text to display'),
+        i(0)
+      }
+    ),
+    { condition = tex_utils.in_text }
+  ),
+  s({ trig = "rd+", dscr = "reading", snippetType="autosnippet" },
+    fmta(
+      [[
+      \citetitle{<>} - \href{<>}{<>} <>
+      ]],
+      {
+        i(1,"key-id"),
+        i(2,"Link/path"),
+        i(3,"Display Text"),
+        i(0)
+      }
+
+    ),
+  { condition = utils.in_itemize}
   ),  
 }

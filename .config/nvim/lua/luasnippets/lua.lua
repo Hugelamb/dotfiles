@@ -32,10 +32,17 @@ return {
         fmta(
         <>
         ),
-      { <> }
+      <>
       ),  
       ]],
-      { i(1, "trigger" ), i( 2, "description" ), i( 3, "snippet" ), i( 4, "condition" )}
+      { i(1, "trigger" ),
+        i( 2, "description" ),
+        i( 3, "snippet" ),
+        c(4,{
+          { t("{ condition = "), i(1,"optional, this is a choice node"), t("}") },
+          t("")
+        }) 
+      }
     )
   ),
   s({ trig = "sspc", dscr = "spec table entry", snippetType="autosnippet" },

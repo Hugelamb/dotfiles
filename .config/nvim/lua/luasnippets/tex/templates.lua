@@ -113,7 +113,7 @@ return {
 
       }
     ),
-    { condition = tex_utils.in_text + conds.line_begin }
+    { condition = tex_utils.in_text * conds.line_begin * tex_utils.in_genealogy }
   ),
   s({ trig = "np", dscr = "new parent", snippetType="autosnippet"},
     fmta(
@@ -136,7 +136,7 @@ return {
         i(0)
       }
     ),
-    { condition = tex_utils.in_text + conds.line_begin }
+    { condition = tex_utils.in_text * conds.line_begin  * tex_utils.in_genealogy}
   ),
   s({ trig = "ng", dscr = "new g-node", snippetType="autosnippet"},
     fmta(
@@ -159,7 +159,7 @@ return {
         i(0)
       }
     ),
-    { condition = tex_utils.in_text + conds.line_begin }
+    { condition = tex_utils.in_text * conds.line_begin * tex_utils.in_genealogy }
   ),  
   s({ trig = "nc", dscr = "new child", snippetType="autosnippet"},
     fmta(
@@ -182,7 +182,7 @@ return {
         i(0)
       }
     ),
-    { condition = tex_utils.in_text + conds.line_begin }
+    { condition = tex_utils.in_text * conds.line_begin * tex_utils.in_genealogy }
   ), 
 }
 

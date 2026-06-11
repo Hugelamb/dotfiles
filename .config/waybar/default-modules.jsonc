@@ -39,7 +39,7 @@
         "firefox": "" ,
         "chrome": "",
         "chromium": "",
-        "spotify": "󱑽",
+        "tidal-hifi": "󱑽",
         "nvim": "NeoVim",
         "xournal++": "notes"
       },
@@ -83,10 +83,12 @@
         // "format-wifi": "{essid} ({signalStrength}%) ",
         "format-wifi": "({signalStrength}%) ",
         "format-ethernet": "",
-        "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
         "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip-format-ethernet": "{ifname}: {ipaddr}/{cidr}",
+        //"tooltip-format-wifi": "{essid}[{frequency}GHz]: ({bandwidthUpBytes})󰕒 / ({bandwidthDownBytes})󰇚",
+        "tooltip-format-wifi": "{essid} [{frequency}GHz]",
         "tooltip": true,
         "on-click": "foot nmtui"
     },
@@ -224,7 +226,7 @@
     },
     "custom/weather": {
       "format": "{}",
-      "exec": "$HOME/.config/waybar/scripts/weather.sh Sydney,Australia",
+      "exec": "$HOME/.config/waybar/scripts/weather.sh Sydney",
       "return-type": "json",
       "tooltip": true,
       "interval": 3600

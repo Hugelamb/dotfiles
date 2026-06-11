@@ -43,4 +43,18 @@ return {
       }
     )
   ),  
+  s({ trig = "tikzpic", dscr = "create a tikzpicture" },
+    fmta(
+    [[
+    \begin{tikzpicture}
+      <>
+    \end{tikzpicture}
+    <>
+    ]],
+      {
+        i(1),
+        i(0) 
+      }
+    )
+  ),
 }

@@ -11,9 +11,9 @@ esac
 #-----------------------------------
 
 
-if [ -f /etc/bashrc ]; then
-    . /etc/bashrc 
-fi
+# if [ -f /etc/bashrc ]; then
+#     . /etc/bashrc 
+# fi
 #-----------------------------------
 # Source global definitions (if any)
 #-----------------------------------
@@ -93,6 +93,10 @@ HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
 shopt -s histappend
+
+if [ -n "$HISTFILETMP" ]; then    # unset HISTFILETMP if it is set 
+  export HISTFILETMP=
+fi
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
@@ -100,10 +104,14 @@ HISTFILESIZE=2000
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# Set terminal as foot
-if [ builtin type -P "foot" &> /dev/null ]; then
-  export TERM=foot
+# Set terminal as alacritty
+if builtin type -P "alacritty" &> /dev/null; then
+  export TERM=alacritty
 fi
+# Set terminal as foot
+#if [ builtin type -P "foot" &> /dev/null ]; then
+#  export TERM=foot
+#fi
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
@@ -300,13 +308,23 @@ fi
 
 ## Function: 
 # Apply color profile for FW13 
-if [[ ! $(command -v dispwin 2>&1 >/dev/null) ]] && [[ $(cat /sys/devices/virtual/dmi/id/product_name) == 'Laptop 13 (AMD Ryzen AI 300 Series)' ]]
-then
-  dispwin '/usr/share/color/icc/colord/NE160QDM-NZ6.icm' > /dev/null 2>&1  # Hide text output
-fi
-
-
-
+#if [[ ! $(command -v dispwin 2>&1 >/dev/null) ]] && [[ $(cat /sys/devices/virtual/dmi/id/product_name) == 'Laptop 13 (AMD Ryzen AI 300 Series)' ]]
+# the
+#   dispwin '/usr/share/color/icc/colord/NE160QDM-NZ6.icm' > /dev/null 2>&1  # Hide text output
+# fi
 
 export STM32_PRG_PATH=/home/hug/applications/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin
 
+# FCITX5 env changes
+
+# opencode
+export PATH=/home/hug/.opencode/bin:$PATH
+
+source '/home/hug/.bash_completions/zmk.sh'
+
+### Google Cloud SDK ###
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/hug/sdk/google-cloud-sdk/path.bash.inc' ]; then . '/home/hug/sdk/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/hug/sdk/google-cloud-sdk/completion.bash.inc' ]; then . '/home/hug/sdk/google-cloud-sdk/completion.bash.inc'; fi

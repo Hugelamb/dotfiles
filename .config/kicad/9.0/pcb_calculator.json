@@ -441,7 +441,7 @@
       "always_show_cursor": true,
       "fullscreen_cursor": false
     },
-    "display": 2,
+    "display": 0,
     "grid": {
       "axes_enabled": false,
       "fast_grid_1": 15,
@@ -581,10 +581,29 @@
     "maximized": false,
     "mru_path": "",
     "perspective": "layout2|",
-    "pos_x": 7364,
-    "pos_y": 47,
-    "size_x": 952,
-    "size_y": 1025,
-    "zoom_factors": []
+    "pos_x": 771,
+    "pos_y": 44,
+    "size_x": 760,
+    "size_y": 975,
+    "zoom_factors": [
+      0.13,
+      0.22,
+      0.35,
+      0.6,
+      1.0,
+      1.5,
+      2.2,
+      3.5,
+      5.0,
+      8.0,
+      13.0,
+      20.0,
+      35.0,
+      50.0,
+      80.0,
+      130.0,
+      220.0,
+      300.0
+    ]
   }
 }

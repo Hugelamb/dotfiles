@@ -100,6 +100,6 @@
     "pdf_viewer_name": "",
     "text_editor": "nvim",
     "use_system_pdf_viewer": true,
-    "working_dir": "/home/hug/projects/DryBox/PCBs/controller"
+    "working_dir": "/home/hug"
   }
 }

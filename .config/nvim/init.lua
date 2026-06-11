@@ -18,8 +18,16 @@ if not vim.loop.fs_stat(lazypath) then
     os.exit(1)
   end
 end
+vim.opt.rtp:prepend("~/.config/nvim")
+--vim.opt.rtp:prepend("~/.config/nvim/lua")
 vim.opt.rtp:prepend(lazypath)
+-- Notebook load the snippets in the currently selected course
 vim.opt.rtp:prepend("~/notebook/current-course")
+--- volleyball notebook always loaded
+vim.opt.rtp:prepend("~/notebook/volleyball")
+--- Try to load from cwd/luasnippets if available
+vim.opt.rtp:prepend(vim.fn.getcwd())
+
 ---------------
 --- plugins ---
 ---------------
@@ -31,19 +39,8 @@ require("lazy").setup({ -- colorscheme plugin here
   {
     "neovim/nvim-lspconfig",
   },
-  --{
-  --  "neovim/nvim-lspconfig",
-  --  event = {"BufReadPost", "BufNewFile", "BufWritePre", "InsertEnter" },
-  --  config = function(_, opts)
-  --    --vim.opt.completeopt = { "menu", "menuone", "noselect" }
-  --    --util = require "lspconfig/util"
-  --    --local capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-  --    --capabilities.textDocument.completion.completionItem.snippetSupport = true
-  --    --vim.lsp.enable('bashls')
-  --  end
-  --},
-  -- Highlight, edit, and navigate code
   {
+    -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     dependencies = {'nvim-treesitter/nvim-treesitter-textobjects'},
     build = ":TSUpdate",
@@ -137,6 +134,9 @@ require("lazy").setup({ -- colorscheme plugin here
       }
     end
   },
+  {
+    "kylechui/nvim-surround",
+  },
   -- Lua Snippets
   {
     "L3MON4D3/LuaSnip",
@@ -146,6 +146,8 @@ require("lazy").setup({ -- colorscheme plugin here
       -- require("luasnip.loaders.from_vscode").lazy_load()
       require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/lua/luasnippets" })
       require("luasnip.loaders.from_lua").lazy_load({ paths = "~/notebook/current-course/luasnippets" })
+      require("luasnip.loaders.from_lua").lazy_load({ paths = "~/notebook/volleyball/luasnippets" })
+      require("luasnip.loaders.from_lua").lazy_load({ paths = vim.fn.getcwd() .. "/luasnippets" })
       local ls = require("luasnip")
       -- map reload snippets for ease of modification and testing
       vim.keymap.set('n', '<LocalLeader>ls', '<Cmd>lua require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/luasnippets/"})<CR>')
@@ -153,7 +155,7 @@ require("lazy").setup({ -- colorscheme plugin here
       vim.keymap.set('i','<C-K>', function() ls.expand() end, { silent = true })
       vim.keymap.set({"i","s"},'<C-L>', function() ls.jump( 1) end, { silent = true })
       vim.keymap.set({"i","s"},'<C-J>', function() ls.jump(-1) end, { silent = true })
-      -- Set change choice for choice nodes to <Alt-J> and <Alt-L> for backwards and forwards
+      -- Set change choice for choice nodes to <Ctrl-i> and <CTRL-,> for forwards and backwards respectively
       vim.keymap.set({"i","s"},'<C-I>', function()
         if ls.choice_active() then
           ls.change_choice(1)
@@ -194,6 +196,12 @@ require("lazy").setup({ -- colorscheme plugin here
       local luasnip = require("luasnip")
       local defaults = require ("cmp.config.default")()
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      
+      local has_words_before = function()
+        unpack = unpack or table.unpack
+        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+      end
       return {
         snippet = {
           expand = function(args)
@@ -210,13 +218,38 @@ require("lazy").setup({ -- colorscheme plugin here
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+          ["<C-N>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
           ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+          ["<C-P>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
           ["<C-CR>"] = cmp.mapping.complete(),
           ["<CR>"] = cmp.confirm({ select = true }),
           ["<S-CR>"] = cmp.confirm({ 
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
           }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              if #cmp.get_entries() == 1 then
+                cmp.confirm({ select = true })
+              else
+                cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+              end
+            elseif luasnip.locally_jumpable(1) then
+              luasnip.jump(1)
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+
+          ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            elseif luasnip.locally_jumpable(-1) then
+              luasnip.jump(-1)
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
         }),
 
         window = {
@@ -224,15 +257,12 @@ require("lazy").setup({ -- colorscheme plugin here
           documentation = cmp.config.window.bordered(),
         },
         sources = cmp.config.sources({
-          { 
-            name = "nvim_lsp"
-          },
+          { name = "nvim_lsp" },
           { name = "luasnip" },
         }, {
             { name = "buffer" },
           }),
         cmp.setup.cmdline(':', {
-          mapping = cmp.mapping.preset.cmdline(),
           sources = cmp.config.sources({
             { name = 'path' }
           }, {
@@ -271,123 +301,7 @@ require("lazy").setup({ -- colorscheme plugin here
       end
       -- Enable LSP servers here
       -- PyRight Python LSP
-         end,
-    --main = "lazyvim.util.cmp"
-    -- config = function()
-
-    --   local cmp = require("cmp")
-    --   local luasnip = require("luasnip")
-    --   local lspkind = require("lspkind")
-    --   local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-
-    --   cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-
-    --   luasnip.config.setup {}
-
-    --   local has_words_before = function()
-    --     unpack = unpack or table.unpack
-    --     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-    --     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-    --   end
-
-    --   require('cmp').setup({
-    --     snippet = {
-    --       expand = function(args)
-    --         luasnip.lsp_expand(args.body)
-    --       end
-    --     },
-    --     formatting = {
-    --       format = lspkind.cmp_format {
-    --         with_text = true,
-    --         menu = {
-
-    --           luasnip = "[LuaSnip]", 
-    --           buffer = "[Buffer]",
-    --           nvim_lsp = "[LSP]",
-    --           nvim_lua = "[Lua]"
-    --         }
-    --       }
-    --     },
-    --     -- format = function(entry, item)
-    --     -- local icons = LazyVim.config.icons.kinds
-    --     -- if icons[item.kind] then
-    --     --   item.kind = icons[item.kind] .. item.kind
-    --     -- end
-
-    --     -- local widths = {
-    --     --   abbr = vim.g.cmp_widths and vim.g.cmp_widths.abbr or 40,
-    --     --   menu = vim.g.cmp_widths and vim.g.cmp_widths.menu or 30,
-    --     -- }
-
-    --     -- for key, width in pairs(widths) do
-    --     --   if item[key] and vim.fn.strdisplaywidth(item[key]) > width then
-    --     --     item[key] = vim.fn.strcharpart(item[key], 0, width - 1) .. "…"
-    --     --   end
-    --     -- end
-
-    --     -- return item
-    --     -- end,
-    --     mapping = cmp.mapping.preset.insert {
-    --       ['<C-n>'] = cmp.mapping.select_next_item(),
-    --       ['<C-p>'] = cmp.mapping.select_prev_item(),
-    --       ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    --       ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    --       ['<C-Enter>'] = cmp.mapping.confirm { -- press <ctrl+enter> to confirm autocomplete option
-    --         select = true       
-    --       },
-    --       ['<CR>'] = cmp.mapping.confirm { -- Enter key mapping
-    --         select = false
-    --       },
-    --       --['<Tab>'] = cmp.mapping(function(fallback)
-    --       --  if cmp.visible() then
-    --       --    cmp.select_next_item()
-    --       --  -- elseif luasnip.expand_or_locally_jumpable() then
-    --       --  --   luasnip.expand_or_jump()
-    --       --  elseif has_words_before() then
-    --       --    cmp.complete()
-    --       --  else
-    --       --    fallback()
-    --       --  end
-    --       --end, {'i', 's'}),
-    --       --['<S-Tab>'] = cmp.mapping(function(fallback)
-    --       --  if cmp.visible() then
-    --       --    cmp.select_prev_item()
-    --       --  -- elseif luasnip.jumpable(-1) then
-    --       --  --   luasnip.jump(-1)
-    --       --  else
-    --       --    fallback()
-    --       --  end
-    --       --end, {'i', 's'})
-    --     },
-    --     -- don't auto select item
-    --     preselect = cmp.PreselectMode.None,
-    --     window = {
-    --       documentation = cmp.config.window.bordered()
-    --     },
-    --     view = {
-    --       entries = {
-    --         name = "custom",
-    --         selection_order = "near_cursor"
-    --       }
-    --     },
-    --     confirm_opts = {
-    --       behavior = cmp.ConfirmBehavior.Insert
-    --     },
-    --     sources = {{
-    --       {
-    --         name = 'nvim_lsp',
-    --         keyword_length = 5
-    --       }, {
-    --         name = "luasnip",
-    --         keyword_length = 2
-    --       },
-    --     }, {{
-    --         name = 'buffer'
-    --       },
-    --       }
-    --     }
-    --   })
-    -- end
+    end,
   },
   -- VimTeX
   {
@@ -395,7 +309,7 @@ require("lazy").setup({ -- colorscheme plugin here
     lazy = false,
     init = function()
       -- VimTeX config goes here
-      -- vim.g.vimtex_view_method = "zathura"
+      vim.g.vimtex_view_method = "zathura"
       if vim.fn.has('win32') or (vim.fn.has('unix') and vin.fn.exists('$WSLENV')) then
         vim.g.vimtex_view_method = 'zathura'
         -- vim.g.vimtex_view_method = 'mupdf'
@@ -501,6 +415,16 @@ require("lazy").setup({ -- colorscheme plugin here
   -- }
 })
 
+---------------------
+--- USER REQUIRES ---
+---------------------
+-- user functions 
+local delims = require('lua.user.delimiters')
+local add_delims = require('functions.add_delimiters')
+local tbl = require('functions.table')
+local ls = require("luasnip")
+-- load LuaSnip utilities GLOBALLY
+ls_utils = require('luasnippets.utils')
 ----------------
 --- SETTINGS ---
 ----------------
@@ -586,21 +510,12 @@ end
 -- Map background inversion 
 vim.keymap.set('n','<Leader>b',bg_switch)
 
+-- "/" in visual mode searches for current selection rather than extending the visual selection
+vim.keymap.set({'v'},'/','y/<C-R>"<CR>')
 -- Set Spellchecking 
 -- vim.opt_local.spell = on
 -- vim.opt.spelllang=en_AU,cjk
 vim.api.nvim_create_augroup('spell_grp',{clear = true})
--- yaml_check = require('functions.yaml_check')
--- acmd('DirChanged', {
---   group = spell_grp,
---   callback = yaml_check.is_JA,
--- })
--- acmd('FileType', {
---   pattern = {'tex', 'markdown'},
---   group = spell_grp,
---   desc = 'Activate spellchecking for latex, markdown and text files',
---   command = 'setlocal spell spelllang=en_au,en_gb,cjk',
--- })
 vim.keymap.set({'n'},'<C-y>',':setlocal spell spelllang=en_au,en_gb,cjk<CR>')
 acmd('FileType', {
   pattern = {'tex','markdown'},
@@ -652,21 +567,20 @@ vim.keymap.set('n','<A-p>','<C-w><S-w>')    -- move to previous window
 -- Compile Continously (mapping to call :VimtexCompile)
 vim.keymap.set('n','<LocalLeader>vc',':VimtexCompile <CR>')
 vim.keymap.set('n','<Localleader>vv',':VimtexView <CR>')
+--- Zathura Viewer Syncronization Functions
+
 ----------------------
 --- Snippet Macros ---
 ----------------------
-local ls = require("luasnip")
--- load LuaSnip utilities
-local utils = require("lua.luasnippets.utils")
 
 -- Set up command for editing Snippets inside current nvim buffer
 vim.api.nvim_create_user_command('LuaSnipEdit', 'lua require("luasnip.loaders").edit_snippet_files()', {})
 -- set dynamicNode commands defined in luasnippets/utils.lua
-vim.api.nvim_set_keymap('i', "<C-t>", '<cmd>lua utils.dynamic_node_external_update(1)<Cr>', {noremap = true})
-vim.api.nvim_set_keymap('s', "<C-t>", '<cmd>lua utils.dynamic_node_external_update(1)<Cr>', {noremap = true})
+vim.api.nvim_set_keymap('i', "<C-t>", '<Cmd>lua ls_utils.dynamic_node_external_update(1)<Cr>', {noremap = true})
+vim.api.nvim_set_keymap('s', "<C-t>", '<cmd>lua ls_utils.dynamic_node_external_update(1)<Cr>', {noremap = true})
 
-vim.api.nvim_set_keymap('i', "<C-g>", '<cmd>lua utils.dynamic_node_external_update(2)<Cr>', {noremap = true})
-vim.api.nvim_set_keymap('s', "<C-g>", '<cmd>lua utils.dynamic_node_external_update(2)<Cr>', {noremap = true})
+vim.api.nvim_set_keymap('i', "<C-g>", '<cmd>lua ls_utils.dynamic_node_external_update(2)<Cr>', {noremap = true})
+vim.api.nvim_set_keymap('s', "<C-g>", '<cmd>lua ls_utils.dynamic_node_external_update(2)<Cr>', {noremap = true})
 
 -------------------------------
 --- Text Replacement Macros ---
@@ -693,8 +607,24 @@ vim.api.nvim_create_user_command('GetCursorChar',
 -- 
 vim.api.nvim_set_keymap('n', '<localleader>cl', ':GetCursorChar<CR><Esc>' , {noremap = true})
 
+--- Macro to place a delimiters around visual selection
+vim.api.nvim_create_user_command('AddDelimiters', add_delims.surroundWord, { range = true })
+vim.keymap.set('n', '<localleader>nd', ':AddDelimiters<CR>')
+vim.keymap.set('v', 'nd', '<cmd>AddDelimiters<CR>')
+vim.api.nvim_create_user_command('GetVisualPos',
+  function(opts)
+    local start_pos = vim.fn.getpos("'<")
+    local end_pos   = vim.fn.getpos("'>")
+    print("Visual Selection starts on line " .. start_pos[2] .. " at col " .. start_pos[3])
+    print("Visual Selection ends on line " .. end_pos[2] .. " at col " .. end_pos[3])
+  end
+  ,{ range = true }
+)
+vim.keymap.set('v', 'D', ':GetVisualPos<CR>', {noremap = true, silent = true})
 
-------------------
+-------------------
+--- LSP configs ---
+-------------------
 ---
 ---
 vim.lsp.config('pyright', { 
