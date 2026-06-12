@@ -1,1 +1,1 @@
-/night-city;/night-city/setup
+/frosted-glass;/frosted-glass/setup

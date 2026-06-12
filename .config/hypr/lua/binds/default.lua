@@ -25,8 +25,9 @@ hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd("hyprctl reload"))
 -- hl.bind(mainMod .. " + ALT + W", hl.dsp.exec_cmd(statusbar .. " -s ~/.config/waybar/themes/" .. style .. "/setup/style.css"))
 hl.bind(mainMod .. " + ALT + W", hl.dsp.exec_cmd("~/.config/waybar/launch-waybar.sh"))
 hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("killall -SIGUSR2 " .. statusbar))
--- Theming selection bind for waybar
+hl.bind(mainMod .. " + CTRL + W", hl.dsp.exec_cmd("~/.config/rice/scripts/wallpaper.sh"))
 hl.bind(mainMod .. " + SHIFT + T", hl.dsp.exec_cmd("~/.config/waybar/themeselect.sh"))
+hl.bind(mainMod .. " + CTRL + T", hl.dsp.exec_cmd("~/.config/rice/themes/themeselector.sh"))
 -- Move focus with mainMod + vim motion keys
 hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
