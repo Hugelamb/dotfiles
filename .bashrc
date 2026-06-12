@@ -237,7 +237,6 @@ alias zth='zathura'
 #------------------------------------------------
 # Paths
 #------------------------------------------------
-
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && prepend_if_not_in_path "$PYENV_ROOT/bin"
 # eval "$(pyenv init -)
@@ -284,11 +283,20 @@ prepend_if_not_in_path "$HOME/projects/university-setup-fuzzel/scripts"
 
 # XDG Dirs
 export XDG_DATA_HOME="$HOME/.local/share"
+# QT environment variable checks
+if [[ $QT_QPA_PLATFORM != "wayland" ]]; then
+  export QT_QPA_PLATFORM="wayland"
+fi
 #------------------------------------------------
 # Custom Commands
 #------------------------------------------------
 # print customized shell using macchina 
-shopt -q login_shell && macchina --config $HOME/.config/macchina/macchina-login.toml --theme minimal || macchina --theme Mikasa
+shopt -q login_shell
+if [[ $1 ]]; then
+  macchina --config "$HOME/.config/macchina/macchina-short.toml" 
+else
+  macchina --config "$HOME/.config/macchina/macchina.toml" --theme Mikasa
+fi
 # add task inbox to prompt
 inbox_prompt() {
   inbox_count=$(task +in +PENDING count)

@@ -20,8 +20,9 @@ hl.env("XDG_SESSION_TYPE", "wayland")
 hl.env("XDG_SESSION_DESKTOP", "Hyprland")
 
 -- QT Variables
-hl.env("QT_QPA_PLATFORM", "xcb")
-hl.env("QT_QPA_PLATFORMTHEME", "qt5ct")
+-- hl.env("QT_QPA_PLATFORM", "xcb")
+hl.env("QT_QPA_PLATFORM", "wayland")
+hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
 
 hl.env("QT_IM_MODULES", "wayland;fcitx")
 -- XWayland scaling

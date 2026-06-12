@@ -40,13 +40,12 @@ require("lazy").setup({ -- colorscheme plugin here
     "neovim/nvim-lspconfig",
   },
   {
-    -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     dependencies = {'nvim-treesitter/nvim-treesitter-textobjects'},
     build = ":TSUpdate",
     config = function()
       require('nvim-treesitter.configs').setup({
-        ensure_installed = {'vim', 'lua', 'python','c','cpp','yaml', 'vimdoc', 'bash', 'devicetree', 'json', 'markdown', 'markdown_inline','comment'},
+        ensure_installed = {'vim', 'lua', 'python','c','cpp','yaml', 'vimdoc', 'bash', 'devicetree', 'json', 'markdown', 'markdown_inline','comment','qmljs'},
         indent = {
           enable = true
         },
@@ -375,44 +374,7 @@ require("lazy").setup({ -- colorscheme plugin here
       require('strudel').setup()
     end,
   }
-  -- 
-  -- {
-  --   "gruvw/strudel.nvim",
-  --   build = "npm ci",
-  --   config = function()
-  --     require("strudel").setup({
-  --       -- ui = {
-
-  --       -- }
-  --       -- Automatically start playback when launching Strudel
-  --       -- (optional, default: true)
-  --       start_on_launch = true,
-  --       -- Set to `true` to automatically trigger the code evaluation after saving the buffer content
-  --       -- Only works if the playback was already started (doesn't start the playback on save)
-  --       -- (optional, default: false)
-  --       update_on_save = true,
-  --       -- Enable two-way cursor position sync between Neovim and Strudel editor
-  --       -- (optional, default: true)
-  --       sync_cursor = true,
-  --       -- Report evaluation errors from Strudel as Neovim notifications
-  --       -- (optional, default: true)
-  --       report_eval_errors = true,
-  --       -- Path to a custom CSS file to style the Strudel web editor (base64-encoded and injected at launch)
-  --       -- This allows you to override or extend the default Strudel UI appearance
-  --       -- (optional, default: nil)
-  --       -- custom_css_file = "/path/to/your/custom.css",
-  --       -- Headless mode: set to `true` to run the browser without launching a window
-  --       -- (optional, default: false)
-  --       headless = false,
-  --       -- Path to the directory where Strudel browser user data (cookies, sessions, etc.) is stored
-  --       -- (optional, default: `~/.cache/strudel-nvim/`)
-  --       -- browser_data_dir = "~/.cache/strudel-nvim/",
-  --       -- Path to a (chromium-based) browser executable of choice
-  --       -- (optional, default: nil)
-  --       -- browser_exec_path = "/path/to/browser/executable",
-  --     })
-  --   end,
-  -- }
+  
 })
 
 ---------------------
@@ -630,10 +592,11 @@ vim.keymap.set('v', 'D', ':GetVisualPos<CR>', {noremap = true, silent = true})
 vim.lsp.config('pyright', { 
   capabilities = capabilities
 })
-vim.lsp.enable('pyright')
+-- vim.lsp.enable('pyright')
 -- Bash LSP
 vim.lsp.config('bashls', { 
   capabilities = capabilities
 })
-vim.lsp.enable('bashls')
+-- vim.lsp.enable('bashls')
 
+-- vim.lsp.enable('qmlls')

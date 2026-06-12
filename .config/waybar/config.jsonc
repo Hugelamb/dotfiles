@@ -23,13 +23,14 @@
     "wireplumber",
     //"custom/notification",
     "network",
+    "tray",
     "clock",
     //"custom/brightness",
     "battery",
     "custom/power"
   ],
   "include": [
-    "~/.config/waybar/default-modules.jsonc"
+    "~/.config/waybar/modules.json"
   ]
 },
   /* Bar for main desktop display */
@@ -64,7 +65,7 @@
     "custom/power"
   ],
   "include": [
-    "~/.config/waybar/default-modules.jsonc"
+    "~/.config/waybar/modules.json"
   ]
 },
   /* Bar for external ultrawide */
@@ -99,7 +100,7 @@
     "custom/power"
   ],
   "include": [
-    "~/.config/waybar/default-modules.jsonc"
+    "~/.config/waybar/modules.json"
   ]
 },
   /* Bar for secondary 1440p monitor */
@@ -124,7 +125,7 @@
     "hyprland/workspaces"
   ],
   "include": [
-    "~/.config/waybar/default-modules.jsonc"
+    "~/.config/waybar/modules.json"
   ]
 }
 ]
