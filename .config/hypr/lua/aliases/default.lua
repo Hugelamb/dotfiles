@@ -7,7 +7,8 @@
 home = os.getenv("HOME")
 terminal = "alacritty"
 multiplexer = "tmux"
-menu = "fuzzel"
+-- menu = "fuzzel"
+menu = "$HOME/.config/walker/launch.sh"
 explorer = "firefox"
 fileManager = "thunar"
 -- local timer = HOME .. "/.config/waybar/scripts/waybar_timer"
