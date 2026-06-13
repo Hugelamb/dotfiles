@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Rice Global Theme - Muted Glow
+theme_name="$(basename $BASH_SOURCE)"
+# Set waybar
+echo "/$theme_name;/$theme_name/setup" > $HOME/.config/rice/settings/waybar-theme.sh
+$HOME/.config/waybar/launch-waybar.sh &
+# Set walker theme
+echo "$theme_name" > $HOME/.config/rice/settings/walker-theme
+# Set hyprland colors
+echo -e 'local name = "default.lua"\nload_variant(name,"windows")' > $HOME/.config/hypr/lua/window.lua
+echo ":: Theme set to Muted Glow"

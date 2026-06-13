@@ -1,1 +1,1 @@
-/frosted-glass;/frosted-glass/setup
+/muted-glow;/muted-glow/setup
