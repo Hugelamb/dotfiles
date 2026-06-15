@@ -1,0 +1,259 @@
+/* ==================== */
+/*      CSS Styling     */
+/* ==================== */
+/* Standard colour set  */
+/*
+*/
+
+@define-color background rgba(255,255,255,0.2);
+
+/*@import '../colors.css'; */
+/* =================== */
+/* inbuilt display css */
+/* =================== */
+*   {
+    /*  `otf-font-awesome` must be installed for icons */
+    /*
+     * font-family: "Fira Sans Semibold", "Noto Sans CJK", "Font Awesome 7 Free", "Font Awesome 7 Brands", "Material Icons", FontAwesome, Symbols Nerd Font, MesloLGM Nerd Font Propo;
+     */
+    font-family: "Noto Sans Mono", "FontAwesome", "Font Awesome 7 Free", "Font Awesome 7 Brands", "Material Icons";
+    min-height: 0;
+    border-radius:0px;
+}
+/* for whole status bar */
+window#waybar {
+  background-color: alpha(@background,0.2);
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  color: @on_background;
+}
+
+window#waybar.hidden {
+  opacity: 1;
+}
+
+.modules-left {
+
+  border-radius: 12px;
+  border: 1px solid transparent;
+  opacity:0.8;
+  margin:2px;
+  background-color: @background;
+  box-shadow: inset 2px 2px 14px rgba(255, 255, 255, 0.6), inset 0 1px 2px 0px rgba(255, 255, 255, 0.6), inset 1px 1px 1px rgba(255, 255, 255, 0.6);
+ }
+
+.modules-right {
+  border-radius: 12px;
+  border:   1px solid transparent;
+  opacity:  0.8;
+  margin:   2px;
+  background-color: rgba(255,255,255,0.3);
+  box-shadow: inset 0px 2px 14px 2px rgba(255, 255, 255, 0.6), inset 0 1px 2px 0px rgba(255, 255, 255, 0.6), inset 1px 1px 1px rgba(255, 255, 255, 0.6);
+}
+.modules-center {
+  border-radius: 12px;
+  border: 1px solid transparent;
+  opacity: 0.8;
+  margin:2px;
+  background-color: rgba(255,255,255,0.3);
+  box-shadow: inset 2px 2px 14px rgba(255, 255, 255, 0.6), inset 0 1px 2px 0px rgba(255, 255, 255, 0.6), inset 1px 1px 1px rgba(255, 255, 255, 0.6);
+}
+
+label.module {
+  font-size: 14px;
+  margin-left: 7px;
+  margin-right: 7px;
+  border-radius: 5px;
+}
+#workspaces {
+  padding: 5px 3px 5px 3px;
+  min-width: 176px;
+}
+#workspaces button {
+  color: @on_surface;
+  border-radius: 3px;
+  padding: 0px 5px 0px 5px;
+  margin: 0px 2px 0px 2px;
+  border: 1px solid transparent;
+}
+#workspaces button:hover {
+  background: alpha(@secondary,0.2);
+  border-radius: 12px;
+}
+#workspaces button.visible {
+  padding: 0px 10px 0px 2px;
+}
+#workspaces button.visible:hover,
+
+#workspaces button.active {
+  background:alpha(@primary,0.3);
+  border: 1px solid transparent;
+  transition: all 0.3s ease-in-out;
+  min-width: 30px;
+  border-radius: 8px;
+  box-shadow: inset 1px 2px 2px rgba(255, 255, 255, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+/* 
+ * Window
+ */
+
+window#waybar.empty #window {
+    background-color:transparent;
+}
+/*
+ * window#waybar #workspaces button, button.persistent {
+    color: @surface_bright;
+    background: transparent;
+    min-width: 25px;
+    padding: 0 0.6em 0 0;  
+    margin: 5px 3px;
+}
+window#waybar * #workspaces button.visible {
+    border: 1px dashed @workspace_visible;
+    border-radius: 6px;
+    color: @workspace_visible;
+} 
+window#waybar #workspaces button.active {
+    border: 1px solid @workspace_active;
+    border-radius: 8px;
+    color: @darkText;
+    background-color: @workspace;
+}
+*/
+
+/* -----------------------------------------------------
+ * Tooltips
+ * ----------------------------------------------------- */
+
+tooltip {
+    background-color: alpha(@surface,0.7);
+    border-radius: 12px;
+    border: 1px solid transparent;
+    opacity:0.6;
+    margin:10px;
+    box-shadow: inset 2px 2px 30px rgba(255, 255, 255, 0.8), inset 0 1px 2px 0px rgba(255, 255, 255, 1), inset 0 1px 1px rgba(255, 255, 255, 1);
+}
+
+tooltip label {
+    color: white;
+}
+#window,
+#tray,
+#cpu,
+#clock,
+#temperature,
+#temperature-critical,
+#backlight,
+#pulseaudio,
+#pulseaudio-muted,
+#wireplumber,
+#wireplumber-muted,
+#battery,
+#battery-critical,
+#timer,
+#custom-fuzzel,
+#custom-padding,
+#custom-notification,
+#custom-timer,
+#custom-power,
+#custom-nordvpn,
+#custom-player,
+#custom-tasks,
+#mpris,
+
+
+
+#clock {
+    font-family: MesloLGM Nerd Font Mono;
+    /*font-family: Noto Sans CJK;*/
+    /*font-weight: 100;
+    color: #00071a;*/
+}
+
+#wireplumber-muted {
+  color: #57b5e3;
+}
+
+#mpris.firefox {
+  color: @sunset-cyan;
+}
+/* ================================ */
+/*            WORKSPACES            */
+/* ================================ */
+
+#workspaces {
+    /*font-size: ;*/ 
+    margin: 0px;
+}
+
+/* Battery Status Styling */
+/* cycle through "  ","  ","  ","  ","  " */
+
+
+#battery.charging {
+  color: @sunset-lightgreen;
+}
+@keyframes blink {
+    to {
+        background-color: @background;
+        color: @on_surface;
+    }
+}
+#battery.warning {
+  color: @sunset-yellow;
+}
+#battery.critical {
+  color: @error;
+}
+#battery.discharging {
+
+}
+
+#battery.full {
+
+}
+
+#battery.unknown {
+
+}
+/* bar specific overrides */
+
+/* ================================ */
+/*          CUSTOM MODULES          */
+/* ================================ */
+
+
+#custom-fuzzel {
+    /*padding: 0 6px;
+    margin: 5px 0px; */
+    font-size: 12px;
+}
+#custom-notification {
+    color: @sunset-base3;
+    background: rgba(0,7,26,0);
+    font-size: 12px;
+    padding: 2px 2px;
+}
+#custom-notification button.visible {
+    border: 2px solid #00071a;
+    border-radius: 12px;
+}
+#custom-player {
+    color: @sunset-base2;
+    background: alpha(@surface,0.2);
+    padding-left: 9px;
+    padding-right: 9px;
+}
+
+#custom-nordvpn.connected {
+    color: @sunset-green;
+}
+#custom-nordvpn.disconnected {
+    color: @error;
+}
+#custom-power {
+
+}
+
+
