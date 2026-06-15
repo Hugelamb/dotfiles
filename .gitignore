@@ -6,3 +6,4 @@
 **/colors.**
 .config/rice/settings/**
 .config/hypr/lua/window.lua
+!.config/matugen/templates/*
