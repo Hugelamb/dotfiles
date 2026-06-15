@@ -139,4 +139,18 @@ return {
     ),
   { condition = utils.in_itemize}
   ),  
+  s({ trig = "cite+", dscr = "new \\cite command", snippetType="autosnippet" },
+    fmta(
+    [[
+    \cite[<>][<>]{<>}<>
+    ]],
+      {
+        i(1),
+        i(2),
+        i(3),
+        i(0)
+      }
+    ),
+  { condition = tex_utils.in_text}
+  ),  
 }
