@@ -171,6 +171,7 @@ P.rec_node = function(args, parent, user_args)
     })
   )
 end
+
 -- function to dump table contents to terminal output
 P.dump_table = function(table)
   if type(table) == 'table' then
@@ -193,7 +194,6 @@ local function is_bib()
 end
 P.is_bib = cond_obj.make_condition(is_bib)
 -- End Function List --
-
 
 return P
 

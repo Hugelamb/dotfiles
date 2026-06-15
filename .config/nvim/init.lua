@@ -151,6 +151,7 @@ require("lazy").setup({ -- colorscheme plugin here
       local ls = require("luasnip")
       -- map reload snippets for ease of modification and testing
       vim.keymap.set('n', '<LocalLeader>ls', '<Cmd>lua require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/luasnippets/"})<CR>')
+
       -- map node navigation binds for luasnip
       vim.keymap.set('i','<C-K>', function() ls.expand() end, { silent = true })
       vim.keymap.set({"i","s"},'<C-L>', function() ls.jump( 1) end, { silent = true })
@@ -510,11 +511,11 @@ vim.keymap.set('n','<Localleader>nv',':browse vsplit  . <CR>')     -- vert split
 vim.keymap.set('n','<Localleader>sh',':vs<CR>',{ silent = true})     -- vertical split command
 vim.keymap.set('n','<Localleader>sv',':sp<CR>',{silent = true})      -- horizontal split command
 vim.keymap.set('t','<Esc>', '<C-\\><C-n>',{silent = true})    -- Exit terminal mode
+
 --- Closing and Hiding Macros
 vim.keymap.set('n','<Localleader>q','<C-w><C-q>')           -- close current window, as long as there are no unsaved buffer changes/is not last window for buffer
 vim.keymap.set('n','<Localleader>hc','<:hide<CR>',{ silent = true})  -- hide current window
 vim.keymap.set('n','<Localleader>ho','<:hide only<CR>')              -- hide all except current window 
-
 ---------------------
 --- Window Navigation Macros ---
 ---------------------
@@ -524,13 +525,13 @@ vim.keymap.set('n','<A-k>','<C-w>k')        -- move to window above
 vim.keymap.set('n','<A-l>','<C-w>l')        -- move to window on right
 vim.keymap.set('n','<A-n>','<C-w>w')        -- move to next window 
 vim.keymap.set('n','<A-p>','<C-w><S-w>')    -- move to previous window 
+
 ----------
 --- VimTeX Macros ---
 ----------
 -- Compile Continously (mapping to call :VimtexCompile)
 vim.keymap.set('n','<LocalLeader>vc',':VimtexCompile <CR>')
 vim.keymap.set('n','<Localleader>vv',':VimtexView <CR>')
---- Zathura Viewer Syncronization Functions
 
 ----------------------
 --- Snippet Macros ---
@@ -601,3 +602,4 @@ vim.lsp.config('bashls', {
 -- vim.lsp.enable('bashls')
 
 -- vim.lsp.enable('qmlls')
+

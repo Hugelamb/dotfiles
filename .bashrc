@@ -136,16 +136,17 @@ xterm*|rxvt*)
 esac
 
 # Check if given path exists, if it does, add to $PATH
-prepend_if_not_in_path () {
-    if [[ -d $1 ]]; then
-        export PATH="$1:$PATH"
-    fi
-} 
+# prepend_if_not_in_path () {
+#     if [[ -d $1 ]]; then
+#         export PATH="$1:$PATH"
+#     fi
+# } 
 prepend_if_not_in_path () {
     if [[ -d $1 ]] && [[ ":$PATH" != *"$1"* ]]; then
       export PATH="$1:$PATH"
     fi
 }
+
 check_list() {
   LIST=$1
   DELIMITER=$2
@@ -199,32 +200,43 @@ if ! shopt -oq posix; then
 fi
 
 ### TASKWARRIOR COMMANDS AND FUNCTIONS
-alias in='task add +in'
-alias inbox='task +in list'
+if [ command -v task &> /dev/null ]; then
+  alias in='task add +in'
+  alias inbox='task +in list'
 
-alias tt='task +DUE list'
-alias habit="task rc.data.location=~/.tasks/habit" # alternate db for personal habits etc
-alias schedule="task rc.data.location=~/.tasks/schedule" # alternate db for scheduled events
-alias sched="task rc.data.location=~/.tasks/schedule"
-# function to add new task to provided project 
-# $1 should be project, all following are passed into task as a string
-ta() {
-#  task $1 "'$*'" 
-  if [[ $(task _projects) == *"$1"*  ]]; then
-    task add project:"$1" ${*:2}
-  else 
-    echo "*** WARNING *** This task has no assigned project."
-    read -p 'Do you still wish to add the task? (Y/N) ' boolvar
-    if [ "$boolvar" == "Y" ] || [ "$boolvar" == "y" ] ; then
-      echo ${*}
-      task add +in ${*}
-      return
+  alias tt='task +DUE list'
+  alias habit="task rc.data.location=~/.tasks/habit" # alternate db for personal habits etc
+  alias schedule="task rc.data.location=~/.tasks/schedule" # alternate db for scheduled events
+  alias sched="task rc.data.location=~/.tasks/schedule"
+  # function to add new task to provided project 
+  # $1 should be project, all following are passed into task as a string
+  ta() {
+  #  task $1 "'$*'" 
+    if [[ $(task _projects) == *"$1"*  ]]; then
+      task add project:"$1" ${*:2}
     else 
-      return 1
+      echo "*** WARNING *** This task has no assigned project."
+      read -p 'Do you still wish to add the task? (Y/N) ' boolvar
+      if [ "$boolvar" == "Y" ] || [ "$boolvar" == "y" ] ; then
+        echo ${*}
+        task add +in ${*}
+        return
+      else 
+        return 1
+      fi
     fi
-  fi
-}
-
+  }
+  # add task inbox to prompt
+  inbox_prompt() {
+    inbox_count=$(task rc.data.location="$HOME/.tasks/tasks" +in +PENDING count)
+    if [ $inbox_count -gt 0 ]; then
+      count_color=$ccrimson
+    else
+      count_color=$cgreen
+    fi
+    echo -e "${count_color}"
+  }
+fi
 # pyenv activation
 alias pya='source .venv/bin/activate'
 alias pyd='deactivate'
@@ -237,6 +249,7 @@ alias zth='zathura'
 #------------------------------------------------
 # Paths
 #------------------------------------------------
+
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && prepend_if_not_in_path "$PYENV_ROOT/bin"
 # eval "$(pyenv init -)
@@ -287,6 +300,7 @@ export XDG_DATA_HOME="$HOME/.local/share"
 if [[ $QT_QPA_PLATFORM != "wayland" ]]; then
   export QT_QPA_PLATFORM="wayland"
 fi
+
 #------------------------------------------------
 # Custom Commands
 #------------------------------------------------
@@ -297,20 +311,10 @@ if [[ $1 ]]; then
 else
   macchina --config "$HOME/.config/macchina/macchina.toml" --theme Mikasa
 fi
-# add task inbox to prompt
-inbox_prompt() {
-  inbox_count=$(task +in +PENDING count)
-  if [ $inbox_count -gt 0 ]; then
-    count_color=$ccrimson
-  else
-    count_color=$cgreen
-  fi
-  echo -e "${count_color}"
-}
+
 
 # set PS1
-if [[ ! $(command -v task 2>&1 >/dev/null) ]]     # command -v prints the location of input command if present in $PATH, otherwise returns failure status (1).
-then
+if [ command -v task &> /dev/null ]; then
   export PS1='\[$(inbox_prompt)\]$(task +in +PENDING count) '$PS1               # prepend number of unprocessed inbox decisions to prompt, separate task call for prompt length calculations
 fi
 
@@ -321,18 +325,20 @@ fi
 #   dispwin '/usr/share/color/icc/colord/NE160QDM-NZ6.icm' > /dev/null 2>&1  # Hide text output
 # fi
 
-export STM32_PRG_PATH=/home/hug/applications/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin
+export STM32_PRG_PATH=$HOME/applications/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin
 
 # FCITX5 env changes
 
 # opencode
-export PATH=/home/hug/.opencode/bin:$PATH
+export PATH=$HOME/.opencode/bin:$PATH
 
-source '/home/hug/.bash_completions/zmk.sh'
+if [ -f '$HOME/.bash_completions/zmk.sh' ]; then
+  source '$HOME/.bash_completions/zmk.sh'
+fi
 
 ### Google Cloud SDK ###
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/hug/sdk/google-cloud-sdk/path.bash.inc' ]; then . '/home/hug/sdk/google-cloud-sdk/path.bash.inc'; fi
+if [ -f '$HOME/sdk/google-cloud-sdk/path.bash.inc' ]; then . '$HOME/sdk/google-cloud-sdk/path.bash.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/home/hug/sdk/google-cloud-sdk/completion.bash.inc' ]; then . '/home/hug/sdk/google-cloud-sdk/completion.bash.inc'; fi
+if [ -f '$HOME/sdk/google-cloud-sdk/completion.bash.inc' ]; then . '$HOME/sdk/google-cloud-sdk/completion.bash.inc'; fi
