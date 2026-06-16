@@ -16,3 +16,8 @@ output_path = '~/.config/hypr/lua/colors.lua'
 [templates.waybar]
 input_path = '~/.config/matugen/templates/colors.css'
 output_path = '~/.config/waybar/colors.css'
+
+
+[templates.odysseus]
+input_path = '~/.config/matugen/templates/odysseus-colors.json'
+output_path = '~/.config/odysseus/custom.json'

@@ -383,6 +383,7 @@ require("lazy").setup({ -- colorscheme plugin here
 --- USER REQUIRES ---
 ---------------------
 -- user functions 
+require('lua.user.info')
 local delims = require('lua.user.delimiters')
 local add_delims = require('functions.add_delimiters')
 local tbl = require('functions.table')
