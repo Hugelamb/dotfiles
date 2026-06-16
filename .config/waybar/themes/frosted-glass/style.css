@@ -16,7 +16,7 @@
     /*
      * font-family: "Fira Sans Semibold", "Noto Sans CJK", "Font Awesome 7 Free", "Font Awesome 7 Brands", "Material Icons", FontAwesome, Symbols Nerd Font, MesloLGM Nerd Font Propo;
      */
-    font-family: "Noto Sans Mono", "FontAwesome", "Font Awesome 7 Free", "Font Awesome 7 Brands", "Material Icons";
+    font-family: "Noto Sans Mono", "Symbols Nerd Font Mono","FontAwesome", "Font Awesome 7 Free", "Font Awesome 7 Brands", "Material Icons";
     min-height: 0;
     border-radius:0px;
 }

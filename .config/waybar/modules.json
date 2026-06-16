@@ -83,8 +83,8 @@
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         // "format-wifi": "{essid} ({signalStrength}%) ",
         "format-wifi": "({signalStrength}%) ",
-        "format-ethernet": "",
-        "format-linked": "{ifname} (No IP) ",
+        "format-ethernet": "",
+        "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
         "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
         "tooltip-format-ethernet": "{ifname}: {ipaddr}/{cidr}",
