@@ -15,7 +15,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("$HOME/.config/rice/listeners.sh --startall")
     hl.exec_cmd("walker --gapplication-service &")
     -- odysseus background process
-    hl.exec_cmd("source $HOME/applications/odysseus/venv/bin/activate && python -m uvicorn app:app --host 127.0.0.1 --port 7000")
+    hl.exec_cmd("source $HOME/applications/odysseus/.venv/bin/activate && cd $HOME/applications/odysseus && python -m uvicorn app:app --host 127.0.0.1 --port 7000")
 end)
 
 hl.on("config.reloaded", function()

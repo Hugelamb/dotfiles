@@ -21,4 +21,5 @@ py = "python"
 view = "zathura"
 editor = "nvim"
 host = "default"
-style = "first-light"
+hostname = os.getenv("HOSTNAME")
+default_style = "first-light"

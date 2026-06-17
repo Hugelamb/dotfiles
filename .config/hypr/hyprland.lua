@@ -15,11 +15,7 @@
 require("lua.functions")
 require("lua.colors")
 require("lua.decorations.blur")
--- =============================================
--- Monitor
--- =============================================
-require("lua.monitors.laptop")
-require("lua.monitors.default")
+
 -- =============================================
 -- Source environment variables
 -- =============================================
@@ -40,6 +36,13 @@ require("lua.aliases.laptop")
 require("lua.miscellaneous.laptop")
 
 -- =============================================
+-- Monitors
+-- =============================================
+require("lua.monitor")
+require("lua.monitors.laptop")
+require("lua.monitors.default")
+
+-- =============================================
 -- Source layout options
 -- =============================================
 require("lua.layout.laptop")
@@ -57,6 +60,7 @@ require("lua.windowrules.laptop")
 -- Source input settings
 -- =============================================
 -- Source: ~/.config/hypr/conf/input/laptop.conf — convert this file to Lua and ensure it is on Lua's package.path.
+require("lua.inputs.default")
 require("lua.inputs.laptop")
 
 -- =============================================
