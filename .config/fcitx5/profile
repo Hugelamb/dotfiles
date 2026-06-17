@@ -1,38 +1,26 @@
 [Groups/0]
 # Group Name
-Name=Default
+Name=Cangjie
 # Layout
-Default Layout=us-intl
+Default Layout=au
 # Default Input Method
-DefaultIM=mozc
+DefaultIM=keyboard-au
 
 [Groups/0/Items/0]
 # Name
-Name=keyboard-us-intl
+Name=scj6
 # Layout
 Layout=
 
 [Groups/0/Items/1]
 # Name
-Name=rime
-# Layout
-Layout=
-
-[Groups/0/Items/2]
-# Name
-Name=pinyin
-# Layout
-Layout=
-
-[Groups/0/Items/3]
-# Name
-Name=mozc
+Name=keyboard-au
 # Layout
 Layout=
 
 [Groups/1]
 # Group Name
-Name=Mandarin
+Name=Cantonese
 # Layout
 Default Layout=au
 # Default Input Method
@@ -47,12 +35,6 @@ Layout=
 [Groups/1/Items/1]
 # Name
 Name=rime
-# Layout
-Layout=
-
-[Groups/1/Items/2]
-# Name
-Name=pinyin
 # Layout
 Layout=
 
@@ -78,7 +60,7 @@ Layout=
 
 [Groups/3]
 # Group Name
-Name=Cantonese
+Name=Mandarin
 # Layout
 Default Layout=au
 # Default Input Method
@@ -96,23 +78,41 @@ Name=rime
 # Layout
 Layout=
 
+[Groups/3/Items/2]
+# Name
+Name=pinyin
+# Layout
+Layout=
+
 [Groups/4]
 # Group Name
-Name=Cangjie
+Name=Default
 # Layout
-Default Layout=au
+Default Layout=us-intl
 # Default Input Method
-DefaultIM=keyboard-au
+DefaultIM=mozc
 
 [Groups/4/Items/0]
 # Name
-Name=scj6
+Name=keyboard-us-intl
 # Layout
 Layout=
 
 [Groups/4/Items/1]
 # Name
-Name=keyboard-au
+Name=rime
+# Layout
+Layout=
+
+[Groups/4/Items/2]
+# Name
+Name=pinyin
+# Layout
+Layout=
+
+[Groups/4/Items/3]
+# Name
+Name=mozc
 # Layout
 Layout=
 

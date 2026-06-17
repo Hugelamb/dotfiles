@@ -18,14 +18,6 @@
       },
       "format-icons": {
         "1":  ""
-        //"2":  "", // Web
-        //"3":  "󱑽", // Music
-        //"4":  "", //Editor
-        //"5":  "", /* #ff5761 */
-        //"6":  "", /* KiCAD */
-        //"7":  "󰐫",
-        //"8":  "",
-        //"9":  "", /* FreeCAD */
       }
     },
     "hyprland/submap": {
@@ -130,7 +122,8 @@
           "default": ["", "", ""],
           "muted": "󰝟"
         },
-      "on-click": "hyprctl dispatch exec \"[float; move onscreen 100% 38]\" \"flatpak run com.saivert.pwvucontrol\"" // Double escape, to pass a single \ to the dispatcher, rather than it being interpreted as a special escape sequence by the waybar program when the configuration is being read.
+        "on-click": "flatpak run com.saivert.pwvucontrol",
+      //"on-click": "hyprctl dispatch exec \"[float; move onscreen 100% 38]\" \"flatpak run com.saivert.pwvucontrol\"" // Double escape, to pass a single \ to the dispatcher, rather than it being interpreted as a special escape sequence by the waybar program when the configuration is being read.
     },
     // mpris not used, use custom/player instead
     "mpris": {
