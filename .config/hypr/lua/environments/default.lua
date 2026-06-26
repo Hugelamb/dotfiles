@@ -7,6 +7,7 @@ hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
 
 -- Nvidia GPU enabled
+hl.env("GBM_BACKEND", "nvidia-drm")
 hl.env("LIBVA_DRIVER_NAME", "nvidia")
 hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
 
@@ -21,10 +22,14 @@ hl.env("XDG_SESSION_DESKTOP", "Hyprland")
 
 -- QT Variables
 -- hl.env("QT_QPA_PLATFORM", "xcb")
-hl.env("QT_QPA_PLATFORM", "wayland")
+hl.env("QT_QPA_PLATFORM", "wayland;xcb")
 hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
 
 hl.env("QT_IM_MODULES", "wayland;fcitx")
 -- XWayland scaling
 
 --
+hl.env("GDK_BACKEND", "wayland,x11,*")
+hl.env("CLUTTER_BACKEND", "wayland")
+hl.env("SDL_VIDEODRIVER", "wayland")
+

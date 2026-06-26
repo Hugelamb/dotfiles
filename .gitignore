@@ -6,7 +6,8 @@
 **/colors.**
 .config/rice/settings/**
 # ignore device (hostname) specific files
-.config/hypr/lua/**/**.lua
-.config/hypr/lua/**/!default.lua
-.config/hypr/lua/**/!laptop.lua
+.config/hypr/lua/*/*.lua
+!.config/hypr/lua/*/default.lua
+!.config/hypr/lua/*/laptop.lua
+!.config/hypr/lua/*.lua
 !.config/matugen/templates/*

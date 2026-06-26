@@ -20,6 +20,5 @@ sync = "syncthing"
 py = "python"
 view = "zathura"
 editor = "nvim"
-host = "default"
 hostname = os.getenv("HOSTNAME")
 default_style = "first-light"

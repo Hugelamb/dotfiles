@@ -122,3 +122,22 @@ hl.window_rule({
     float = true,
 })
 
+hl.window_rule({
+    name = "float-python3-charts",
+    match = {
+        class = "python3",
+        title = "Figure \\d*",
+    },
+    float = true,
+})
+
+--# Keep focus on gpick application
+hl.window_rule({
+    match = {
+        class = "gpick",
+        title = "Gpick",
+    },
+    stay_focused = true,
+})
+
+

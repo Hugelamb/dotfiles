@@ -21,7 +21,6 @@
 
 hl.on("hyprland.start", function()
     hl.exec_cmd("hyprpaper")
-    hl.exec_cmd("$alerts")
     hl.exec_cmd("python $HOME/projects/university-setup-fuzzel/scripts/countdown.py")
     hl.exec_cmd("$HOME/.config/waybar/launch-waybar.sh")     
     hl.exec_cmd("$sync")
@@ -29,8 +28,3 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("$HOME/.config/rice/listeners.sh --startall")
     hl.exec_cmd("walker --gapplication-service &")
 end)
-
-hl.on("hyprland.reload", function()
-  hl.exec_cmd("hyprpaper")
-)
-
