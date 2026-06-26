@@ -5,5 +5,8 @@
 .config/hypr/hyprpaper.conf
 **/colors.**
 .config/rice/settings/**
-.config/hypr/lua/window.lua
+# ignore device (hostname) specific files
+.config/hypr/lua/**/**.lua
+.config/hypr/lua/**/!default.lua
+.config/hypr/lua/**/!laptop.lua
 !.config/matugen/templates/*
