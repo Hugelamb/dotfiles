@@ -11,3 +11,4 @@
 !.config/hypr/lua/*/laptop.lua
 !.config/hypr/lua/*.lua
 !.config/matugen/templates/*
+.config/fcitx5/**
