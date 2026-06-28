@@ -5,7 +5,6 @@
 /*
 */
 
-@define-color background rgba(255,255,255,0.2);
 
 /*@import '../colors.css'; */
 /* =================== */
@@ -38,7 +37,7 @@ window#waybar.hidden {
   border: 1px solid transparent;
   opacity:0.8;
   margin:2px;
-  background-color: @background;
+  background-color: @blur_background;
   box-shadow: inset 2px 2px 14px rgba(255, 255, 255, 0.6), inset 0 1px 2px 0px rgba(255, 255, 255, 0.6), inset 1px 1px 1px rgba(255, 255, 255, 0.6);
  }
 
@@ -47,7 +46,7 @@ window#waybar.hidden {
   border:   1px solid transparent;
   opacity:  0.8;
   margin:   2px;
-  background-color: rgba(255,255,255,0.3);
+  background-color: @blur_background;
   box-shadow: inset 0px 2px 14px 2px rgba(255, 255, 255, 0.6), inset 0 1px 2px 0px rgba(255, 255, 255, 0.6), inset 1px 1px 1px rgba(255, 255, 255, 0.6);
 }
 .modules-center {
@@ -55,7 +54,7 @@ window#waybar.hidden {
   border: 1px solid transparent;
   opacity: 0.8;
   margin:2px;
-  background-color: rgba(255,255,255,0.3);
+  background-color: @blur_background;
   box-shadow: inset 2px 2px 14px rgba(255, 255, 255, 0.6), inset 0 1px 2px 0px rgba(255, 255, 255, 0.6), inset 1px 1px 1px rgba(255, 255, 255, 0.6);
 }
 

@@ -13,7 +13,8 @@
 -- =============================================
 --
 require("lua.functions") -- load several useful functions for loading lua files gracefully
-require_humane("lua.util") -- loads all files in lua/utils/, containing any libraries of extra lua functions required such as json interpretation.
+-- require_humane("lua.util") -- loads all files in lua/utils/, containing any libraries of extra lua functions required such as json interpretation.
+require("lua.utils")
 require("lua.colors")
 require("lua.decorations.blur")
 
@@ -68,9 +69,7 @@ require("lua.bind")
 -- Source workspace options
 -- =============================================
 -- Source: ~/.config/hypr/conf/workspaces/laptop.conf — convert this file to Lua and ensure it is on Lua's package.path.
-require_humane("lua.workspaces")
-require("lua.workspaces.default")
--- require("lua.workspaces.laptop")
+require_humane("lua.workspace")
 
 -- =============================================
 -- Source autostart programs

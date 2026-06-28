@@ -24,4 +24,3 @@ hl.config({
   },
 })
 
-hl.layer_rule({ match = { namespace = "waybar" }, blur = true })

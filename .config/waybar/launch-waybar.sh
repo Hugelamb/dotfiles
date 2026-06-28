@@ -64,6 +64,7 @@ _toggle_module() {
 
 _toggle_module "custom/appmenu" "$HOME/.config/rice/settings/waybar_appmenu.sh"
 _toggle_module "wlr/taskbar" "$HOME/.config/rice/settings/waybar_taskbar.sh"
+_toggle_module "hyprland/workspaces" "$HOME/.config/rice/settings/waybar_workspaces.sh"
 _toggle_module "group/quicklinks" "$HOME/.config/rice/settings/waybar_quicklinks.sh"
 _toggle_module "hyprland/window" "$HOME/.config/rice/settings/waybar_window.sh"
 _toggle_module "network" "$HOME/.config/rice/settings/waybar_network.sh"

@@ -7,5 +7,5 @@ $HOME/.config/waybar/launch-waybar.sh &
 # Set walker theme
 echo "$theme_name" > $HOME/.config/rice/settings/walker-theme
 # Set hyprland colors
-echo -e 'local name = "default.lua"\nload_variant(name,"windows")' > $HOME/.config/hypr/lua/window.lua
+echo -e 'local name = "muted-glow.lua"\nload_variant(name,"windows")' > $HOME/.config/hypr/lua/window.lua
 echo ":: Theme set to Muted Glow"

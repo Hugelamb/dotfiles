@@ -34,7 +34,7 @@ if [ -f $HOME/.cargo/bin/matugen ]; then
   MATUGEN_BIN="$HOME/.cargo/bin/matugen"
 elif [ -f $HOME/.local/bin/matugen ]; then
   MATUGEN_BIN="$HOME/.local/bin/matugen"
-elif [! command -v matugen ]; then
+elif ! [ $(command -v matugen) ]; then
   error "!!! Matugen not installed, skipping color (re-)generation !!!"
   exit 1
 else

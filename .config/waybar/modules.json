@@ -5,13 +5,13 @@
   //Modules Configuration
     "hyprland/workspaces": {
       "disable-scroll": true,
-      "format": " {icon}",
+      "format": " {icon} {windows}",
       "all-outputs": false,
       "active-only": false,
       "warp-on-scroll": false,
       "justify": "center",
       "workspace-taskbar": {
-        "enable": false,
+        "enable":true,
         "update-active-window": true,
         "format": "{icon}",
         "icon-size": 10
@@ -19,6 +19,7 @@
       "format-icons": {
         "1":  ""
       }
+
     },
     "hyprland/submap": {
       "format": "<span style=\"italic\">{}</span>"
