@@ -24,6 +24,6 @@ case "$selected_option" in
         systemctl hibernate
         ;;
     *Logout)
-        hyprctl dispatch exit 0
+      hyprctl dispatch 'hl.dsp.exit()'
         ;;
 esac
