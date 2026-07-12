@@ -1,0 +1,60 @@
+[window]
+padding = { x = 0, y = 0 }
+
+[font]
+normal = { family = "Noto Sans Mono", style = "Regular" }
+#normal = {family = "terminal-font", style = "Regular"}
+size = 10
+
+[scrolling]
+history=100000
+
+[selection]
+save_to_clipboard = true
+
+[terminal]
+shell = { program = "/usr/bin/bash" }
+
+[bell]
+animation = "Linear"
+
+##################
+### COLORTHEME ###
+##################
+[colors.primary]
+foreground = "#ccc8d5"
+background = "#14141B"
+
+[colors.normal]
+black   = "#19132a"
+red     = '#dc322f'
+green   = '#8FE092'
+yellow  = '#FDE74C'
+blue    = '#5bc0eb'
+magenta = '#f51aa4'
+cyan    = '#36f9f6'
+white   = '#f3d9ce'
+
+[colors.bright]
+black   = '#727169'
+red     = '#dc322f'
+green   = '#3B8748'
+yellow  = '#FDE74C'
+blue    = '#5bc0eb'
+magenta = '#f51aa4'
+cyan    = '#36f9f6'
+white   = '#f3d9ce'
+
+[colors.selection]
+background = '#2d4f67'
+foreground = '#c8c093'
+
+[[colors.indexed_colors]]
+index = 16
+color = '#ffa066'
+
+[[colors.indexed_colors]]
+index = 17
+color = '#ff5d62'
+
+

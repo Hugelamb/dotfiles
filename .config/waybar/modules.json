@@ -1,0 +1,235 @@
+{
+  // To open a program window floating and in specific location, use the following as a template:
+  // hyprctl dispatch exec \"[float; move onscreen x y]\" "YOUR PROGRAM"
+
+  //Modules Configuration
+    "hyprland/workspaces": {
+      "disable-scroll": true,
+      "format": " {icon} {windows}",
+      "all-outputs": false,
+      "active-only": false,
+      "warp-on-scroll": false,
+      "justify": "center",
+      "workspace-taskbar": {
+        "enable":true,
+        "update-active-window": true,
+        "format": "{icon}",
+        "icon-size": 10
+      },
+      "format-icons": {
+        "1":  ""
+      }
+
+    },
+    "hyprland/submap": {
+      "format": "<span style=\"italic\">{}</span>"
+    },
+    "hyprland/window":  {
+      "format": "{class}",
+      "max-length": 50,
+      "rewrite": {
+        "": "<span foreground= '#458588'></span>",
+        "foot": "󰽒",
+        "firefox": "" ,
+        "chrome": "",
+        "chromium": "",
+        "tidal-hifi": "󱑽",
+        "nvim": "",
+        "tmux": ""
+      },
+      "all-outputs": false 
+    },
+    "battery": {
+        "interval": 60,
+        "states": {
+          "charged":90,
+          "warning": 30,
+          "critical": 15
+        },
+        "format": "{capacity}%{icon}",
+        "format-charging": "{icon}",
+        "format-alt": "{icon}",
+        "format-icons": ["  ","  ","  ","  ","  "],
+        "max-length": 6 
+    },
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": " {:%Y-%m-%d}"
+    },
+    "cpu": {
+      "format": "{usage}% ",
+      "tooltip": false
+    },
+    "keyboard-state": {
+      "format": {
+        "numlock": "N {icon}",
+        "capslock": "C {icon}",
+        "scrolllock": "S {icon}"
+      },
+      "format-icons": {
+        "locked": "",
+        "unlocked": ""
+      }
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        // "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-wifi": "({signalStrength}%) ",
+        "format-ethernet": "",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip-format-ethernet": "{ifname}: {ipaddr}/{cidr}",
+        //"tooltip-format-wifi": "{essid}[{frequency}GHz]: ({bandwidthUpBytes})󰕒 / ({bandwidthDownBytes})󰇚",
+        "tooltip-format-wifi": "{essid} [{frequency}GHz]",
+        "tooltip": true,
+        "on-click": "foot nmtui"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {con} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "",
+        "format-source-muted": "",
+        "format-icons": {
+          "headphone": "",
+          "hands-free": "",
+          "headset": "",
+          "phone": "",
+          "portable": "",
+          "car": "",
+          "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "tray": {
+        "spacing": 10,
+        "icon-size": 14
+    },
+    "wireplumber": {
+      "format": "{volume}% {icon}",
+      "format-muted":"󰝟",
+      "scroll-step":1,
+      "format-icons": {
+          "headphone": "",
+          "hands-free": "",
+          "headset": "",
+          "phone": "",
+          "portable": "",
+          "car": "",
+          "default": ["", "", ""],
+          "muted": "󰝟"
+        },
+        "on-click": "flatpak run com.saivert.pwvucontrol",
+      //"on-click": "hyprctl dispatch exec \"[float; move onscreen 100% 38]\" \"flatpak run com.saivert.pwvucontrol\"" // Double escape, to pass a single \ to the dispatcher, rather than it being interpreted as a special escape sequence by the waybar program when the configuration is being read.
+    },
+    // mpris not used, use custom/player instead
+    "mpris": {
+      "format": "{player_icon} : {dynamic}",
+      "format-paused": "{status_icon} <i>{dynamic}</i>",
+      "player-icons": {
+        "default": "󰎇",
+        "firefox": "<span color='#F30131' >󰗃</span>"
+      },
+      "status-icons": {
+        "paused": "󰏤"
+      },
+      "on-click": "playerctl previous",
+      "on-click-middle": "playerctl play-pause",
+      "on-click-right": "playerctl next"
+    },
+    /* CUSTOM MODULES */
+    /*
+    "custom/audiocontrol": {
+      "format": "{volume}% {icon} {format_source}",
+      "on-click": "flatpak run com.saivert.pwvucontrol"
+    },
+    */
+    "custom/brightness": {
+      "exec": "echo $(( $(cat /sys/class/backlight/amdgpu_bl1/brightness)*100/$(cat /sys/class/backlight/amdgpu_bl1/max_brightness) ))",
+      "format": " {}%",
+      "interval":1
+    }, 
+    "custom/calendar": {
+      "exec": " source ~/projects/university-setup-fuzzel/.venv/bin/activate && TZ='Australia/NSW' python3 -u ~/projects/university-setup-fuzzel/scripts/countdown.py ",
+      "on-click": "firefox 'https://calendar.google.com/calendar/' -- &"
+    },
+    "custom/fuzzel": {
+      "tooltip": false,
+      "format": "<span color='#fff8e5'></span>",
+      "on-click": "fuzzel"
+    },
+    "custom/notification": {
+      "tooltip": false,
+      "rotate": 0,
+      "format": "<span color='#dfdfdf'>{icon}</span>",
+      "format-icons": {
+        "notification": "<span color='#36f9f6'>󱅫</span>",
+        "none": "",
+        "dnd-notification": "󰂛",
+        "dnd-none": "󰂛",
+        "inhibited-notification": "",
+        "inhibited-none": "",
+        "dnd-inhibited-notification": "󰂛",
+        "dnd-inhibited-none": "󰂛"
+      },
+      "return-type": "json",
+      "exec-if": "which swaync-client",
+      "exec": "swaync-client -swb",
+      "on-click-right": "swaync-client -d -sw",
+      "on-click": "swaync-client -t -sw",
+      "escape": true
+    },
+    "custom/nordvpn": {
+      "format": "{}",
+      "exec": "~/.config/waybar/scripts/nordvpn-status.sh",
+      "return-type":"json",
+      "interval": 5,
+      "on-click": "/bin/bash -c nordvpn-gui",
+      "tooltip": true
+    },
+    "custom/padding": {
+      "format": " ",
+      "tooltip": false
+    },
+    "custom/player": {
+      // "format": "{status} | {icon} : {artist} - {title} | {time}",
+      "format": "{0}",
+      "exec": "~/.config/waybar/scripts/player.sh",
+      "interval": 1,
+      "min-length": 30,
+      "max-length": 71,
+      "tooltip": false,
+      "on-click-right": "playerctl next",
+      "on-click": "playerctl previous",
+      "on-click-middle": "playerctl play-pause",
+      "on-scroll-up": "playerctl position 1+",
+      "on-scroll-down": "playerctl position 1-"
+    },
+    "custom/power": {
+      "format" : "⏻",
+      "tooltip": false,
+      "on-click": "$HOME/.config/waybar/scripts/power-menu.sh"
+    },
+    "custom/prefix": {
+      "format": "<span color='#a89884'> >></span>",
+      "tooltip": false
+    },
+    "custom/weather": {
+      "format": "{}",
+      "exec": "$HOME/.config/waybar/scripts/weather.sh Sydney",
+      "return-type": "json",
+      "tooltip": true,
+      "interval": 3600
+    },
+    "custom/battery": {
+      "format": "{text}",
+      "exec": "$HOME/.config/waybar/scripts/battery.sh refresh",
+      "return-type": "json",
+      "tooltip": true
+      //"interval": 0.2
+    }
+}
