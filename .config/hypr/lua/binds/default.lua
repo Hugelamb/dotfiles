@@ -134,3 +134,4 @@ hl.bind(hyprMod .. " + Z", hl.dsp.exec_cmd("source ~/projects/university-setup-f
 --## ANKI bind
 hl.bind(hyprMod .. " + R", hl.dsp.exec_cmd("~/.config/hypr/conf/scripts/anki-record/voice-record.sh record"))
 
+require("default.tuxedo")
