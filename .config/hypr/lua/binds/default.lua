@@ -38,7 +38,10 @@ hl.bind(mainMod .. " + ALT + H", hl.dsp.window.swap({ direction = "l" }))
 hl.bind(mainMod .. " + ALT + L", hl.dsp.window.swap({ direction = "r" }))
 hl.bind(mainMod .. " + ALT + K", hl.dsp.window.swap({ direction = "u" }))
 hl.bind(mainMod .. " + ALT + J", hl.dsp.window.swap({ direction = "d" }))
-
+-----------------------------------
+-- DWINDLE LAYOUT SPECIFIC BINDS --
+-----------------------------------
+hl.bind(mainMod .. " + ALT + S", hl.dsp.layout("swapsplit"))
 --###################
 
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
@@ -108,8 +111,8 @@ hl.bind(hyprMod .. " + O", hl.dsp.exec_cmd("source ~/.bashrc && " .. view .. " ~
 -- open current course directory in terminal
 hl.bind(hyprMod .. " + Q", hl.dsp.exec_cmd("source ~/.bashrc && " .. terminal .. " --working-directory ~/notebook/current-course"))
 
--- open current course notes source codes in neovim
-hl.bind(hyprMod .. " + M", hl.dsp.exec_cmd("source HOME/.bashrc && " .. terminal .. "--working-directory ~/notebook/current-course -e nvim master.tex"))
+-- list all tutorial responses for current course, selecting one should open it in nvim -- DONE 
+hl.bind(hyprMod .. " + T", hl.dsp.exec_cmd("source ~/projects/university-setup-fuzzel/.venv/bin/activate && TZ='Australia/NSW' python ~/projects/university-setup-fuzzel/scripts/fuzzel-tutorials.py"))
 
 -- compile notes pdf (through selection dialogue) should compile and then open in viewer
 hl.bind(hyprMod .. " + V", hl.dsp.exec_cmd("source ~/projects/university-setup-fuzzel/.venv/bin/activate && TZ='Australia/NSW' python ~/projects/university-setup-fuzzel/scripts/fuzzel-lectures-view.py"))
