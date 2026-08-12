@@ -32,7 +32,7 @@ local utils = require('luasnippets.utils')
 local conds = require("luasnip.extras.expand_conditions")
 
 return {
-  s({ trig = "pac", dscr = "insert \\usepackage command", snippetType="autosnippet" },
+  s({ trig = ";pac", dscr = "insert \\usepackage command", snippetType="autosnippet" },
     fmta(
     [[
     \usepackage[<>]{<>}
@@ -139,7 +139,7 @@ return {
     ),
   { condition = utils.in_itemize}
   ),  
-  s({ trig = "cite+", dscr = "new \\cite command", snippetType="autosnippet" },
+  s({ trig = ";ct", dscr = "new \\cite command", snippetType="autosnippet" },
     fmta(
     [[
     \cite[<>][<>]{<>}<>
