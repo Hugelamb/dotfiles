@@ -533,7 +533,8 @@ vim.keymap.set('n','<A-p>','<C-w><S-w>')    -- move to previous window
 -- Compile Continously (mapping to call :VimtexCompile)
 vim.keymap.set('n','<LocalLeader>vc',':VimtexCompile <CR>')
 vim.keymap.set('n','<Localleader>vv',':VimtexView <CR>')
-
+-- Show wordcount in statusline temporarily
+vim.keymap.set('n','<Localleader>wc',':VimtexCountWords <CR>')
 ----------------------
 --- Snippet Macros ---
 ----------------------
@@ -586,6 +587,9 @@ vim.api.nvim_create_user_command('GetVisualPos',
   ,{ range = true }
 )
 vim.keymap.set('v', 'D', ':GetVisualPos<CR>', {noremap = true, silent = true})
+
+-- wordcount command
+vim.keymap.set('x', '<Leader>l', "<cmd>lua print(vim.fn.wordcount().visual_words)<CR>")
 
 -------------------
 --- LSP configs ---
