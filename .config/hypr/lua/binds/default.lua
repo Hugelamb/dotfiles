@@ -49,6 +49,7 @@ for i = 1, 9 do
   hl.bind(mainMod .. " + " .. i, hl.dsp.focus({workspace = i}))
   hl.bind(mainMod .. " + SHIFT + " .. i, hl.dsp.window.move({ workspace = i }))
 end
+hl.bind(mainMod .. " + CTRL + K ", hl.dsp.focus({workspace = "k"}) )
 -- 0 binds to workspace 10 not workspace 0 so can't be in for loop above
 hl.bind(mainMod .. " + 0", hl.dsp.focus({ workspace = 10 }))
 hl.bind(mainMod .. " + SHIFT + 0", hl.dsp.window.move({ workspace = 10 }))
