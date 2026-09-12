@@ -1,0 +1,37 @@
+[colors.primary]
+foreground = "{{colors.secondary.default.hex}}"
+background = "{{colors.on_secondary.default.hex}}"
+
+[colors.normal]
+black   = "#19132a"
+red     = '#dc322f'
+green   = '#8FE092'
+yellow  = '#FDE74C'
+blue    = '#5bc0eb'
+magenta = '#f51aa4'
+cyan    = '#36f9f6'
+white   = '#f3d9ce'
+
+[colors.bright]
+black   = '#727169'
+red     = '#dc322f'
+green   = '#3B8748'
+yellow  = '#FDE74C'
+blue    = '#5bc0eb'
+magenta = '#f51aa4'
+cyan    = '#36f9f6'
+white   = '#f3d9ce'
+
+[colors.selection]
+foreground = "{{colors.background.default.hex}}"
+background = "{{colors.on_background.default.hex}}"
+# background = '#2d4f67'
+# foreground = '#c8c093'
+
+[[colors.indexed_colors]]
+index = 16
+color = '#ffa066'
+
+[[colors.indexed_colors]]
+index = 17
+color = '#ff5d62'

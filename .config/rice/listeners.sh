@@ -11,6 +11,7 @@
 declare -A LISTENERS
 # LISTENERS["low-bat-notification"]="$HOME/.config/rice/listeners/low-bat-notification.sh"
 LISTENERS["wallpaper-listener"]="$HOME/.config/rice/listeners/wallpaper-listener.sh"
+LISTENERS["colour-mode-listener"]="$HOME/.config/rice/listeners/colour-mode-listener.sh"
 
 start_listener() {
   local script_name="$1"

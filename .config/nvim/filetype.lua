@@ -13,3 +13,8 @@ vim.filetype.add({
     FCMacro = "python",
   },
 })
+-- vim.filetype.add({
+--   extension = {
+--     strudel = "javascript",
+--   },
+-- })

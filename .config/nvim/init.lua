@@ -373,7 +373,13 @@ require("lazy").setup({ -- colorscheme plugin here
       { '<leader>ss', '<cmd>StrudelStop<cr>', ft = 'strudel', desc = 'Strudel: Stop' },
     },
     config = function()
-      require('strudel').setup()
+      require('strudel').setup({
+        audio = {
+          output = 'webaudio',
+        },
+
+        filetypes = { 'strudel', 'javascript', 'typescript' },
+      })
     end,
   }
   

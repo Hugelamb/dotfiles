@@ -22,4 +22,10 @@ post_hook = '~/.config/waybar/launch-waybar.sh'
 input_path = '~/.config/matugen/templates/nvim-colors.lua'
 output_path = '~/.config/nvim/colors/palette.lua'
 
+[templates.alacritty]
+input_path = '~/.config/matugen/templates/alacritty-colors.toml'
+output_path = '~/.config/alacritty/themes/matugen_theme.toml'
 
+[templates.tuxedo]
+input_path = '~/.config/matugen/templates/tuxedo-colors.toml'
+output_path = '~/.config/tuxedo/themes/matugen_theme.toml'
