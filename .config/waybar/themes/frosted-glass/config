@@ -28,7 +28,7 @@
     "tray",
     "network",
     //"clock",
-    //"custom/brightness",
+    "custom/brightness",
     "battery",
     "custom/power"
   ]

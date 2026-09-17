@@ -40,10 +40,25 @@ elif ! [ $(command -v matugen) ]; then
 else
   MATUGEN_BIN="matugen"
 fi
-
+# Set Matugen flag fallback values
+COLOUR_MODE="dark"
+MATUGEN_SCHEME_TYPE="scheme-tonal-spot"
+MATUGEN_SOURCE_COLOR_INDEX=0
+# Check color mode (light/dark)
+if [ -f $HOME/.config/rice/settings/colour-mode ]; then
+  COLOUR_MODE=$(cat $HOME/.config/rice/settings/colour-mode)
+elif [ -f $HOME/.config/rice/settings/default-colour-mode ]; then
+  COLOUR_MODE=$(cat $HOME/.config/rice/settings/default-colour-mode)
+else
+  info "!!! No color mode set, default to 'dark'"
+  COLOUR_MODE="dark"
+fi
 # Execute Matugen on currently selected wallpaper
-
-$MATUGEN_BIN image "$IMAGE_PATH" --source-color-index 0 -m "dark" # look into setting up a setting for determining dark/light mode
+if [ $COLOUR_MODE == "light" ]; then
+  MATUGEN_SCHEME_TYPE="scheme-content"
+  MATUGEN_SOURCE_COLOR_INDEX=2
+fi
+$MATUGEN_BIN image "$IMAGE_PATH" --source-color-index $MATUGEN_SOURCE_COLOR_INDEX -m "$COLOUR_MODE" -t "$MATUGEN_SCHEME_TYPE" # look into setting up a setting for determining dark/light mode
 
 info "Matugen Regeneration complete."
 

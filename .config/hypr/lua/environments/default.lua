@@ -33,3 +33,4 @@ hl.env("GDK_BACKEND", "wayland,x11,*")
 hl.env("CLUTTER_BACKEND", "wayland")
 hl.env("SDL_VIDEODRIVER", "wayland")
 
+hl.env("TODO_DIR", os.getenv("HOME").."/.local/share/todo")

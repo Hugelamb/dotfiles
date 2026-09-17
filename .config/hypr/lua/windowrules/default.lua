@@ -96,6 +96,14 @@ hl.window_rule({
 
 --##############
 --## KICAD 
+-- hl.window_rule({
+--   name = "kicad-workspace",
+--   workspace = "name:k",
+--   match = { 
+--     initial_class = "KiCad",
+--   }
+-- })
+
 hl.window_rule({
     match = {
         initial_class = "(KiCad)",
@@ -110,7 +118,7 @@ hl.window_rule({
         initial_class = "(KiCad)",
         initial_title = "negative:kicad",
     },
-    size = "800 600",
+    size = "30% 30%",
     float = true,
 })
 
@@ -121,6 +129,9 @@ hl.window_rule({
     move = "onscreen cursor -50% -50%",
     float = true,
 })
+
+
+
 
 hl.window_rule({
     name = "float-python3-charts",

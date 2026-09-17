@@ -1,0 +1,12 @@
+{
+  "name": "custom",
+  "colors": {
+    "bg": "{{colors.background.default.hex}}",
+    "fg": "{{colors.on_background.default.hex}}",
+    "panel": "{{colors.surface.default.hex}}",
+    "border": "{{colors.outline.default.hex}}",
+    "red": "{{colors.error.default.hex}}"
+  }
+}
+
+

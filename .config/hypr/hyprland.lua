@@ -77,3 +77,10 @@ require_humane("lua.workspace")
 -- Source: ~/.config/hypr/conf/start/laptop.conf — convert this file to Lua and ensure it is on Lua's package.path.
 -- require("lua.start.laptop")
 require("lua.start")
+
+
+-- =============================================
+-- Source event handlers
+-- =============================================
+
+require("lua.event")

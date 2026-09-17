@@ -26,8 +26,10 @@ hl.bind(mainMod .. " + SHIFT + R", hl.dsp.exec_cmd("hyprctl reload"))
 hl.bind(mainMod .. " + ALT + W", hl.dsp.exec_cmd("~/.config/waybar/launch-waybar.sh"))
 hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("killall -SIGUSR2 " .. statusbar))
 hl.bind(mainMod .. " + CTRL + W", hl.dsp.exec_cmd("~/.config/rice/scripts/wallpaper.sh"))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("~/.config/rice/scripts/change_colour_mode.sh"))
 -- hl.bind(mainMod .. " + SHIFT + T", hl.dsp.exec_cmd("~/.config/waybar/themeselect.sh"))
 hl.bind(mainMod .. " + CTRL + T", hl.dsp.exec_cmd("~/.config/rice/themes/themeselector.sh"))
+hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("TODO_DIR=~/.local/share/todo/ alacritty -e tuxedo"))
 -- Move focus with mainMod + vim motion keys
 hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
@@ -49,6 +51,7 @@ for i = 1, 9 do
   hl.bind(mainMod .. " + " .. i, hl.dsp.focus({workspace = i}))
   hl.bind(mainMod .. " + SHIFT + " .. i, hl.dsp.window.move({ workspace = i }))
 end
+hl.bind(mainMod .. " + CTRL + K ", hl.dsp.focus({workspace = "k"}) )
 -- 0 binds to workspace 10 not workspace 0 so can't be in for loop above
 hl.bind(mainMod .. " + 0", hl.dsp.focus({ workspace = 10 }))
 hl.bind(mainMod .. " + SHIFT + 0", hl.dsp.window.move({ workspace = 10 }))
