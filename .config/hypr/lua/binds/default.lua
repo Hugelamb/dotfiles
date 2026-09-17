@@ -29,7 +29,7 @@ hl.bind(mainMod .. " + CTRL + W", hl.dsp.exec_cmd("~/.config/rice/scripts/wallpa
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("~/.config/rice/scripts/change_colour_mode.sh"))
 -- hl.bind(mainMod .. " + SHIFT + T", hl.dsp.exec_cmd("~/.config/waybar/themeselect.sh"))
 hl.bind(mainMod .. " + CTRL + T", hl.dsp.exec_cmd("~/.config/rice/themes/themeselector.sh"))
-hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("TODO_DIR=~/.local/share/todo/ alacritty -e tuxedo"))
+hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("TODO_DIR=~/.local/share/todo/ alacritty -e tuxedo"), { description = "open tuxedo tui in terminal window" })
 -- Move focus with mainMod + vim motion keys
 hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
@@ -140,4 +140,4 @@ hl.bind(hyprMod .. " + Z", hl.dsp.exec_cmd("source ~/projects/university-setup-f
 --## ANKI bind
 hl.bind(hyprMod .. " + R", hl.dsp.exec_cmd("~/.config/hypr/conf/scripts/anki-record/voice-record.sh record"))
 
-require("default.tuxedo")
+--require("default.tuxedo")
