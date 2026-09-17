@@ -2,7 +2,9 @@
 
 WALLPAPER_DIR="$HOME/Pictures/Backgrounds/"
 launcher=$(cat $HOME/.config/rice/settings/launcher)
-default_wallpaper="portal.png"
+if [ -f "$HOME/.config/rice/settings/default-wallpaper" ]; then
+  default_wallpaper=$(cat $HOME/.config/rice/settings/default-wallpaper)
+fi
 # WALLPAPER_OPTIONS=$(find "$WALLPAPER_DIR" -maxdepth 1 -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.tif" \) | awk -F '{sub(/^.*\\//,"");  print $NF }' )
 WALLPAPER_OPTIONS=($(find "$WALLPAPER_DIR" -maxdepth 1 -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \)))
 for path in "${WALLPAPER_OPTIONS[@]}"; do 
