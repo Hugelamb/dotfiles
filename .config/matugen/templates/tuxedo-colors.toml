@@ -4,14 +4,18 @@ name = Matugen
 
 bg = {{colors.background.default.hex}}
 # panel = {{colors.background.default.hex | lighten: 10.0 }}
-panel = {{colors.surface.default.hex}}
+panel = {{colors.surface_variant.default.hex}}
 border = {{colors.outline.default.hex}}
 
-fg = {{colors.primary.default.hex}}
+fg = {{colors.on_background.default.hex}}
 dim = {{colors.primary_fixed_dim.default.hex}}
 accent = {{colors.on_error.default.hex}}
 
-cursor = {{colors.on_background.default.hex}}
+<* if {{ is_dark_mode }} *>
+  cursor = {{colors.primary_container.default.hex}}
+<* else *>
+  cursor = {{colors.on_primary_container.default.hex}}
+<* endif *>
 selection = {{colors.on_primary.default.hex}}
 statusbar = {{colors.secondary_container.default.hex}}
 status_fg = {{colors.secondary_fixed_dim.default.hex}}

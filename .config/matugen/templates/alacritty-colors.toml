@@ -1,6 +1,12 @@
+
 [colors.primary]
-foreground = "{{colors.secondary.default.hex}}"
-background = "{{colors.on_secondary.default.hex}}"
+<* if {{ is_dark_mode }} *>
+  foreground = "{{colors.primary.default.hex}}"
+  background = "{{colors.background.default.hex}}"
+<* else *>
+  foreground = "{{colors.primary.default.hex}}"
+  background = "{{colors.background.default.hex | auto_lightness: 5.0}}"
+<* endif *>
 
 [colors.normal]
 black   = "#19132a"
