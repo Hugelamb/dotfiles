@@ -1,234 +1,131 @@
-{
-  "layer": "top",
+[
+  /* Bar for inbuilt laptop display */
+  {
+  "name": "inbuilt",
+  "layer": "bottom",
   "position": "top",
-  "height": 35,
-  "spacing": 5,
-  "margin-top": 3,
-  "margin-left": 3,
-  "margin-right": 3,
-  "output": ["DP-3","eDP-1"],
+  "height": 16,
+  "spacing": 3,
+  "margin-top": 1,
+  "margin-left": 2,
+  "margin-right": 2,
+  "output": ["eDP-1"],
   "modules-left": [
-    "custom/padding",
     "custom/fuzzel",
-    "custom/padding",
     "hyprland/workspaces",
-    "hyprland/window",
-    "custom/padding",
     "hyprland/submap",
-    "custom/padding",
     "custom/calendar"
   ],
   "modules-center": ["custom/player"],
   "modules-right": [
-    "pulseaudio",
-    "custom/padding",
-    "custom/notification",
-    "custom/padding",
-    "network",
-    "custom/padding",
     "custom/weather",
-    "custom/padding",
+    "custom/nordvpn",
+    "wireplumber",
+    //"custom/notification",
+    "network",
+    "tray",
     "clock",
-    "custom/padding",
-  //"custom/brightness",
-  //"custom/padding",
-  //"battery",
-    "custom/padding",
-    "custom/power",
-    "custom/padding"
+    //"custom/brightness",
+    "battery",
+    "custom/power"
   ],
-
-    //Modules Configuration
-    "hyprland/workspaces": {
-      "disable-scroll": true,
-      "all-outputs": true,
-      "active-only": false,
-      "warp-on-scroll": false,
-      "format": " {icon}",
-      "format-icons": {
-        "1":"<span color='#f821b2' ></span>",
-        "2":"<span color='#ff5761' ></span>",
-        "3":"<span color='#e99727' ></span>",
-        "4":"<span color='#acc642' ></span>",
-        "5":"<span color='#64e699' >󱎓</span>"
-      },
-      "persistent-workspaces": {
-        "DP-3": 5,
-        "DP-2": 5
-      }
-    },
-    "hyprland/submap": {
-      "format": "<span style=\"italic\">{}</span>"
-    },
-    "hyprland/window":  {
-      "format": "{class}",
-      "max-length": 50,
-      "rewrite": {
-        "": "<span foreground= '#458588'></span> hyprland",
-        "foot": "terminal",
-        "firefox": "browser",
-        "chrome": "browser",
-        "chromium": "browser",
-        "dolphin": "file manager",
-        "spotify": "player",
-        "nvim": "editor",
-        "xournal++": "notes"
-      },
-      "all-outputs": true
-    },
-    "battery": {
-        //"bat": "BAT0",
-        "interval": 60,
-        "states": {
-          "charged":90,
-          "warning": 30,
-          "critical": 15
-        },
-        "format": "{icon}",
-        "format-alt": "{capacity}%",
-        "format-icons": ["  ","  ","  ","  ","  "],
-        "max-length": 5 
-    },
-    "clock": {
-        // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "<span color='#00071a'> {:%Y-%m-%d}</span>"
-    },
-    "cpu": {
-      "format": "{usage}% ",
-      "tooltip": false
-    },
-    "keyboard-state": {
-      "format": {
-        "numlock": "N {icon}",
-        "capslock": "C {icon}",
-        "scrolllock": "S {icon}"
-      },
-      "format-icons": {
-        "locked": "",
-        "unlocked": ""
-      }
-    },
-    "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
-        "tooltip": true,
-        "on-click": "foot nmtui"
-    },
-    "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {con} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-          "headphone": "",
-          "hands-free": "",
-          "headset": "",
-          "phone": "",
-          "portable": "",
-          "car": "",
-          "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
-    },
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10,
-        "icon-size": 15
-    },
-
-    /* CUSTOM MODULES */
-    "custom/brightness": {
-      "exec": "echo $(( $(cat /sys/class/backlight/intel_backlight/brightness)*100/$(cat /sys/class/backlight/intel_backlight/max_brightness) ))",
-      "format": " {}%",
-      "interval":1
-    }, 
-    "custom/calendar": {
-      "exec": " source ~/projects/university-setup-fuzzel/.venv/bin/activate && TZ='Australia/NSW' python3 -u ~/projects/university-setup-fuzzel/scripts/countdown.py ",
-      "on-click": "firefox 'https://calendar.google.com/calendar/' -- &"
-    },
-
-    "custom/fuzzel": {
-      "tooltip": false,
-      "format": "<span color='#fff8e5'></span>",
-      "on-click": "fuzzel"
-    },
-    "custom/notification": {
-      "tooltip": false,
-      "rotate": 0,
-      "format": "{icon}",
-      "format-icons": {
-        "notification": "<span color='#ff2a0e'>󱅫</span>",
-        "none": " ",
-        "dnd-notification": "󰂛 ",
-        "dnd-none": "󰂛 ",
-        "inhibited-notification": " ",
-        "inhibited-none": " ",
-        "dnd-inhibited-notification": "󰂛 ",
-        "dnd-inhibited-none": "󰂛 "
-      },
-      "return-type": "json",
-      "exec-if": "which swaync-client",
-      "exec": "swaync-client -swb",
-      "on-click-right": "swaync-client -d -sw",
-      "on-click": "swaync-client -t -sw",
-      "escape": true
-    },
-    "custom/padding": {
-      "format": " ",
-      "tooltip": false
-    },
-    "custom/player": {
-      "format": "{}",
-      "exec": "~/.config/waybar/scripts/player.sh",
-      "interval": 1,
-      "max-length": 35,
-      "tooltip": false,
-      "on-click-right": "playerctl next",
-      "on-click": "playerctl previous",
-      "on-click-middle": "playerctl play-pause",
-      "on-scroll-up": "playerctl volume 0.05+",
-      "on-scroll-down": "playerctl volume 0.05-"
-    },
-    "custom/power": {
-      "format" : "⏻ ",
-      "tooltip": false,
-      "on-click": "$HOME/.config/waybar/scripts/power-menu.sh"
-    },
-    "custom/prefix": {
-      "format": "<span color='#a89884'> >></span>",
-      "tooltip": false
-    },
-    "custom/timer": {
-        // requires waybar-timer; find details at https://github.com/jbirnick/waybar-timer
-      "exec": "$HOME/.config/waybar/scripts/waybar_timer hook",
-      "exec-on-event": false,
-      "return-type": "json",
-      "format": "{icon} {0}",
-      "format-icons": {
-        "standby": "<span color='#e99727' > STANDBY</span>",
-        "running": "<span color='#384015' > RUNNING</span>",
-        "paused": "PAUSE"
-      },
-      "on-click": "$HOME/.config/waybar/scripts/waybar_timer new 25 'notify-send \"Session finished\"'",
-      "on-click-middle": "$HOME/.config/waybar/scripts/waybar_timer cancel",
-      "on-click-right": "$HOME/.config/waybar/scripts/waybar_timer togglepause",
-      "on-scroll-up": "$HOME/.config/waybar/scripts/waybar_timer increase 60 || $HOME/.config/waybar/scripts/waybar_timer new 1 'notify-send -u critical \"Timer expired\"'",
-      "on-scroll-down": "$HOME/.config/waybar/scripts/waybar_timer decrease 60"
-    },
-    "custom/weather": {
-      "format": "{}",
-      "exec": "$HOME/.config/waybar/scripts/weather.sh Sydney,Australia",
-      "return-type": "json",
-      "tooltip": true,
-      "interval": 3600
-    }
+  "include": [
+    "~/.config/waybar/modules.json"
+  ]
+},
+  /* Bar for main desktop display */
+  {
+  "name": "PB287Q",
+  "layer": "bottom",
+  "position": "top",
+  "height": 16,
+  "spacing": 3,
+  "margin-top": 1,
+  "margin-left": 2,
+  "margin-right": 2,
+  "output": ["Ancor Communications Inc ASUS PB287Q 0x00015C9F"],
+  "modules-left": [
+    "custom/fuzzel",
+    "hyprland/workspaces",
+    "hyprland/submap",
+    "custom/calendar"
+  ],
+  "modules-center": ["custom/player"],
+  "modules-right": [
+    "wireplumber",
+    /*"custom/audiocontrol",*/
+    "custom/notification",
+    "network",
+    "custom/nordvpn",
+    "custom/weather",
+    "clock",
+    "custom/timer",
+    "custom/brightness",
+    "battery",
+    "custom/power"
+  ],
+  "include": [
+    "~/.config/waybar/modules.json"
+  ]
+},
+  /* Bar for external ultrawide */
+  {
+  "name": "ultrawide",
+  "layer": "bottom",
+  "position": "top",
+  "height": 16,
+  "spacing": 3,
+  "margin-top": 1,
+  "margin-left": 2,
+  "margin-right": 2,
+  "output": ["Samsung Electric Company C49J89x H4ZN300228"],
+  "modules-left": [
+    "custom/fuzzel",
+    "hyprland/workspaces",
+    "hyprland/submap",
+    "custom/calendar"
+  ],
+  "modules-center": ["custom/player"],
+  "modules-right": [
+    "wireplumber",
+    /*"custom/audiocontrol",*/
+    "custom/notification",
+    "network",
+    "custom/nordvpn",
+    "custom/weather",
+    "clock",
+    "custom/timer",
+    "custom/brightness",
+    "battery",
+    "custom/power"
+  ],
+  "include": [
+    "~/.config/waybar/modules.json"
+  ]
+},
+  /* Bar for secondary 1440p monitor */
+  {
+  "name": "secondary",
+  "layer": "bottom",
+  "position": "top",
+  "height": 16,
+  "width": 1440,
+  "spacing": 3,
+  "margin-top": 1,
+  "margin-left": 2,
+  "margin-right": 2,
+  "output": ["Ancor Communications Inc ROG PG279Q HBLMQS061448"],
+  "modules-left": [
+    "hyprland/window"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "hyprland/workspaces"
+  ],
+  "include": [
+    "~/.config/waybar/modules.json"
+  ]
 }
+]

@@ -1,0 +1,25 @@
+[window]
+padding = { x = 0, y = 0 }
+
+[font]
+normal = { family = "Noto Sans Mono", style = "Regular" }
+#normal = {family = "terminal-font", style = "Regular"}
+size = 10
+
+[scrolling]
+history=100000
+
+[selection]
+save_to_clipboard = true
+
+[terminal]
+shell = { program = "/usr/bin/bash" }
+
+[bell]
+animation = "Linear"
+
+[general]
+import = [
+    "~/.config/alacritty/themes/matugen_theme.toml"
+]
+

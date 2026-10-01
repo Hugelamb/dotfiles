@@ -11,9 +11,9 @@ esac
 #-----------------------------------
 
 
-if [ -f /etc/bashrc ]; then
-    . /etc/bashrc 
-fi
+# if [ -f /etc/bashrc ]; then
+#     . /etc/bashrc 
+# fi
 #-----------------------------------
 # Source global definitions (if any)
 #-----------------------------------
@@ -93,6 +93,10 @@ HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
 shopt -s histappend
+
+if [ -n "$HISTFILETMP" ]; then    # unset HISTFILETMP if it is set 
+  export HISTFILETMP=
+fi
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
@@ -100,6 +104,14 @@ HISTFILESIZE=2000
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
+# Set terminal as alacritty
+if builtin type -P "alacritty" &> /dev/null; then
+  export TERM=alacritty
+fi
+# Set terminal as foot
+#if [ builtin type -P "foot" &> /dev/null ]; then
+#  export TERM=foot
+#fi
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
@@ -113,6 +125,7 @@ PS1='\[${colive}\][\[${cyellow}\]\u\[${cblue}\]@\[${cyellow}\]\h\[${colive}\]] \
 # Commands
 #------------------------------------------------
 
+
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
@@ -123,11 +136,17 @@ xterm*|rxvt*)
 esac
 
 # Check if given path exists, if it does, add to $PATH
-prepend_path () {
-    if [[ -d $1 ]]; then
-        export PATH="$1:$PATH"
+# prepend_if_not_in_path () {
+#     if [[ -d $1 ]]; then
+#         export PATH="$1:$PATH"
+#     fi
+# } 
+prepend_if_not_in_path () {
+    if [[ -d $1 ]] && [[ ":$PATH" != *"$1"* ]]; then
+      export PATH="$1:$PATH"
     fi
-} 
+}
+
 check_list() {
   LIST=$1
   DELIMITER=$2
@@ -181,32 +200,43 @@ if ! shopt -oq posix; then
 fi
 
 ### TASKWARRIOR COMMANDS AND FUNCTIONS
-alias in='task add +in'
-alias inbox='task +in list'
+if [ command -v task &> /dev/null ]; then
+  alias in='task add +in'
+  alias inbox='task +in list'
 
-alias tt='task +DUE list'
-alias habit="task rc.data.location=~/.tasks/habit" # alternate db for personal habits etc
-alias schedule="task rc.data.location=~/.tasks/schedule" # alternate db for scheduled events
-alias sched="task rc.data.location=~/.tasks/schedule"
-# function to add new task to provided project 
-# $1 should be project, all following are passed into task as a string
-add_projecttask() {
-#  task $1 "'$*'" 
-  if check_list $(task _projects) " " $1; then
-    task add project:$1 ${*:2}
-  else 
-    echo "*** WARNING *** This task has no assigned project."
-    read -p 'Do you still wish to add the task? (Y/N) ' boolvar
-    if [ "$boolvar" == "Y" ] || [ "$boolvar" == "y" ] ; then
-      task add +in ${*}
-      return
+  alias tt='task +DUE list'
+  alias habit="task rc.data.location=~/.tasks/habit" # alternate db for personal habits etc
+  alias schedule="task rc.data.location=~/.tasks/schedule" # alternate db for scheduled events
+  alias sched="task rc.data.location=~/.tasks/schedule"
+  # function to add new task to provided project 
+  # $1 should be project, all following are passed into task as a string
+  ta() {
+  #  task $1 "'$*'" 
+    if [[ $(task _projects) == *"$1"*  ]]; then
+      task add project:"$1" ${*:2}
     else 
-      return 1
+      echo "*** WARNING *** This task has no assigned project."
+      read -p 'Do you still wish to add the task? (Y/N) ' boolvar
+      if [ "$boolvar" == "Y" ] || [ "$boolvar" == "y" ] ; then
+        echo ${*}
+        task add +in ${*}
+        return
+      else 
+        return 1
+      fi
     fi
-  fi
-}
-alias ta='$(add_projecttask)'
-
+  }
+  # add task inbox to prompt
+  inbox_prompt() {
+    inbox_count=$(task rc.data.location="$HOME/.tasks/tasks" +in +PENDING count)
+    if [ $inbox_count -gt 0 ]; then
+      count_color=$ccrimson
+    else
+      count_color=$cgreen
+    fi
+    echo -e "${count_color}"
+  }
+fi
 # pyenv activation
 alias pya='source .venv/bin/activate'
 alias pyd='deactivate'
@@ -219,22 +249,21 @@ alias zth='zathura'
 #------------------------------------------------
 # Paths
 #------------------------------------------------
-prepend_path "$HOME/.local/lib/python3.11.1/bin"
 
 export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init -)"
+[[ -d $PYENV_ROOT/bin ]] && prepend_if_not_in_path "$PYENV_ROOT/bin"
+# eval "$(pyenv init -)
 
 # add BOOST root directory to path
-export PATH="/usr/include/boost_1_82_0:$PATH"
+# export PATH="/usr/include/boost_1_82_0:$PATH"
 
 # if neovim installed from github release, use that version
 if [[ -d /opt/nvim-linux64/bin ]]; then
-    export PATH="$PATH:/opt/nvim-linux64/bin"
+    prepend_if_not_in_path "/opt/nvim-linux64/bin"
 fi
 # add neovim config to path
 export EDITOR="nvim"
-export PATH="$HOME/.config/nvim:$PATH"
+prepend_if_not_in_path "$HOME/.config/nvim"
 # add colorschemes to lua path
 export LUA_PATH=";;$HOME/.config/nvim/colors/?.lua;$LUA_PATH"
 # add lua snippets to path
@@ -245,44 +274,71 @@ export LUA_PATH="$HOME/.config/nvim/luasnippets/?.lua;$LUA_PATH"
 if [[ -d /media ]]; then
   export MANPATH="/media/tex/texmf-dist/doc/man:$MANPATH"
   export INFOPATH="/media/tex/texmf-dist/doc/info:$INFOPATH"
-  prepend_path "/media/tex/bin/x86_64-linux"
+  prepend_if_not_in_path "/media/tex/bin/x86_64-linux"
 else
   export MANPATH="/usr/local/texlive/2024/texmf-dist/doc/man:$MANPATH"
   export INFOPATH="/usr/local/texlive/2024/texmf-dist/doc/info:$INFOPATH"
-  prepend_path "/usr/local/texlive/2024/bin/x86_64-linux"
+  prepend_if_not_in_path "/usr/local/texlive/2024/bin/x86_64-linux"
 fi
-prepend_path "$HOME/.local/bin"
+export TEXMFHOME="$HOME/.local/share/texmf"
+
+prepend_if_not_in_path "$HOME/.local/bin"
+prepend_if_not_in_path "$HOME/.local"
 
 # add mupdf fileviewer binary to path
-prepend_path "$HOME/.mupdf/bin"
+prepend_if_not_in_path "$HOME/.mupdf/bin"
 
 # add cargo to path (for macchina)
-prepend_path "$HOME/.cargo/bin"
+prepend_if_not_in_path "$HOME/.cargo/bin"
 
-# Quartus dev tools path
-prepend_path "$HOME/altera/13.0sp1/quartus/bin"
-# Add XDG_DATA_DIRS 
+## UNI setup path for scripts ## 
+prepend_if_not_in_path "$HOME/projects/university-setup-fuzzel/scripts"
+
+# XDG Dirs
+export XDG_DATA_HOME="$HOME/.local/share"
+# QT environment variable checks
+if [[ $QT_QPA_PLATFORM != "wayland" ]]; then
+  export QT_QPA_PLATFORM="wayland"
+fi
+
 #------------------------------------------------
 # Custom Commands
 #------------------------------------------------
 # print customized shell using macchina 
-shopt -q login_shell && macchina --config $HOME/.config/macchina/macchina-login.toml --theme minimal || macchina --theme Mikasa
-# add task inbox to prompt
-inbox_prompt() {
-  inbox_count=$(task rc.data.location="$HOME/.tasks/tasks" +in +PENDING count)
-  if [ $inbox_count -gt 0 ]; then
-    count_color=$ccrimson
-  else
-    count_color=$cgreen
-  fi
-  echo -e "${count_color}"
-}
-
-# set PS1
-if [[ ! $(command -v task 2>&1 >/dev/null) ]]     # command -v prints the location of input command if present in $PATH, otherwise returns failure status (1).
-then
-  export PS1='\[$(inbox_prompt)\]$(task +in +PENDING count) '$PS1               # prepend number of unprocessed inbox decisions to prompt, separate task call for prompt length calculations
+shopt -q login_shell
+if [[ $1 ]]; then
+  macchina --config "$HOME/.config/macchina/macchina-short.toml" 
+else
+  macchina --config "$HOME/.config/macchina/macchina.toml" --theme Mikasa
 fi
 
 
-export QSYS_ROOTDIR="/home/hug/altera_lite/24.1std/quartus/sopc_builder/bin"
+# set PS1
+if [ command -v task &> /dev/null ]; then
+  export PS1='\[$(inbox_prompt)\]$(task +in +PENDING count) '$PS1               # prepend number of unprocessed inbox decisions to prompt, separate task call for prompt length calculations
+fi
+
+## Function: 
+# Apply color profile for FW13 
+#if [[ ! $(command -v dispwin 2>&1 >/dev/null) ]] && [[ $(cat /sys/devices/virtual/dmi/id/product_name) == 'Laptop 13 (AMD Ryzen AI 300 Series)' ]]
+# the
+#   dispwin '/usr/share/color/icc/colord/NE160QDM-NZ6.icm' > /dev/null 2>&1  # Hide text output
+# fi
+
+export STM32_PRG_PATH=$HOME/applications/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin
+
+# FCITX5 env changes
+
+# opencode
+export PATH=$HOME/.opencode/bin:$PATH
+
+if [ -f '$HOME/.bash_completions/zmk.sh' ]; then
+  source '$HOME/.bash_completions/zmk.sh'
+fi
+
+### Google Cloud SDK ###
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '$HOME/sdk/google-cloud-sdk/path.bash.inc' ]; then . '$HOME/sdk/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '$HOME/sdk/google-cloud-sdk/completion.bash.inc' ]; then . '$HOME/sdk/google-cloud-sdk/completion.bash.inc'; fi

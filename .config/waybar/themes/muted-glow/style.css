@@ -1,0 +1,257 @@
+/* ==================== */
+/*      CSS Styling     */
+/* ==================== */
+/* 
+ * Modifications to default colours done here  
+ */
+
+
+
+
+
+/* =================== */
+/* inbuilt display css */
+/* =================== */
+*   {
+    /*  `otf-font-awesome` must be installed for icons */
+    font-family: "Noto Sans Mono", "Symbols Nerd Font Mono","FontAwesome", "Font Awesome 7 Free", "Font Awesome 7 Brands", "Material Icons";
+    min-height: 0;
+    border-radius:0px;
+}
+/* for whole status bar */
+window#waybar {
+  background: transparent;
+  background-color: transparent;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  color: @inverse_on_surface;
+}
+
+window#waybar.hidden {
+  opacity: 1;
+}
+
+.modules-left {
+
+  border-radius: 12px;
+  border: 1px solid alpha(@shadow,0.8);
+  opacity:0.8;
+  margin:2px;
+  background-clip: content-box;
+  background-color: alpha(@inverse_surface,0.9);
+  box-shadow: inset 2px 2px 14px alpha(@shadow, 0.8), inset 0 1px 2px 0px alpha(@shadow, 0.8), inset 1px 1px 1px alpha(@shadow, 0.8);
+ }
+
+.modules-right {
+  border-radius: 12px;
+  border:   1px solid alpha(@shadow,0.8);
+  opacity:  0.8;
+  margin:   2px;
+  background-clip: content-box;
+  background-color: alpha(@inverse_surface,0.9);
+  box-shadow: inset 0px 2px 14px 2px alpha(@shadow, 0.8), inset 0px 1px 2px 0px alpha(@shadow, 0.8), inset 1px 1px 1px alpha(@shadow, 0.8);
+  min-width: 230px;
+}
+.modules-center {
+  border-radius: 12px;
+  border: 1px solid transparent;
+  margin: 2px;
+  background-clip: content-box;
+  background-color: @inverse_surface;
+  box-shadow: inset 0px -1px 7px alpha(@shadow, 0.6), inset 0 0px 2px 0px alpha(@shadow, 0.6), inset 0px 1px 1px alpha(@shadow, 0.6); 
+}
+
+label.module {
+  font-size: 14px;
+  margin-left: 7px;
+  margin-right: 7px;
+  border-radius: 5px;
+  padding: 0px 0px;
+}
+#workspaces {
+  padding: 5px 3px 5px 3px;
+  min-width: 176px;
+}
+#workspaces button {
+  color: @inverse_on_surface;
+  border-radius: 3px;
+  padding: 0px 10px 0px 2px;
+  margin: 0px 2px 0px 2px;
+  border: 1px solid transparent;
+}
+#workspaces button:hover {
+  background: alpha(@secondary,0.2);
+  border-radius: 12px;
+}
+#workspaces button.visible {
+  background: alpha (@tertiary_container, 0.5);
+  padding: 0px 10px 0px 2px;
+  border: 1px solid transparent;
+  transition: all 0.3s ease-in-out;
+  border-radius: 8px;
+  box-shadow: inset 0px 1px 2px 2px alpha(@surface,0.5), inset 0px -1px 2px 3px alpha(@surface,0.3);
+}
+#workspaces button.visible:hover,
+
+#workspaces button.active {
+  background:alpha(@tertiary_container,0.7);
+  color: @on_inverse_primary;
+  font-weight: normal;
+  border: 1px solid transparent;
+  transition: all 0.3s ease-in-out;
+  min-width: 30px;
+  border-radius: 8px;
+  /* box-shadow: <opt:inset> h-offset(+=r,-=l) v-offset(+=below,-=above) <opt:blur(bigger number=more blurred)> <opt:spread(+=bigger,-=smaller)> <opt:color> */
+  box-shadow: inset 0px 1px 2px 2px alpha(@surface_tint,0.5), inset 0 0px 5px 6px alpha(@surface_tint,0.4); /* rgba(255, 255, 255, 0.8); */
+}
+
+/* 
+ * Window
+ */
+
+window#waybar.empty #window {
+    background-color:transparent;
+}
+
+/* -----------------------------------------------------
+ * Tooltips
+ * ----------------------------------------------------- */
+
+tooltip {
+    background-color: alpha(@surface,0.7);
+    border-radius: 12px;
+    border: 1px solid transparent;
+    opacity:0.6;
+    margin:10px;
+    box-shadow: inset 2px 2px 30px rgba(255, 255, 255, 0.8), inset 0 1px 2px 0px rgba(255, 255, 255, 1), inset 0 1px 1px rgba(255, 255, 255, 1);
+}
+
+tooltip label {
+    color: white;
+}
+
+
+
+
+#clock {
+    font-weight: bold;
+    /*font-family: Noto Sans CJK;*/
+    /*font-weight: 100;
+    color: #00071a;*/
+}
+
+#wireplumber-muted {
+  color: #57b5e3;
+}
+
+#mpris.firefox {
+  color: @sunset-cyan;
+}
+/* ================================ */
+/*            WORKSPACES            */
+/* ================================ */
+
+#workspaces {
+}
+
+/* Battery Status Styling */
+/* cycle through "  ","  ","  ","  ","  " */
+
+
+#battery.plugged {
+  color: @on_tertiary_fixed;
+  text-shadow: 1px 0px alpha(@tertiary_fixed,0.6);
+}
+#battery.charging {
+  color: @tertiary;
+  animation-name: blink;
+}
+@keyframes blink {
+    to {
+        background-color: @background;
+        color: @on_surface;
+    }
+}
+#battery.warning {
+  color: @primary;
+}
+#battery.critical {
+  color: @error;
+}
+#battery.discharging {
+
+}
+
+#battery.full {
+
+}
+
+#battery.unknown {
+
+}
+/* bar specific overrides */
+
+/* ================================ */
+/*          CUSTOM MODULES          */
+/* ================================ */
+
+
+#custom-fuzzel {
+    /*padding: 0 6px;
+    margin: 5px 0px; */
+}
+#custom-notification {
+    color: @sunset-base3;
+    background: rgba(0,7,26,0);
+    /*
+    padding: 2px 2px;
+    */
+}
+#custom-notification button.visible {
+    border: 2px solid #00071a;
+    border-radius: 12px;
+}
+#custom-player {
+    color: @sunset-base2;
+    background: alpha(@surface,0.2);
+    /*
+    padding-left: 9px;
+    padding-right: 9px;
+    */
+}
+
+#custom-nordvpn.connected {
+    color: @tertiary;
+}
+#custom-nordvpn.disconnected {
+    color: @error;
+}
+#custom-power {
+  font-size: 12px;
+  padding: 0px 4px 0px 0px;
+}
+
+#window,
+#tray,
+#cpu,
+#clock,
+#temperature,
+#temperature-critical,
+#backlight,
+#pulseaudio,
+#pulseaudio-muted,
+#wireplumber,
+#wireplumber-muted,
+#battery,
+#battery-critical,
+#timer,
+#custom-fuzzel,
+#custom-padding,
+#custom-notification,
+#custom-timer,
+#custom-power,
+#custom-nordvpn,
+#custom-player,
+#custom-tasks {
+
+}
