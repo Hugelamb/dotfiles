@@ -44,6 +44,10 @@ P.get_ISO_8601_date = function()
   return os.date("%Y-%m-%d")
 end
 
+P.get_nihon_date = function()
+  return os.date("%Y %m 月 %d 日")
+end
+
 P.get_visual = function(_, parent)
   if #parent.snippet.env.SELECT_RAW > 0 then
     return sn(nil, i(1, parent.snippet.env.SELECT_RAW))
