@@ -10,4 +10,13 @@ return {
     ),
   { condition = tex_utils.in_text }
   ),  
+  s({ trig = "==>", dscr = "double ended arrow indicating meaning of preceding phrase.", snippetType="autosnippet" },
+    fmta(
+    [[
+    $ \Leftrightarrow $ <>
+    ]],
+      i(0)
+    ),
+  { condition = tex_utils.in_text }
+  ),  
 }

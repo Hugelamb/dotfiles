@@ -186,7 +186,7 @@ P.close_tab = function(args, snip)
   local ins_indx = 1
   for j = 1, snip.rows do
     -- use restoreNode to retain content while updating.
-    table.insert(nodes,t"\\hline")
+    table.insert(nodes,t"\\hline ")
     table.insert(nodes, r(ins_indx, tostring(j).."x1", i(1)))
     ins_indx = ins_indx + 1
     for k = 2, cols do
